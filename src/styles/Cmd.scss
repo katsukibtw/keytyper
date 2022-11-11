@@ -1,0 +1,14 @@
+.cmd_container {
+	position: fixed;
+	width: 10rem;
+	height: 10rem;
+	background: white;
+	color: black;
+	inset: 40% 45%;
+	overflow: hidden;
+	z-index: 1000;
+}
+
+.command_input {
+	width: 10rem;
+}

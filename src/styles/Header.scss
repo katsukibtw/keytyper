@@ -1,0 +1,20 @@
+.head {
+	width: 65%;
+	margin-inline: auto;
+	height: 10vh;
+	display: flex;
+	align-items: center;
+	
+	.title {
+		display: flex;
+		flex-direction: row;
+		gap: .5rem;
+		justify-content: center;
+		align-items: center;
+		
+		.icon {
+			width: 2rem;
+			height: 2rem;
+		}
+	}
+}

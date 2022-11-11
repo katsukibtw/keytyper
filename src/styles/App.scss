@@ -1,0 +1,27 @@
+.tokyonight {
+	--bg: #1a1b26;
+	--fg: #c0caf5;
+	--fg-dark: #a9b1d6;
+	--fg-darker: #5b6073;
+	--clr: #7aa2f7;
+}
+
+.clear {
+	--bg: white;
+	--fg: black;
+	--fg-dark: #a9b1d6;
+	--fg-darker: #393c48;
+	--clr: blue;
+}
+
+.App {
+	position: absolute;
+	inset: 0;
+	color: var(--fg);
+	background: var(--bg);
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: space-between;
+}

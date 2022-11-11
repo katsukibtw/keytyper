@@ -1,0 +1,70 @@
+.test {
+	width: 50%;
+	margin-inline: auto;
+	flex-grow: 1;
+	display: flex;
+	// align-items: center;
+	flex-direction: column;
+	justify-content: center;
+	font-size: 1.3rem;
+	gap: .5rem;
+
+	.timer {
+		font-weight: 700;
+		color: var(--fg-darker);
+	}
+	
+	.wrapper {
+		display: flex;
+		flex-wrap: wrap;
+		gap: .5rem;
+		font-size: 1.5rem;
+		font-family: 'mononoki';
+		height: 7rem;
+		overflow: hidden;
+
+		.word {
+			position: relative;
+		}
+		
+		#caret {
+			margin: 0 -13.4833px 0 -5.7416px;
+			font-weight: 900;
+			color: var(--clr);
+
+			&.blink {
+				animation: blink 1.4s ease infinite 1s ;
+			}
+		}
+	}
+
+	.restart_btn {
+		width: 6rem;
+		height: 3rem;
+		align-self: center;
+		font-size: 1.1rem;
+		background: var(--bg);
+		color: var(--fg-darker);
+		font-weight: 700;
+		border-radius: .4rem;
+		border: 0;
+		transition: .4s;
+
+		&:hover {
+			background: var(--clr);
+			color: var(--bg);
+			transition: .4s;
+		}
+
+	}
+}
+
+@keyframes blink {
+	0%,
+	100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0;
+	}
+}
