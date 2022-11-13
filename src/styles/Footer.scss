@@ -3,8 +3,23 @@
 	margin-inline: auto;
 	height: 10vh;
 	display: flex;
+	flex-direction: row;
 	align-items: center;
 	transition: .4s ease;
+
+	.link {
+		color: var(--fg-dark);
+		display: flex;
+		flex-direction: row;
+		gap: .5rem;
+		text-decoration: none;
+		transition: .4s ease;
+
+		&:hover {
+			color: var(--clr);
+			transition: .4s ease;
+		}
+	}
 }
 
 .hidden {

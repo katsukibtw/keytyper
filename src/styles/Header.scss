@@ -23,11 +23,12 @@
 
 	.buttons {
 		font-family: 'mononoki';
+		color: var(--fg-dark);
 		
 		.head__btn {
 			font-family: 'mononoki';
 			background-color: var(--bg);
-			color: var(--fg);
+			color: var(--fg-dark);
 			border: 0;
 			padding: 0 .3rem;
 			transition: .4s ease;
