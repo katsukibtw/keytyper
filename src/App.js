@@ -1,5 +1,6 @@
 import './styles/App.scss';
 import './styles/themes.scss';
+import './styles/fonts.scss';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import TestWrapper from './components/TestWrapper';

@@ -1,7 +1,7 @@
 import { KeyboardEvent, useEffect, useState, useRef } from "react";
-import { options, Options } from "./Header";
+// import { options } from "./Header";
 import { useDispatch } from "react-redux";
-import { setTime, setTheme, setLang } from "../store/actions";
+import { setTime, setTheme, setLang, setFont } from "../store/actions";
 import styles from "../styles/Cmd.module.scss";
 
 export default function Cmd(props) {
@@ -11,6 +11,23 @@ export default function Cmd(props) {
     const [commandList, setCommandList] = useState([]);
     const dispatch = useDispatch();
     const cmdTextBox = useRef(null);
+
+
+	const options = {
+		time: [15, 30, 45, 60, 120],
+		theme: [
+			"tokyonight",
+			"clear",
+			"catppuccin",
+			"gruvbox",
+			"gruvbox_light",
+			"nord",
+			"nord_light",
+			"everforest",
+		],
+		lang: ["eng", "eng_hard", "rus", "rus_hard"],
+		font: ["mononoki", "roboto_mono", "jetbrains_mono", "ubuntu_mono"],
+	};
 	
 	useEffect(() => {
 		document.onclick = () => {
@@ -58,6 +75,11 @@ export default function Cmd(props) {
             case "lang":
                 dispatch(setLang(command));
                 break;
+			case "font":
+				dispatch(setFont(command));
+				document.body.children[1].classList.remove(...options.font);
+				document.body.children[1].classList.add(command);
+				localStorage.setItem("font", command);
             default:
                 console.log(selectedOption, command);
         }

@@ -8,6 +8,7 @@ import {
     setTheme,
     setTime,
     setLang,
+	setFont,
     setWordList,
     timerSet,
 } from "../store/actions";
@@ -16,7 +17,7 @@ import { State } from "../store/reduce";
 export const options = {
     time: [15, 30, 45, 60, 120],
     theme: [
-        "default",
+        "tokyonight",
 		"clear",
 		"catppuccin",
 		"gruvbox",
@@ -31,15 +32,17 @@ export const options = {
 export default function Header() {
 
 	const {
-        preferences: { timeLimit, theme, lang },
+        preferences: { timeLimit, theme, lang, font },
         time: { timerId },
     } = useSelector((state) => state);
     const dispatch = useDispatch();
+	const fonts = ["mononoki", "roboto_mono"];
 
     useEffect(() => {
-        const theme = localStorage.getItem("theme") || "default";
-        const lang = localStorage.getItem("lang") || "words";
-        const time = parseInt(localStorage.getItem("time") || "60", 10);
+        const theme = localStorage.getItem("theme") || "tokyonight";
+        const lang = localStorage.getItem("lang") || "rus";
+        const time = parseInt(localStorage.getItem("time") || "30", 10);
+		const font = localStorage.getItem("font") || "mononoki";
         import(`../langs/${lang}.json`).then((words) =>
             dispatch(setWordList(words.default))
         );
@@ -47,6 +50,7 @@ export default function Header() {
         dispatch(setLang(lang));
         dispatch(setTime(time));
         dispatch(setTheme(theme));
+		dispatch(setFont(font));
     }, [dispatch]);
 
     // Set Theme
@@ -64,6 +68,16 @@ export default function Header() {
             localStorage.setItem("theme", theme);
         }
     }, [dispatch, theme]);
+
+	// Set Font
+	useEffect(() => {
+		if (font) {
+			dispatch(setFont(font));
+            document.body.children[1].classList.remove(...fonts);
+			document.body.children[1].classList.add(font);
+			localStorage.setItem("font", font);
+		}
+	}, [dispatch, font]);
 
     // Set Time
     useEffect(() => {

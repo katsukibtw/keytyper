@@ -8,7 +8,7 @@ import { State } from "../store/reduce";
 export default function TestWrapper() {
 	const {
         word: { typedWord, currWord, wordList, typedHistory },
-        time: { timer },
+        time: { timer, timerId },
     } = useSelector((state) => state);
     const dispatch = useDispatch();
     const extraLetters = typedWord.slice(currWord.length).split("");
@@ -74,6 +74,9 @@ export default function TestWrapper() {
                     );
                 })}
             </div>
+			<div className={timerId ? "hidden advice" : "advice"}>
+				Нажмите <div className="advice__button">Ctrl</div> + <div className="advice__button">K</div> , чтобы открыть панель управления.
+			</div>
         </div>
 	);
 }

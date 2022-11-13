@@ -20,7 +20,7 @@
 		flex-wrap: wrap;
 		gap: .5rem;
 		font-size: 1.5rem;
-		font-family: 'mononoki';
+		font-family: var(--fc);
 		height: 7rem;
 		overflow: hidden;
 		transition: .4s ease;
@@ -72,6 +72,28 @@
 			50% {
 				opacity: 0;
 			}
+		}
+	}
+
+	.advice {
+		font-family: 'Open Sans';
+		font-weight: 700;
+		display: flex;
+		flex-direction: row;
+		font-size: .8rem;
+		gap: .5rem;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		color: var(--fg-dark);
+		margin: 1rem 0 0;
+
+		.advice__button {
+			font-family: var(--fc);
+			background-color: var(--fg);
+			color: var(--bg);
+			padding: .1rem .3rem;
+			border-radius: .2rem;
 		}
 	}
 

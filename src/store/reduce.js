@@ -10,6 +10,7 @@ import {
     PREV_WORD,
     SET_WORDLIST,
     SET_THEME,
+	SET_FONT,
     SET_TIME,
     SET_REF,
     SET_CARET_REF,
@@ -39,6 +40,7 @@ import {
 export const State = {
     preferences: {
         theme: "",
+		font: "",
         timeLimit: 0,
         lang: "",
     },
@@ -59,6 +61,7 @@ export const State = {
 export const initialState = {
     preferences: {
         theme: "",
+		font: "",
         timeLimit: 0,
         lang: "rus",
     },
@@ -157,16 +160,12 @@ const preferenceReducer = (
     switch (type) {
         case SET_THEME:
             return { ...state, theme: payload };
+		case SET_FONT:
+			return { ...state, font: payload };
         case SET_TIME:
-            return {
-                ...state,
-                timeLimit: payload,
-            };
+            return { ...state, timeLimit: payload };
         case SET_LANG:
-            return {
-                ...state,
-                lang: payload,
-            };
+			return { ...state, lang: payload };
         default:
             return state;
     }

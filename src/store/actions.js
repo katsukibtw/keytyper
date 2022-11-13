@@ -13,6 +13,7 @@ export const SET_TIME = "SETTIME";
 export const SET_REF = "SETREF";
 export const SET_CARET_REF = "SETCARETREF";
 export const SET_LANG = "SETLANG";
+export const SET_FONT = "SETFONT";
 
 // Time Actions
 export const timerDecrement = () => ({ type: TIMER_DECREMENT });
@@ -48,9 +49,6 @@ export const setCaretRef = (payload) => ({
 
 // Prefrences Actions
 export const setTheme = (payload) => ({ type: SET_THEME, payload });
+export const setFont = (payload) => ({ type: SET_FONT, payload });
 export const setTime = (payload) => ({ type: SET_TIME, payload });
-export const setLang = (payload) => ({
-    type: SET_LANG,
-    payload,
-});
-
+export const setLang = (payload) => ({ type: SET_LANG, payload });
