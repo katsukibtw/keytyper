@@ -25,7 +25,7 @@ export const options = {
 		"nord_light",
 		"everforest",
     ],
-    lang: ["eng", "eng_10k", "rus", "rus_10k"],
+    lang: ["eng", "eng_hard", "rus", "rus_hard"],
 };
 
 export default function Header() {
