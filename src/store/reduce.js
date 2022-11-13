@@ -60,7 +60,7 @@ export const initialState = {
     preferences: {
         theme: "",
         timeLimit: 0,
-        lang: "",
+        lang: "rus",
     },
     word: {
         currWord: "",

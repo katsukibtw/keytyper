@@ -24,7 +24,7 @@ export default function TestWrapper() {
 		<div className="test">
             <div className="timer">{timer}</div>
             <div className="wrapper">
-                {wordList.map((word, idx) => {
+                {wordList.slice(0, 501).map((word, idx) => {
                     const isActive =
                         currWord === word && typedHistory.length === idx;
                     return (

@@ -19,6 +19,11 @@ export const options = {
         "default",
 		"clear",
 		"catppuccin",
+		"gruvbox",
+		"gruvbox_light",
+		"nord",
+		"nord_light",
+		"everforest",
     ],
     lang: ["eng", "eng_10k", "rus", "rus_10k"],
 };

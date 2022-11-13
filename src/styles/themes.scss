@@ -24,6 +24,56 @@
 	--fg: #cdd6f4;
 	--fg-dark: #a9b1d6;
 	--fg-darker: #585b70;
-	--clr: #f9e2af;
 	--fg-wrong: #f38ba8;
+	--clr: #f9e2af;
+}
+
+.gruvbox {
+	--bg: #282828;
+	--bg-btn: #1d2021;
+	--fg: #ebdbb2;
+	--fg-dark: #bdae93;
+	--fg-darker: #928374;
+	--fg-wrong: #cc241d;
+	--clr: #d79921;
+}
+
+.gruvbox_light {
+	--bg: #fbf1c7;
+	--bg-btn: #bdae93;
+	--fg: #1d2021;
+	--fg-dark: #3c3836;
+	--fg-darker: #504945;
+	--fg-wrong: #cc241d;
+	--clr: #076678;
+}
+
+.nord {
+	--bg: #2e3440;
+	--bg-btn: #1b1f28;
+	--fg: #eceff4;
+	--fg-dark: #c6cfde;
+	--fg-darker: #7c889d;
+	--fg-wrong: #bf616a;
+	--clr: #b48ead;
+}
+
+.nord_light {
+	--bg: #eceff4;
+	--bg-btn: #c6cfde;
+	--fg: #1b1f28;
+	--fg-dark: #2e3440;
+	--fg-darker: #4c566a;
+	--fg-wrong: #bf616a;
+	--clr: #b48ead;
+}
+
+.everforest {
+	--bg: #2b3339;
+	--bg-btn: #1b242b;
+	--fg: #d3c6aa;
+	--fg-dark: #a39679;
+	--fg-darker: #7f745b;
+	--fg-wrong: #e67e80;
+	--clr: #a7c080;
 }
