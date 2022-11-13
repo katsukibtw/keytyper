@@ -3,7 +3,10 @@
 	margin-inline: auto;
 	height: 10vh;
 	display: flex;
+	flex-direction: row;
+	gap: 1rem;
 	align-items: center;
+	transition: .4s ease;
 	
 	.title {
 		display: flex;
@@ -17,4 +20,28 @@
 			height: 2rem;
 		}
 	}
+
+	.buttons {
+		font-family: 'mononoki';
+		
+		.head__btn {
+			font-family: 'mononoki';
+			background-color: var(--bg);
+			color: var(--fg);
+			border: 0;
+			padding: 0 .3rem;
+			transition: .4s ease;
+			font-size: 1rem;
+
+			&:hover,
+			&.selected {
+				color: var(--clr);
+			}
+		}
+	}
+}
+
+.hidden {
+	opacity: 0;
+	transition: .4s ease;
 }

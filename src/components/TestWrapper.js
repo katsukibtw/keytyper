@@ -1,25 +1,79 @@
 import React from 'react';
 import '../styles/TestWrapper.scss';
-import rus from '../langs/rus.json';
+import { useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setRef, setCaretRef } from "../store/actions";
+import { State } from "../store/reduce";
 
 export default function TestWrapper() {
-	const wordList = rus['words'];	
+	const {
+        word: { typedWord, currWord, wordList, typedHistory },
+        time: { timer },
+    } = useSelector((state) => state);
+    const dispatch = useDispatch();
+    const extraLetters = typedWord.slice(currWord.length).split("");
+    const activeWord = useRef(null);
+    const caretRef = useRef(null);
+
+	useEffect(() => {
+        dispatch(setRef(activeWord));
+        dispatch(setCaretRef(caretRef));
+    }, [dispatch]);
+
 	return (
 		<div className="test">
-			<div className="timer">there's supposed to be a timer</div>
-			<div className="wrapper">
-				<span id="caret" className='blink'>|</span>
-				{wordList.sort(() => (Math.random() > .5) ? 1 : -1).map((word, idx) => {
-					return (
-						<div className="word" key={word + idx}>
-							{word.split("").map((char, charId) => {
-								return <span className="char" key={char + charId}>{char}</span>;
-							})}
-						</div>
-					);
-				})}
-			</div>
-			<button className="restart_btn">Restart</button>
-		</div>
+            <div className="timer">{timer}</div>
+            <div className="wrapper">
+                {wordList.map((word, idx) => {
+                    const isActive =
+                        currWord === word && typedHistory.length === idx;
+                    return (
+                        <div
+                            key={word + idx}
+                            className="word"
+                            ref={isActive ? activeWord : null}>
+                            {isActive ? (
+                                <span
+                                    ref={caretRef}
+                                    id="caret"
+                                    className="blink"
+                                    style={{
+                                        left: typedWord.length * 14.5833,
+                                    }}>
+                                    |
+                                </span>
+                            ) : null}
+                            {word.split("").map((char, charId) => {
+                                return <span key={char + charId}>{char}</span>;
+                            })}
+                            {isActive
+                                ? extraLetters.map((char, charId) => {
+                                      return (
+                                          <span
+                                              key={char + charId}
+                                              className="wrong extra">
+                                              {char}
+                                          </span>
+                                      );
+                                  })
+                                : typedHistory[idx]
+                                ? typedHistory[idx]
+                                      .slice(wordList[idx].length)
+                                      .split("")
+                                      .map((char, charId) => {
+                                          return (
+                                              <span
+                                                  key={char + charId}
+                                                  className="wrong extra">
+                                                  {char}
+                                              </span>
+                                          );
+                                      })
+                                : null}
+                        </div>
+                    );
+                })}
+            </div>
+        </div>
 	);
 }

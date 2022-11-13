@@ -8,10 +8,11 @@
 	justify-content: center;
 	font-size: 1.3rem;
 	gap: .5rem;
+	transition: .4s ease;
 
 	.timer {
 		font-weight: 700;
-		color: var(--fg-darker);
+		color: var(--clr);
 	}
 	
 	.wrapper {
@@ -22,18 +23,54 @@
 		font-family: 'mononoki';
 		height: 7rem;
 		overflow: hidden;
+		transition: .4s ease;
 
 		.word {
 			position: relative;
+			color: var(--fg-darker);
+
+			&.wrong {
+				text-decoration: 2px underline var(--fg-wrong);
+            }
+		}
+
+		.typedWord {
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		.right {
+			color: var(--fg);
+		}
+		#active {
+			position: relative;
+			width: max-content;
+		}
+		span.wrong {
+			color: var(--fg-wrong) !important;
+		}
+		.extra {
+			opacity: 0.6;
 		}
 		
 		#caret {
-			margin: 0 -13.4833px 0 -5.7416px;
-			font-weight: 900;
+			transition: left 0.1s ease;
+			margin-left: -7.29165px;
+			position: absolute;
+			font-weight: 700;
 			color: var(--clr);
-
 			&.blink {
-				animation: blink 1.4s ease infinite 1s ;
+				animation: blink 1.5s infinite 1s;
+				font-weight: 700;
+			}
+		}
+		@keyframes blink {
+			0%,
+			100% {
+				opacity: 1;
+			}
+			50% {
+				opacity: 0;
 			}
 		}
 	}
@@ -55,16 +92,5 @@
 			color: var(--bg);
 			transition: .4s;
 		}
-
-	}
-}
-
-@keyframes blink {
-	0%,
-	100% {
-		opacity: 1;
-	}
-	50% {
-		opacity: 0;
 	}
 }

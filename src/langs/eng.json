@@ -1,6 +1,4 @@
-{
-  "name": "english",
-  "words": [
+[
     "the",
     "be",
     "of",
@@ -201,6 +199,4 @@
     "change",
     "help",
     "line"
-  ]
-}
-
+]

@@ -1,0 +1,58 @@
+.cmd {
+	position: absolute;
+	inset: 0;
+	background: hsl(0, 0%, 0%, .9);
+	z-index: 1000;
+	transition: .4s ease;
+	display: grid;
+	place-items: center;
+	font-family: 'mononoki';
+	animation: fade-in .4s ease forwards;
+	@keyframes fade-in {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
+	}
+}
+.cmd_container {
+	width: 30rem;
+	height: 20rem;
+	background: var(--bg);
+	color: var(--fg);
+	overflow: hidden;
+	z-index: 1000;
+	padding: .7rem .5rem .5rem .5rem;
+	border-radius: .7rem;
+}
+.command_input {
+	width: 29.5rem;
+	background: var(--bg-btn);
+	color: var(--fg);
+	border: 0;
+	border-radius: .5rem;
+	padding: .5rem 0 .5rem .5rem;
+	font-family: 'mononoki';
+	font-weight: 700;
+}
+.command_list {
+	margin: .5rem 0 0;
+	display: flex;
+	flex-direction: column;
+	gap: .2rem;
+}
+.command {
+	padding: .5rem;
+	background-color: var(--bg);
+	border-radius: .5rem;
+	transition: .4s ease;
+}
+.command:hover,
+.command:focus,
+.highlighted {
+	transition: .4s ease;
+	background-color: var(--clr);
+	color: var(--bg);
+}

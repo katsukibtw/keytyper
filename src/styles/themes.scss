@@ -1,0 +1,29 @@
+.default {
+	--bg: #1a1b26;
+	--bg-btn: #16161e;
+	--fg: #c0caf5;
+	--fg-dark: #a9b1d6;
+	--fg-darker: #5b6073;
+	--fg-wrong: #f7768e;
+	--clr: #7aa2f7;
+}
+
+.clear {
+	--bg: white;
+	--bg-btn: #d8d8d8;
+	--fg: black;
+	--fg-dark: #a9b1d6;
+	--fg-darker: #393c48;
+	--fg-wrong: red;
+	--clr: blue;
+}
+
+.catppuccin {
+	--bg: #1e1e2e;
+	--bg-btn: #11111b;
+	--fg: #cdd6f4;
+	--fg-dark: #a9b1d6;
+	--fg-darker: #585b70;
+	--clr: #f9e2af;
+	--fg-wrong: #f38ba8;
+}
