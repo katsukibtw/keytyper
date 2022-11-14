@@ -19,7 +19,7 @@ export default function Results() {
     const wpm = ((correctChars + spaces) * 60) / timeLimit / 5;
     return (
         <div className="result">
-            <h1>{Math.round(wpm) + " cвм"}</h1>
+            <h1>{Math.round(wpm) + " wpm"}</h1>
 			<div className="info">
 				<div className="info__row">
 					<div>Слова без ошибок:</div>

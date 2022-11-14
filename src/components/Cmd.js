@@ -12,7 +12,6 @@ export default function Cmd(props) {
     const dispatch = useDispatch();
     const cmdTextBox = useRef(null);
 
-
 	const options = {
 		time: [15, 30, 45, 60, 120],
 		theme: [
@@ -28,7 +27,7 @@ export default function Cmd(props) {
 		lang: ["eng", "eng_hard", "rus", "rus_hard"],
 		font: ["mononoki", "roboto_mono", "jetbrains_mono", "ubuntu_mono"],
 	};
-	
+
 	useEffect(() => {
 		document.onclick = () => {
 			props.setShowCmd((s) => !s);
