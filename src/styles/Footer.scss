@@ -1,11 +1,12 @@
 .footer {
 	width: 65%;
 	margin-inline: auto;
-	height: 10vh;
+	height: 12vh;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	transition: .4s ease;
+	justify-content: space-between;
 
 	.link {
 		color: var(--fg-dark);
@@ -19,6 +20,15 @@
 			color: var(--clr);
 			transition: .4s ease;
 		}
+	}
+
+	#codeberg {
+		font-weight: 700;
+	}
+
+	.author {
+		font-style: italic;
+		font-weight: 200;
 	}
 }
 

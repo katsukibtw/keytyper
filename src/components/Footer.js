@@ -9,7 +9,8 @@ export default function Footer() {
 
 	return (
 		<div className={timerId ? "hidden footer" : "footer"}>
-				<a href="https://codeberg.org/katsuki/keytyper" className="link"><div className="icon">{'</>'}</div>Исходный код</a>
+				<a id="codeberg" href="https://codeberg.org/katsuki/keytyper" className="link"><div className="icon">{'</>'}</div>Исходный код</a>
+				<div className="author">by @katsukibtw</div>
 		</div>
 	);
 }
