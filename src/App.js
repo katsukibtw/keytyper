@@ -29,6 +29,7 @@ function App() {
     } = useSelector((state) => state);
     const dispatch = useDispatch();
 
+
 	useEffect(() => {
 		document.onkeydown = (e) => {
 			if (e.ctrlKey && e.key === "k") {
@@ -79,16 +80,16 @@ function App() {
 			{showCmd && <Cmd setShowCmd={setShowCmd}/>}
 
             <Routes>
-                <Route index element={
+                <Route path={indexPath} element={
                     <div className="index_links">
-                        <Link className="route_link" to="/training">Быстрая тренировка</Link>
-                        <Link className="route_link" to="/education">Программа обучения</Link>
-                        <Link className="route_link" to="/classroom">Класс</Link>
+                        <Link className="route_link" to={`${indexPath}/training`}>Быстрая тренировка</Link>
+                        <Link className="route_link" to={`${indexPath}/education`}>Программа обучения</Link>
+                        <Link className="route_link" to={`${indexPath}/classroom`}>Класс</Link>
                     </div>
                 }/>
-                <Route path="/training" element={<Training timer={timer}/>}/>
-                <Route path="/education" element={<Education />}/>
-                <Route path="/classroom" element={<Education />}/>
+                <Route path={`${indexPath}/training`} element={<Training timer={timer}/>}/>
+                <Route path={`${indexPath}/education`} element={<Education />}/>
+                <Route path={`${indexPath}/classroom`} element={<Education />}/>
             </Routes>
 
 			<Footer />
@@ -104,11 +105,12 @@ const Training = ({timer}) => {
 const Education = () => {
     return (
         <div className="dummydiv">placeholder
-            <Link className="exit_btn" to="/">
+            <Link className="exit_btn" to={indexPath}>
                     <FontAwesomeIcon icon={faArrowLeft}/>
             </Link>
         </div>
     );
 }
 
+export const indexPath = "/10v/skripko/keytyper";
 export default App;

@@ -7,6 +7,7 @@ import { State } from "../store/reduce";
 import { Link } from "react-router-dom";
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { indexPath } from "../App";
 
 export default function TestWrapper() {
 	const {
@@ -80,7 +81,7 @@ export default function TestWrapper() {
 			<div className={timerId ? "hidden advice" : "advice"}>
 				Нажмите <div className="advice__button">Ctrl</div> + <div className="advice__button">K</div> , чтобы открыть панель управления.
 			</div>
-            <Link className="exit_btn" to="/">
+            <Link className="exit_btn" to={indexPath}>
                 <FontAwesomeIcon icon={faArrowLeft} />
             </Link>
         </div>
