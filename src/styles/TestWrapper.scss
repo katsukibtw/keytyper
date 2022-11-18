@@ -9,8 +9,19 @@
 	font-size: 1.3rem;
 	gap: .5rem;
 	transition: .4s ease;
+	animation: fade-in .4s ease;
+
+	@keyframes fade-in {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
+	}
 
 	.timer {
+		margin: 8vh 0 0;
 		font-weight: 700;
 		color: var(--clr);
 	}
@@ -94,6 +105,21 @@
 			color: var(--bg);
 			padding: .1rem .3rem;
 			border-radius: .2rem;
+		}
+	}
+
+	.exit_btn {
+		color: var(--fg);
+		margin: 2rem auto 0;
+		background-color: var(--bg-btn);
+		padding: .7rem 2.5rem;
+		border-radius: .6rem;
+		transition: .4s ease;
+
+		&:hover {
+			color: var(--bg);
+			background-color: var(--clr);
+			transition: .4s ease;
 		}
 	}
 

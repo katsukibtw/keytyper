@@ -4,6 +4,9 @@ import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setRef, setCaretRef } from "../store/actions";
 import { State } from "../store/reduce";
+import { Link } from "react-router-dom";
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function TestWrapper() {
 	const {
@@ -77,6 +80,9 @@ export default function TestWrapper() {
 			<div className={timerId ? "hidden advice" : "advice"}>
 				Нажмите <div className="advice__button">Ctrl</div> + <div className="advice__button">K</div> , чтобы открыть панель управления.
 			</div>
+            <Link className="exit_btn" to="/">
+                <FontAwesomeIcon icon={faArrowLeft} />
+            </Link>
         </div>
 	);
 }

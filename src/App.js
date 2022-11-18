@@ -11,6 +11,14 @@ import { State } from "./store/reduce";
 import { setTimerId } from "./store/actions";
 import { recordTest } from "./actions/recordTest";
 import Cmd from './components/Cmd';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+    Link
+  } from "react-router-dom";
 
 function App() {
 
@@ -65,13 +73,42 @@ function App() {
     }, [dispatch, timer, timerId]);
 
 	return (
+    <Router> 
 		<div className="App">
 			<Header />
 			{showCmd && <Cmd setShowCmd={setShowCmd}/>}
-			{timer ? <TestWrapper /> : <Results />}
+
+            <Routes>
+                <Route index element={
+                    <div className="index_links">
+                        <Link className="route_link" to="/training">Быстрая тренировка</Link>
+                        <Link className="route_link" to="/education">Программа обучения</Link>
+                        <Link className="route_link" to="/classroom">Класс</Link>
+                    </div>
+                }/>
+                <Route path="/training" element={<Training timer={timer}/>}/>
+                <Route path="/education" element={<Education />}/>
+                <Route path="/classroom" element={<Education />}/>
+            </Routes>
+
 			<Footer />
 		</div>
+    </Router>
 	);
+}
+
+const Training = ({timer}) => {
+    return timer ? <TestWrapper /> : <Results />;
+}
+
+const Education = () => {
+    return (
+        <div className="dummydiv">placeholder
+            <Link className="exit_btn" to="/">
+                    <FontAwesomeIcon icon={faArrowLeft}/>
+            </Link>
+        </div>
+    );
 }
 
 export default App;
