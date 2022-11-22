@@ -8,7 +8,7 @@ import { store } from "../store/store";
 import { resetTest } from "./resetTest";
 import { startTimer } from "./startTimer";
 
-const handleBackspace = (ctrlKey: boolean) => {
+const handleBackspace = (ctrlKey) => {
     const { dispatch, getState } = store;
     const {
         word: { typedWord, activeWordRef, typedHistory, wordList },
@@ -20,7 +20,7 @@ const handleBackspace = (ctrlKey: boolean) => {
         currWordEl.previousElementSibling.classList.remove("right", "wrong");
         if (ctrlKey) {
             currWordEl.previousElementSibling.childNodes.forEach(
-                (char: HTMLSpanElement) => {
+                (char) => {
                     char.classList.remove("wrong", "right");
                 }
             );

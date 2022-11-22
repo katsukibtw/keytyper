@@ -163,7 +163,7 @@ export default function Header() {
                 ))}
             </div>
 			<div className={showButtons ? "hidden advice" : "advice"}>
-				Нажмите <div className="advice__button">Ctrl</div> + <div className="advice__button">i</div> , чтобы открыть панель управления.
+				Нажмите <div className="advice__button">Ctrl</div> + <div className="advice__button">E</div> , чтобы открыть панель управления.
 			</div>
 		</div>
 	);

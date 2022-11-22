@@ -9,7 +9,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { State } from "./store/reduce";
 import Cmd from './components/Cmd';
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faPlus, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     BrowserRouter as Router,
@@ -30,7 +30,7 @@ function App() {
 
 	useEffect(() => {
 		document.onkeydown = (e) => {
-			if (e.ctrlKey && e.key === "i") {
+			if (e.ctrlKey && e.key === "e") {
 				setShowCmd((s) => !s);
 				e.preventDefault();
 			} 
@@ -51,12 +51,22 @@ function App() {
                     <div className="index_links">
                         <Link className="route_link" to={`${indexPath}/training`}>Быстрая тренировка</Link>
                         <Link className="route_link" to={`${indexPath}/education`}>Программа обучения</Link>
-                        <Link className="route_link" to={`${indexPath}/classroom`}>Класс</Link>
+                        <div className="link_row">
+                            <div className="link_row__title">Класс:</div>
+                            <div className="link_row__links">
+                                <Link className="route_link gridded" to={`${indexPath}/classroom`}>
+                                    <FontAwesomeIcon icon={faPlus} />
+                                </Link>
+                                <Link className="route_link gridded" to={`${indexPath}/classroom`}>
+                                    <FontAwesomeIcon icon={faArrowRight} />
+                                </Link>
+                            </div>
+                        </div>
                     </div>
                 }/>
-                <Route path={`${indexPath}/training`} element={<RouteTraining />}/>
-                <Route path={`${indexPath}/education`} element={<Education />}/>
-                <Route path={`${indexPath}/classroom`} element={<Education />}/>
+                <Route path={`${indexPath}/training`} element={<RouteTraining setShowCmd={setShowCmd}/>}/>
+                <Route path={`${indexPath}/education`} element={<Education setShowCmd={setShowCmd}/>}/>
+                <Route path={`${indexPath}/classroom`} element={<Education setShowCmd={setShowCmd}/>}/>
                 <Route index element={<Navigate to="/10v/skripko/keytyper" />}/>
             </Routes>
 
@@ -66,7 +76,25 @@ function App() {
 	);
 }
 
-const Education = () => {
+const Education = (props) => {
+	const {
+        time: { timerId, timer },
+        word: { currWord, typedWord, activeWordRef },
+    } = useSelector((state) => state);
+    const dispatch = useDispatch();
+
+	useEffect(() => {
+		document.onkeydown = (e) => {
+			if (e.ctrlKey && e.key === "e") {
+				props.setShowCmd((s) => !s);
+				e.preventDefault();
+			} 
+        };
+		return () => {
+			document.onkeydown = null;
+		};
+	}, [dispatch]);
+    
     return (
         <div className="dummydiv">placeholder
             <Link className="exit_btn" to={indexPath}>

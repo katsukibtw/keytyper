@@ -58,19 +58,48 @@
 
 		.route_link {
 			font-family: var(--fc);
-			padding: .5rem 5rem;
+			// padding: .5rem 5rem;
 			background-color: var(--bg-btn);
 			color: var(--fg);
+			width: 23rem;
+			height: 2.5rem;
+			display: flex;
+			align-items: center;
+			justify-content: center;
 			border-radius: .5rem;
 			font-size: 1.3rem;
 			text-decoration: none;
 			transition: .4s ease;
 			font-style: normal;
 
+			&.gridded {
+				width: 11.2rem;
+			}	
+
 			&:hover {
 				background-color: var(--clr);
 				color: var(--bg);
 				transition: .4s ease;
+			}
+		}
+		
+		.link_row {
+			display: flex;
+			width: 23rem;	
+			flex-direction: column;
+			gap: .25rem 0;
+			
+			&__title {
+				font-style: normal;
+				font-size: 1.2rem;
+				text-align: center;
+				color: var(--fg-darker);
+			}
+			
+			&__links {
+				display: inherit;
+				flex-direction: row;
+				justify-content: space-between;
 			}
 		}
 	}

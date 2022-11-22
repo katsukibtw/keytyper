@@ -10,7 +10,8 @@ import { setTimerId } from "../store/actions";
 import { recordTest } from "../actions/recordTest";
 import Cmd from './Cmd';
 
-export default function RouteTesting() {
+export default function RouteTesting(props) { 
+
 	const {
         time: { timerId, timer },
         word: { currWord, typedWord, activeWordRef },
@@ -20,7 +21,10 @@ export default function RouteTesting() {
 
 	useEffect(() => {
 		document.onkeydown = (e) => {
-			if (
+			if (e.ctrlKey && e.key === "e") {
+				props.setShowCmd((s) => !s);
+				e.preventDefault();
+			} else if (
                 e.key.length === 1 ||
                 e.key === "Backspace" ||
                 e.key === "Tab"

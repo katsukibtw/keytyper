@@ -5,9 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { setRef, setCaretRef } from "../store/actions";
 import { State } from "../store/reduce";
 import { Link } from "react-router-dom";
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faArrowRotateLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { indexPath } from "../App";
+import { resetTest } from '../actions/resetTest';
 
 export default function TestWrapper() {
 	const {
@@ -23,6 +24,12 @@ export default function TestWrapper() {
         dispatch(setRef(activeWord));
         dispatch(setCaretRef(caretRef));
     }, [dispatch]);
+    
+    const handleResetClick = () => {
+        if (timer) {
+            resetTest();
+        }
+    }
 
 	return (
 		<div className="test">
@@ -79,11 +86,17 @@ export default function TestWrapper() {
                 })}
             </div>
 			<div className={timerId ? "hidden advice" : "advice"}>
-				Нажмите <div className="advice__button">Ctrl</div> + <div className="advice__button">i</div> , чтобы открыть панель управления.
+				Нажмите <div className="advice__button">Ctrl</div> + <div className="advice__button">E</div> , чтобы открыть панель управления.
 			</div>
-            <Link className={timerId ? "hidden exit_btn" : "exit_btn"} to={indexPath}>
-                <FontAwesomeIcon icon={faArrowLeft} />
-            </Link>
+            {timerId ? 
+                <button className="reset_btn" onClick={handleResetClick}>
+                    <FontAwesomeIcon icon={faArrowRotateLeft} />
+                </button> 
+                : 
+                <Link className="exit_btn" to={indexPath}>
+                    <FontAwesomeIcon icon={faArrowLeft} />
+                </Link>
+            }
         </div>
 	);
 }

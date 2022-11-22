@@ -3,7 +3,7 @@
 	margin-inline: auto;
 	flex-grow: 1;
 	display: flex;
-	// align-items: center;
+	align-items: start center;
 	flex-direction: column;
 	justify-content: center;
 	font-size: 1.3rem;
@@ -98,6 +98,12 @@
 		width: 100%;
 		color: var(--fg-dark);
 		margin: 1rem 0 0;
+		
+		&.hidden {
+			transform: translateY(10rem);
+			opacity: 0;
+			transition: .4s ease;
+		}
 
 		.advice__button {
 			font-family: var(--fc);
@@ -115,30 +121,43 @@
 		padding: .7rem 2.5rem;
 		border-radius: .6rem;
 		transition: .4s ease;
+		border: 0;
+		opacity: .5;
 
 		&:hover {
+			opacity: 1;
 			color: var(--bg);
 			background-color: var(--clr);
 			transition: .4s ease;
 		}
 	}
 
-	.restart_btn {
-		width: 6rem;
-		height: 3rem;
-		align-self: center;
-		font-size: 1.1rem;
-		background: var(--bg);
-		color: var(--fg-darker);
-		font-weight: 700;
-		border-radius: .4rem;
+	.reset_btn {
+		color: var(--fg);
+		margin: 2rem auto 0;
+		font-size: 1.4rem;
+		background-color: var(--bg-btn);
+		padding: .7rem 2.5rem;
+		border-radius: .6rem;
+		transition: .4s ease;
 		border: 0;
-		transition: .4s;
+		opacity: .5;
+		animation: move .4s ease forwards;
+		
+		@keyframes move {
+			0% {
+				transform: translateY(0);
+			}	
+			100% {
+				transform: translateY(-6vh);
+			}
+		}
 
 		&:hover {
-			background: var(--clr);
 			color: var(--bg);
-			transition: .4s;
+			background-color: var(--clr);
+			transition: .4s ease;
+			opacity: 1;
 		}
 	}
 }
