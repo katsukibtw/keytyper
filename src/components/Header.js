@@ -13,6 +13,8 @@ import {
     timerSet,
 } from "../store/actions";
 import { State } from "../store/reduce";
+import { useLocation } from "react-router-dom";
+import { indexPath } from "../App";
 
 export const options = {
     time: [15, 30, 45, 60, 120],
@@ -30,6 +32,8 @@ export const options = {
 };
 
 export default function Header() {
+    let location = useLocation();
+    const [ showButtons, setShowButtons ] = useState(false);
 
 	const {
         preferences: { timeLimit, theme, lang, font },
@@ -37,6 +41,10 @@ export default function Header() {
     } = useSelector((state) => state);
     const dispatch = useDispatch();
 	const fonts = ["mononoki", "roboto_mono"];
+    
+    useEffect(() => {
+        setShowButtons(location.pathname === indexPath + "/training" ? true : false);
+    }, [location]);
 
     useEffect(() => {
         const theme = localStorage.getItem("theme") || "tokyonight";
@@ -137,7 +145,7 @@ export default function Header() {
 	return (
 		<div className={timerId ? "hidden head" : "head"}>
 			<div className='title'><FontAwesomeIcon icon={faKeyboard} className='icon' /><h1>keytyper</h1></div>
-			<div className="buttons">
+			<div className={showButtons ? "buttons" : "hidden buttons"}>
                 {Object.entries(options).map(([option, choices]) => (
                     <div key={option} className={option}>
                         {option}:
@@ -154,6 +162,9 @@ export default function Header() {
                     </div>
                 ))}
             </div>
+			<div className={showButtons ? "hidden advice" : "advice"}>
+				Нажмите <div className="advice__button">Ctrl</div> + <div className="advice__button">i</div> , чтобы открыть панель управления.
+			</div>
 		</div>
 	);
 }

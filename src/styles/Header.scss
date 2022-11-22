@@ -24,6 +24,13 @@
 	.buttons {
 		font-family: var(--fc);
 		color: var(--fg-dark);
+		transition: .4s ease;
+		
+		&.hidden {
+			opacity: 0;
+			display: none;
+			transition: .4s ease;
+		}
 		
 		.head__btn {
 			font-family: var(--fc);
@@ -38,6 +45,31 @@
 			&.selected {
 				color: var(--clr);
 			}
+		}
+	}
+
+	.advice {
+		font-family: 'Open Sans';
+		font-weight: 700;
+		display: flex;
+		flex-direction: row;
+		font-size: 1rem;
+		gap: .5rem;
+		align-items: center;
+		width: 100%;
+		color: var(--fg-dark);
+		margin: .5rem 0 0 2rem;
+		
+		&.hidden {
+			display: none;
+		}
+
+		.advice__button {
+			font-family: var(--fc);
+			background-color: var(--fg);
+			color: var(--bg);
+			padding: .1rem .3rem;
+			border-radius: .2rem;
 		}
 	}
 }

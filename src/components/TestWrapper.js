@@ -79,7 +79,7 @@ export default function TestWrapper() {
                 })}
             </div>
 			<div className={timerId ? "hidden advice" : "advice"}>
-				Нажмите <div className="advice__button">Ctrl</div> + <div className="advice__button">K</div> , чтобы открыть панель управления.
+				Нажмите <div className="advice__button">Ctrl</div> + <div className="advice__button">i</div> , чтобы открыть панель управления.
 			</div>
             <Link className={timerId ? "hidden exit_btn" : "exit_btn"} to={indexPath}>
                 <FontAwesomeIcon icon={faArrowLeft} />
