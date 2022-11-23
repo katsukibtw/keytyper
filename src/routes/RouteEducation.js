@@ -4,12 +4,14 @@ import '../styles/fonts.scss';
 import '../styles/Education.scss';
 import { indexPath } from "../App";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import levelList from "../edu_levels/list.json";
 
 export default function RouteEducation(props) {
+    
+    const navigate = useNavigate();
     
 	useEffect(() => {
 		document.onkeydown = (e) => {
@@ -24,11 +26,15 @@ export default function RouteEducation(props) {
 	});
     
     const handleLevelSelection = (level) => {
-        console.log(level);
+        navigate(`${indexPath}/training`, {
+            state: {
+                level
+            },
+        });
     }
     
     return (
-        <div className="dummydiv">
+        <div className="edu_cont">
             <div className="level_list">
                 {levelList.map((entry, idx) => {
                     return (

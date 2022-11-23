@@ -9,7 +9,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { indexPath } from "../App";
 import { resetTest } from '../actions/resetTest';
 
-export default function TestWrapper() {
+export default function TestWrapper(props) {
+    
 	const {
         word: { typedWord, currWord, wordList, typedHistory },
         time: { timer, timerId },
