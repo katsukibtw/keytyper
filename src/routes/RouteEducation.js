@@ -11,10 +11,6 @@ import levelList from "../edu_levels/list.json";
 
 export default function RouteEducation(props) {
     
-    useEffect(() => {
-        console.log(levelList);
-    });
-    
 	useEffect(() => {
 		document.onkeydown = (e) => {
 			if (e.ctrlKey && (e.key === "e" || e.key === "у")) {
