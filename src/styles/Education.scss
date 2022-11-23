@@ -1,0 +1,27 @@
+.level_list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    justify-content: center;
+    
+    &__entry {
+        display: inherit;
+        flex-direction: row;
+        align-items: center;        
+        justify-content: center;
+        font-style: normal;
+        font-size: 1.3rem;
+        background-color: var(--bg-btn);
+        color: var(--fg);
+        width: 13rem;
+        height: 2.5rem;
+        border-radius: .5rem;
+        transition: .4s ease;
+
+        &:hover {
+            background-color: var(--clr);
+            color: var(--bg);
+            transition: .4s ease;
+        }
+    }
+}

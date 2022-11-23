@@ -3,11 +3,7 @@ import './styles/themes.scss';
 import './styles/fonts.scss';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import TestWrapper from './components/TestWrapper';
-import Results from './components/Results';
 import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { State } from "./store/reduce";
 import Cmd from './components/Cmd';
 import { faArrowLeft, faPlus, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -18,19 +14,15 @@ import {
     Link,
     Navigate
   } from "react-router-dom";
-import RouteTraining from "./components/RouteTesting";
+import RouteTraining from "./routes/RouteTesting";
+import RouteEducation from "./routes/RouteEducation";
 
 function App() {
-	const [ showCmd, setShowCmd ] = useState(false);
-	const {
-        time: { timerId, timer },
-        word: { currWord, typedWord, activeWordRef },
-    } = useSelector((state) => state);
-    const dispatch = useDispatch();
+    const [ showCmd, setShowCmd ] = useState(false);
 
 	useEffect(() => {
 		document.onkeydown = (e) => {
-			if (e.ctrlKey && e.key === "e") {
+			if (e.ctrlKey && (e.key === "e" || e.key === "у")) {
 				setShowCmd((s) => !s);
 				e.preventDefault();
 			} 
@@ -38,7 +30,7 @@ function App() {
 		return () => {
 			document.onkeydown = null;
 		};
-	}, [dispatch]);
+	});
 
 	return (
     <Router> 
@@ -65,8 +57,8 @@ function App() {
                     </div>
                 }/>
                 <Route path={`${indexPath}/training`} element={<RouteTraining setShowCmd={setShowCmd}/>}/>
-                <Route path={`${indexPath}/education`} element={<Education setShowCmd={setShowCmd}/>}/>
-                <Route path={`${indexPath}/classroom`} element={<Education setShowCmd={setShowCmd}/>}/>
+                <Route path={`${indexPath}/education`} element={<RouteEducation setShowCmd={setShowCmd}/>}/>
+                <Route path={`${indexPath}/classroom`} element={<Placeholder setShowCmd={setShowCmd}/>}/>
                 <Route index element={<Navigate to="/10v/skripko/keytyper" />}/>
             </Routes>
 
@@ -76,13 +68,7 @@ function App() {
 	);
 }
 
-const Education = (props) => {
-	const {
-        time: { timerId, timer },
-        word: { currWord, typedWord, activeWordRef },
-    } = useSelector((state) => state);
-    const dispatch = useDispatch();
-
+const Placeholder = (props) => {
 	useEffect(() => {
 		document.onkeydown = (e) => {
 			if (e.ctrlKey && e.key === "e") {
@@ -93,7 +79,7 @@ const Education = (props) => {
 		return () => {
 			document.onkeydown = null;
 		};
-	}, [dispatch]);
+	});
     
     return (
         <div className="dummydiv">placeholder

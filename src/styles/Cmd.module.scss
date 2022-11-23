@@ -22,10 +22,15 @@
 	height: 20rem;
 	background: var(--bg);
 	color: var(--fg);
-	overflow: hidden;
+	// overflow: hidden;
+	overflow: scroll;
 	z-index: 1000;
 	padding: .7rem .5rem .5rem .5rem;
 	border-radius: .7rem;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
 }
 .command_input {
 	width: 29.5rem;

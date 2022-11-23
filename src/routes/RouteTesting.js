@@ -1,16 +1,15 @@
 import '../styles/App.scss';
 import '../styles/themes.scss';
 import '../styles/fonts.scss';
-import TestWrapper from './TestWrapper';
-import Results from './Results';
-import { useState, useEffect } from 'react';
+import TestWrapper from '../components/TestWrapper';
+import Results from '../components/Results';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { State } from "../store/reduce";
 import { setTimerId } from "../store/actions";
 import { recordTest } from "../actions/recordTest";
-import Cmd from './Cmd';
 
 export default function RouteTesting(props) { 
+    const setShowCmd = props.setShowCmd;
 
 	const {
         time: { timerId, timer },
@@ -21,8 +20,8 @@ export default function RouteTesting(props) {
 
 	useEffect(() => {
 		document.onkeydown = (e) => {
-			if (e.ctrlKey && e.key === "e") {
-				props.setShowCmd((s) => !s);
+			if (e.ctrlKey && (e.key === "e" || e.key === "у")) {
+				setShowCmd((s) => !s);
 				e.preventDefault();
 			} else if (
                 e.key.length === 1 ||
@@ -36,7 +35,7 @@ export default function RouteTesting(props) {
 		return () => {
 			document.onkeydown = null;
 		};
-	}, [dispatch]);
+	}, [dispatch, setShowCmd]);
 	
 	useEffect(() => {
         let idx = typedWord.length - 1;

@@ -12,7 +12,6 @@ import {
     setWordList,
     timerSet,
 } from "../store/actions";
-import { State } from "../store/reduce";
 import { useLocation } from "react-router-dom";
 import { indexPath } from "../App";
 
