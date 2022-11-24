@@ -7,6 +7,7 @@ export default function Results() {
         word: { wordList, typedHistory, currWord },
         preferences: { timeLimit },
     } = useSelector((state) => state);
+    
     const spaces = wordList.indexOf(currWord);
     let correctChars = 0;
     const result = typedHistory.map(

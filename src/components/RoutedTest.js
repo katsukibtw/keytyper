@@ -5,7 +5,7 @@ import RoutedWrapper from './RoutedWrapper';
 import Results from './Results';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setTimerId } from "../store/actions";
+import { setTimerId, setWordList } from "../store/actions";
 import { recordTest } from "../actions/recordTest";
 
 export default function RoutedTest(props) { 
@@ -16,7 +16,6 @@ export default function RoutedTest(props) {
         word: { currWord, typedWord, activeWordRef },
     } = useSelector((state) => state);
     const dispatch = useDispatch();
-
 
 	useEffect(() => {
 		document.onkeydown = (e) => {
