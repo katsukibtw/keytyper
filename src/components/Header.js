@@ -80,7 +80,7 @@ export default function Header() {
 			document.body.children[1].classList.add(font);
 			localStorage.setItem("font", font);
 		}
-	}, [dispatch, font, fonts]);
+	}, [dispatch, font]);
 
     // Set Time
     useEffect(() => {
