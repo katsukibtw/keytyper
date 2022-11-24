@@ -4,15 +4,18 @@ import '../styles/fonts.scss';
 import '../styles/Education.scss';
 import { indexPath } from "../App";
 import { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import levelList from "../edu_levels/list.json";
+import { 
+    Link, 
+    Outlet,
+    useNavigate
+} from "react-router-dom";
+import { setLang } from "../store/actions";
+import { useDispatch } from 'react-redux';
 
 export default function RouteEducation(props) {
-    
-    const navigate = useNavigate();
-    
 	useEffect(() => {
 		document.onkeydown = (e) => {
 			if (e.ctrlKey && (e.key === "e" || e.key === "у")) {
@@ -25,31 +28,38 @@ export default function RouteEducation(props) {
 		};
 	});
     
-    const handleLevelSelection = (level) => {
-        navigate(`${indexPath}/training`, {
-            state: {
-                level
-            },
-        });
-    }
-    
     return (
         <div className="edu_cont">
+            <Outlet />
+        </div>
+    );
+}
+
+export const LevelList = (props) => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const handleLevelSelection = (level) => {
+        dispatch(setLang(level));
+        navigate("test");
+    }
+
+    return (
             <div className="level_list">
                 {levelList.map((entry, idx) => {
                     return (
-                        <div 
+                        <div
+                            to="test"
                             className="level_list__entry" 
-                            key={entry + idx}
-                            onClick={() => handleLevelSelection(entry.filename)}>
+                            onClick={() => handleLevelSelection(entry.filename)}
+                            key={entry + idx}>
                         {entry.name}
                         </div>
                     );
                 })}
+                <Link className="exit_btn" to={indexPath}>
+                        <FontAwesomeIcon icon={faArrowLeft}/>
+                </Link>
             </div>
-            <Link className="exit_btn" to={indexPath}>
-                    <FontAwesomeIcon icon={faArrowLeft}/>
-            </Link>
-        </div>
     );
 }

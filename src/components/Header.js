@@ -50,9 +50,6 @@ export default function Header() {
         const lang = localStorage.getItem("lang") || "rus";
         const time = parseInt(localStorage.getItem("time") || "30", 10);
 		const font = localStorage.getItem("font") || "mononoki";
-        import(`../langs/${lang}.json`).then((words) =>
-            dispatch(setWordList(words.default))
-        );
         dispatch(timerSet(time));
         dispatch(setLang(lang));
         dispatch(setTime(time));

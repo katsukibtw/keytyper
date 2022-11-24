@@ -8,6 +8,7 @@
 	align-items: center;
 	gap: .5rem;
 	animation: fade-in .4s ease forwards;
+    font-family: var(--fc);
 
 		.exit_btn {
 			color: var(--fg);
@@ -17,6 +18,8 @@
 			padding: .7rem 2.5rem;
 			border-radius: .6rem;
 			transition: .4s ease;
+            grid-row-end: 0;
+            grid-column-end: span 4;
 
 			&:hover {
 				color: var(--bg);
@@ -24,7 +27,15 @@
 				transition: .4s ease;
 			}
 		}
+    
+    .test {
+        width: 100%;
+    }
 
+    .result {
+        width: 100%;
+    }
+    
     .level_list {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;

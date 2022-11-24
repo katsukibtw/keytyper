@@ -15,6 +15,7 @@ import {
     SET_REF,
     SET_CARET_REF,
     SET_LANG,
+    SET_LEVEL,
 } from "./actions";
 
 // export interface State {
@@ -63,7 +64,7 @@ export const initialState = {
         theme: "",
 		font: "",
         timeLimit: 0,
-        lang: "rus",
+        lang: "",
     },
     word: {
         currWord: "",
@@ -166,6 +167,8 @@ const preferenceReducer = (
             return { ...state, timeLimit: payload };
         case SET_LANG:
 			return { ...state, lang: payload };
+        case SET_LEVEL:
+            return { ...state, level: payload };
         default:
             return state;
     }

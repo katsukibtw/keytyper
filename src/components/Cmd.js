@@ -1,6 +1,8 @@
 import { KeyboardEvent, useEffect, useState, useRef } from "react";
 // import { options } from "./Header";
 import { useDispatch } from "react-redux";
+import { useLocation } from "react-router-dom";
+import { indexPath } from "../App";
 import { setTime, setTheme, setLang, setFont } from "../store/actions";
 import styles from "../styles/Cmd.module.scss";
 
@@ -11,22 +13,44 @@ export default function Cmd(props) {
     const [commandList, setCommandList] = useState([]);
     const dispatch = useDispatch();
     const cmdTextBox = useRef(null);
+    const location = useLocation();
 
-	const options = {
-		time: [15, 30, 45, 60, 120],
-		theme: [
-			"tokyonight",
-			"clear",
-			"catppuccin",
-			"gruvbox",
-			"gruvbox_light",
-			"nord",
-			"nord_light",
-			"everforest",
-		],
-		lang: ["eng", "eng_hard", "rus", "rus_hard"],
-		font: ["mononoki", "roboto_mono", "jetbrains_mono", "ubuntu_mono"],
-	};
+	var options = {};
+
+    useEffect(() => {
+        if (location.pathname !== indexPath + "/education/test") {
+            options = {
+		        time: [15, 30, 45, 60, 120],
+		        theme: [
+			        "tokyonight",
+			        "clear",
+			        "catppuccin",
+			        "gruvbox",
+			        "gruvbox_light",
+			        "nord",
+			        "nord_light",
+			        "everforest",
+		        ],
+		        lang: ["eng", "eng_hard", "rus", "rus_hard"],
+		        font: ["mononoki", "roboto_mono", "jetbrains_mono", "ubuntu_mono"],
+	        };
+        } else {
+            options = {
+		        time: [15, 30, 45, 60, 120],
+		        theme: [
+			        "tokyonight",
+			        "clear",
+			        "catppuccin",
+			        "gruvbox",
+			        "gruvbox_light",
+			        "nord",
+			        "nord_light",
+			        "everforest",
+		        ],
+		        font: ["mononoki", "roboto_mono", "jetbrains_mono", "ubuntu_mono"],
+	        };
+        }
+    });
 
 	useEffect(() => {
 		document.onclick = () => {

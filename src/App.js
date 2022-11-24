@@ -15,7 +15,8 @@ import {
     Navigate
   } from "react-router-dom";
 import RouteTraining from "./routes/RouteTesting";
-import RouteEducation from "./routes/RouteEducation";
+import RouteEducation, { LevelList } from "./routes/RouteEducation";
+import RoutedTest from './components/RoutedTest';
 
 function App() {
     const [ showCmd, setShowCmd ] = useState(false);
@@ -57,7 +58,10 @@ function App() {
                     </div>
                 }/>
                 <Route path={`${indexPath}/training`} element={<RouteTraining setShowCmd={setShowCmd}/>}/>
-                <Route path={`${indexPath}/education`} element={<RouteEducation setShowCmd={setShowCmd}/>}/>
+                <Route path={`${indexPath}/education`} element={<RouteEducation setShowCmd={setShowCmd}/>}>
+                    <Route index element={<LevelList />} />
+                    <Route path="test" element={<RoutedTest setShowCmd={setShowCmd} />} />
+                </Route>
                 <Route path={`${indexPath}/classroom`} element={<Placeholder setShowCmd={setShowCmd}/>}/>
                 <Route index element={<Navigate to="/10v/skripko/keytyper" />}/>
             </Routes>
@@ -68,7 +72,7 @@ function App() {
 	);
 }
 
-const Placeholder = (props) => {
+export const Placeholder = (props) => {
 	useEffect(() => {
 		document.onkeydown = (e) => {
 			if (e.ctrlKey && e.key === "e") {
@@ -83,7 +87,7 @@ const Placeholder = (props) => {
     
     return (
         <div className="dummydiv">placeholder
-            <Link className="exit_btn" to={indexPath}>
+            <Link className="exit_btn" to="..">
                     <FontAwesomeIcon icon={faArrowLeft}/>
             </Link>
         </div>

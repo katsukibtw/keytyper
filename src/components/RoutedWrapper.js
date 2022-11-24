@@ -1,18 +1,17 @@
-import '../styles/TestWrapper.scss';
-import { useEffect, useRef } from "react";
+import { resetTest } from "../actions/resetTest";
 import { useDispatch, useSelector } from "react-redux";
 import { setRef, setCaretRef } from "../store/actions";
+import { useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { faArrowLeft, faArrowRotateLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { indexPath } from "../App";
-import { resetTest } from '../actions/resetTest';
+import { timerSet } from "../store/actions";
 
-export default function TestWrapper(props) {
-    
-	const {
+export default function RoutedWrapper() {
+    const {
+        preferences: { level },
         word: { typedWord, currWord, wordList, typedHistory },
-        time: { timer, timerId },
+        time: { timer, timerId }
     } = useSelector((state) => state);
     const dispatch = useDispatch();
     const extraLetters = typedWord.slice(currWord.length).split("");
@@ -23,7 +22,13 @@ export default function TestWrapper(props) {
         dispatch(setRef(activeWord));
         dispatch(setCaretRef(caretRef));
     }, [dispatch]);
-    
+
+    useEffect(() => {
+        if (typedWord === wordList[wordList.length - 1]) {
+            dispatch(timerSet(0));
+        }
+    });
+
     const handleResetClick = () => {
         if (timer) {
             resetTest();
@@ -92,7 +97,7 @@ export default function TestWrapper(props) {
                     <FontAwesomeIcon icon={faArrowRotateLeft} />
                 </button> 
                 : 
-                <Link className="exit_btn" to={indexPath}>
+                <Link className="exit_btn" to="..">
                     <FontAwesomeIcon icon={faArrowLeft} />
                 </Link>
             }
