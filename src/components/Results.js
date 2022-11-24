@@ -1,6 +1,5 @@
 import { resetTest } from "../actions/resetTest";
 import { useSelector } from "react-redux";
-import { State } from "../store/reduce";
 import "../styles/Results.scss";
 
 export default function Results() {

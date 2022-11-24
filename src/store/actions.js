@@ -1,5 +1,3 @@
-import { RefObject } from "react";
-
 export const SET_WORD = "SETWORD";
 export const SET_CHAR = "SETCHAR";
 export const TIMER_DECREMENT = "TIMERDECREMENT";
@@ -14,7 +12,6 @@ export const SET_REF = "SETREF";
 export const SET_CARET_REF = "SETCARETREF";
 export const SET_LANG = "SETLANG";
 export const SET_FONT = "SETFONT";
-export const SET_LEVEL = "SETLEVEL";
 
 // Time Actions
 export const timerDecrement = () => ({ type: TIMER_DECREMENT });
@@ -53,6 +50,3 @@ export const setTheme = (payload) => ({ type: SET_THEME, payload });
 export const setFont = (payload) => ({ type: SET_FONT, payload });
 export const setTime = (payload) => ({ type: SET_TIME, payload });
 export const setLang = (payload) => ({ type: SET_LANG, payload });
-
-// Education program preferences
-export const setLevel = (payload) => ({ type: SET_LEVEL, payload });

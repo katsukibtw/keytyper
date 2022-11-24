@@ -9,7 +9,6 @@ import {
     setTime,
     setLang,
 	setFont,
-    setWordList,
     timerSet,
 } from "../store/actions";
 import { useLocation } from "react-router-dom";
@@ -81,7 +80,7 @@ export default function Header() {
 			document.body.children[1].classList.add(font);
 			localStorage.setItem("font", font);
 		}
-	}, [dispatch, font]);
+	}, [dispatch, font, fonts]);
 
     // Set Time
     useEffect(() => {

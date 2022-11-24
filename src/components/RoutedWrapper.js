@@ -9,7 +9,6 @@ import { timerSet } from "../store/actions";
 
 export default function RoutedWrapper() {
     const {
-        preferences: { level },
         word: { typedWord, currWord, wordList, typedHistory },
         time: { timer, timerId }
     } = useSelector((state) => state);

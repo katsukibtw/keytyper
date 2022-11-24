@@ -1,5 +1,4 @@
-import { RefObject } from "react";
-import { AnyAction, combineReducers } from "redux";
+import { combineReducers } from "redux";
 import {
     SET_CHAR,
     SET_WORD,
@@ -15,7 +14,6 @@ import {
     SET_REF,
     SET_CARET_REF,
     SET_LANG,
-    SET_LEVEL,
 } from "./actions";
 
 // export interface State {
@@ -167,8 +165,6 @@ const preferenceReducer = (
             return { ...state, timeLimit: payload };
         case SET_LANG:
 			return { ...state, lang: payload };
-        case SET_LEVEL:
-            return { ...state, level: payload };
         default:
             return state;
     }

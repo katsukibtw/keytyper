@@ -12,7 +12,6 @@ export default function RoutedTest(props) {
     const setShowCmd = props.setShowCmd;
 
 	const {
-        preferences: { level },
         time: { timerId, timer },
         word: { currWord, typedWord, activeWordRef },
     } = useSelector((state) => state);

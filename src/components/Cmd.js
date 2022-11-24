@@ -1,4 +1,4 @@
-import { KeyboardEvent, useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 // import { options } from "./Header";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
@@ -103,6 +103,7 @@ export default function Cmd(props) {
 				document.body.children[1].classList.remove(...options.font);
 				document.body.children[1].classList.add(command);
 				localStorage.setItem("font", command);
+				break;
             default:
                 console.log(selectedOption, command);
         }

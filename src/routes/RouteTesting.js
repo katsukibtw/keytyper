@@ -7,7 +7,6 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setTimerId } from "../store/actions";
 import { recordTest } from "../actions/recordTest";
-import { useLocation } from 'react-router-dom';
 
 export default function RouteTesting(props) { 
     const setShowCmd = props.setShowCmd;

@@ -1,7 +1,6 @@
 import React from 'react';
 import '../styles/Footer.scss';
-import { State } from "../store/reduce";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 export default function Footer() {
 
