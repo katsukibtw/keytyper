@@ -5,7 +5,7 @@ import RoutedWrapper from './RoutedWrapper';
 import Results from './Results';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setTimerId, setWordList } from "../store/actions";
+import { setTimerId } from "../store/actions";
 import { recordTest } from "../actions/recordTest";
 
 export default function RoutedTest(props) { 
@@ -13,7 +13,7 @@ export default function RoutedTest(props) {
 
 	const {
         time: { timerId, timer },
-        word: { currWord, typedWord, activeWordRef },
+        levelWord: { currLevelWord, typedLevelWord, activeLevelWordRef },
     } = useSelector((state) => state);
     const dispatch = useDispatch();
 
@@ -37,21 +37,21 @@ export default function RoutedTest(props) {
 	}, [dispatch, setShowCmd]);
 	
 	useEffect(() => {
-        let idx = typedWord.length - 1;
-        const currWordEl = activeWordRef?.current;
-        if (currWordEl) {
-            currWordEl.children[idx + 1].classList.add(
-                currWord[idx] !== typedWord[idx] ? "wrong" : "right"
+        let idx = typedLevelWord.length - 1;
+        const currLevelWordEl = activeLevelWordRef?.current;
+        if (currLevelWordEl) {
+            currLevelWordEl.children[idx + 1].classList.add(
+                currLevelWord[idx] !== typedLevelWord[idx] ? "wrong" : "right"
             );
         }
-    }, [currWord, typedWord, activeWordRef]);
+    }, [currLevelWord, typedLevelWord, activeLevelWordRef]);
 
     useEffect(() => {
-        let idx = typedWord.length;
-        const currWordEl = activeWordRef?.current;
-        if (currWordEl && idx < currWord.length)
-            currWordEl.children[idx + 1].classList.remove("wrong", "right");
-    }, [currWord.length, typedWord, activeWordRef]);
+        let idx = typedLevelWord.length;
+        const currLevelWordEl = activeLevelWordRef?.current;
+        if (currLevelWordEl && idx < currLevelWord.length)
+            currLevelWordEl.children[idx + 1].classList.remove("wrong", "right");
+    }, [currLevelWord.length, typedLevelWord, activeLevelWordRef]);
 
     useEffect(() => {
         if (!timer && timerId) {

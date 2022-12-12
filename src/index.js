@@ -5,18 +5,12 @@ import App from './App';
 import { store } from "./store/store";
 import { Provider } from "react-redux";
 import reportWebVitals from './reportWebVitals';
-import './fonts/mononoki/mononoki-Regular.ttf';
-import './fonts/mononoki/mononoki-Bold.ttf';
-import './fonts/mononoki/mononoki-BoldItalic.ttf';
-import './fonts/mononoki/mononoki-Italic.ttf';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
 	<Provider store={store}>
 		<App />
 	</Provider>
-  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

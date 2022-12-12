@@ -13,6 +13,16 @@ export const SET_CARET_REF = "SETCARETREF";
 export const SET_LANG = "SETLANG";
 export const SET_FONT = "SETFONT";
 
+// same things but for levels
+export const SET_LEVEL = "SETLEVEL";
+export const SET_LEVEL_WORD = "SETWORD";
+export const SET_LEVEL_CHAR = "SETCHAR";
+export const APPEND_LEVEL_TYPED_HISTORY = "APPENDTYPEDHISTORY";
+export const PREV_LEVEL_WORD = "PREVWORD";
+export const SET_LEVEL_WORDLIST = "SETWORDLIST";
+export const SET_LEVEL_REF = "SETREF";
+export const SET_LEVEL_CARET_REF = "SETCARETREF";
+
 // Time Actions
 export const timerDecrement = () => ({ type: TIMER_DECREMENT });
 export const timerSet = (payload) => ({ type: TIMER_SET, payload });
@@ -45,8 +55,33 @@ export const setCaretRef = (payload) => ({
     payload,
 });
 
+// Level actions
+export const setLevelWord = (payload) => ({ type: SET_LEVEL_WORD, payload });
+export const setLevelChar = (payload) => ({ type: SET_LEVEL_CHAR, payload });
+export const setLevelTypedWord = (payload) => ({ type: SET_LEVEL_CHAR, payload });
+export const appendLevelTypedHistory = () => ({
+    type: APPEND_LEVEL_TYPED_HISTORY,
+});
+export const backtrackLevelWord = (payload) => ({
+    type: PREV_LEVEL_WORD,
+    payload,
+});
+export const setLevelWordList = (payload) => ({
+    type: SET_LEVEL_WORDLIST,
+    payload,
+});
+export const setLevelRef = (payload) => ({
+    type: SET_LEVEL_REF,
+    payload,
+});
+export const setLevelCaretRef = (payload) => ({
+    type: SET_LEVEL_CARET_REF,
+    payload,
+});
+
 // Prefrences Actions
 export const setTheme = (payload) => ({ type: SET_THEME, payload });
 export const setFont = (payload) => ({ type: SET_FONT, payload });
 export const setTime = (payload) => ({ type: SET_TIME, payload });
 export const setLang = (payload) => ({ type: SET_LANG, payload });
+export const setLevel = (payload) => ({ type: SET_LEVEL, payload });

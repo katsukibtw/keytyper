@@ -1,4 +1,4 @@
-import { resetTest } from "../actions/resetTest";
+import { resetLevel } from "../actions/resetLevel";
 import { useDispatch, useSelector } from "react-redux";
 import { setRef, setCaretRef } from "../store/actions";
 import { useRef, useEffect } from "react";
@@ -9,11 +9,11 @@ import { timerSet } from "../store/actions";
 
 export default function RoutedWrapper() {
     const {
-        word: { typedWord, currWord, wordList, typedHistory },
+        levelWord: { typedLevelWord, currLevelWord, levelWordList, typedLevelHistory },
         time: { timer, timerId }
     } = useSelector((state) => state);
     const dispatch = useDispatch();
-    const extraLetters = typedWord.slice(currWord.length).split("");
+    const extraLetters = typedLevelWord.slice(currLevelWord.length).split("");
     const activeWord = useRef(null);
     const caretRef = useRef(null);
 
@@ -23,14 +23,14 @@ export default function RoutedWrapper() {
     }, [dispatch]);
 
     useEffect(() => {
-        if (typedWord === wordList[wordList.length - 1]) {
+        if (typedLevelWord === levelWordList[levelWordList.length - 1]) {
             dispatch(timerSet(0));
         }
     });
 
     const handleResetClick = () => {
         if (timer) {
-            resetTest();
+            resetLevel();
         }
     }
 
@@ -38,9 +38,9 @@ export default function RoutedWrapper() {
 		<div className="test">
             <div className="timer">{timer}</div>
             <div className="wrapper">
-                {wordList.slice(0, 501).map((word, idx) => {
+                {levelWordList.slice(0, 501).map((word, idx) => {
                     const isActive =
-                        currWord === word && typedHistory.length === idx;
+                        currLevelWord === word && typedLevelHistory.length === idx;
                     return (
                         <div
                             key={word + idx}
@@ -52,7 +52,7 @@ export default function RoutedWrapper() {
                                     id="caret"
                                     className="blink"
                                     style={{
-                                        left: typedWord.length * 14.5833,
+                                        left: typedLevelWord.length * 14.5833,
                                     }}>
                                     |
                                 </span>
@@ -70,9 +70,9 @@ export default function RoutedWrapper() {
                                           </span>
                                       );
                                   })
-                                : typedHistory[idx]
-                                ? typedHistory[idx]
-                                      .slice(wordList[idx].length)
+                                : typedLevelHistory[idx]
+                                ? typedLevelHistory[idx]
+                                      .slice(levelWordList[idx].length)
                                       .split("")
                                       .map((char, charId) => {
                                           return (

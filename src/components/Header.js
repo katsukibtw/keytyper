@@ -9,6 +9,7 @@ import {
     setTime,
     setLang,
 	setFont,
+	setLevel,
     timerSet,
 } from "../store/actions";
 import { useLocation } from "react-router-dom";
@@ -34,7 +35,7 @@ export default function Header() {
     const [ showButtons, setShowButtons ] = useState(false);
 
 	const {
-        preferences: { timeLimit, theme, lang, font },
+        preferences: { timeLimit, theme, lang, font, level },
         time: { timerId },
     } = useSelector((state) => state);
     const dispatch = useDispatch();
@@ -54,6 +55,9 @@ export default function Header() {
         dispatch(setTime(time));
         dispatch(setTheme(theme));
 		dispatch(setFont(font));
+		
+		const level = localStorage.getItem("level") || "s1_l1";
+		dispatch(setLevel(level));
     }, [dispatch]);
 
     // Set Theme

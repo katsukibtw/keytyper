@@ -14,48 +14,15 @@ import {
     SET_REF,
     SET_CARET_REF,
     SET_LANG,
+	SET_LEVEL,
+	SET_LEVEL_WORD,
+	SET_LEVEL_CHAR,
+	APPEND_LEVEL_TYPED_HISTORY,
+	PREV_LEVEL_WORD,
+	SET_LEVEL_WORDLIST,
+	SET_LEVEL_REF,
+	SET_LEVEL_CARET_REF
 } from "./actions";
-
-// export interface State {
-    // preferences: {
-        // theme;
-        // timeLimit: number;
-        // type;
-    // };
-    // word: {
-        // currWord;
-        // typedWord;
-        // typedHistory;
-        // wordList;
-        // activeWordRef: RefObject<HTMLDivElement> | null;
-        // caretRef: RefObject<HTMLSpanElement> | null;
-    // };
-    // time: {
-        // timer: number;
-        // timerId: NodeJS.Timeout | null;
-    // };
-// }
-
-export const State = {
-    preferences: {
-        theme: "",
-		font: "",
-        timeLimit: 0,
-        lang: "",
-    },
-    word: {
-        currWord: "",
-        typedWord: "",
-        typedHistory: [],
-        wordList: [],
-        activeWordRef: null,
-        caretRef: null,
-    },
-    time: {
-        timer: 1,
-        timerId: null,
-    },
-};
 
 export const initialState = {
     preferences: {
@@ -71,6 +38,14 @@ export const initialState = {
         wordList: [],
         activeWordRef: null,
         caretRef: null,
+    },
+	levelWord: {
+        currLevelWord: "",
+        typedLevelWord: "",
+        typedLevelHistory: [],
+        levelWordList: [],
+        activeLevelWordRef: null,
+        levelCaretRef: null,
     },
     time: {
         timer: 1,
@@ -152,6 +127,64 @@ const wordReducer = (
     }
 };
 
+const levelWordReducer = (
+    state = initialState.levelWord,
+    { type, payload }
+) => {
+    switch (type) {
+        case SET_LEVEL_CHAR:
+            return { ...state, typedLevelWord: payload };
+        case SET_LEVEL_WORD:
+            return { ...state, typedLevelHistory: [...state.typedHistory, payload] };
+        case APPEND_LEVEL_TYPED_HISTORY:
+            const nextIdx = state.typedLevelHistory.length + 1;
+            return {
+                ...state,
+                typedLevelWord: "",
+                currLevelWord: state.wordList[nextIdx],
+                typedLevelHistory: [...state.typedHistory, state.typedWord],
+            };
+        case PREV_LEVEL_WORD:
+            const prevIdx = state.typedLevelHistory.length - 1;
+            return {
+                ...state,
+                currLevelWord: state.levelWordList[prevIdx],
+                typedLevelWord: !payload ? state.typedLevelHistory[prevIdx] : "",
+                typedLevelHistory: state.typedLevelHistory.splice(0, prevIdx),
+            };
+        case SET_LEVEL_REF:
+            return {
+                ...state,
+                activeLevelWordRef: payload,
+            };
+        case SET_LEVEL_CARET_REF:
+            return {
+                ...state,
+                levelCaretRef: payload,
+            };
+        case SET_LEVEL_WORDLIST:
+            const areNotWords = payload.some((word) =>
+                word.includes(" ")
+            );
+            var shuffledWordList = payload.sort(
+                () => Math.random() - 0.5
+            );
+            if (areNotWords)
+                shuffledWordList = payload.flatMap((token) =>
+                    token.split(" ")
+                );
+            return {
+                ...state,
+				typedLevelWord: "",
+				typedLevelHistory: [],
+                currLevelWord: shuffledWordList[0],
+                levelWordList: shuffledWordList,
+            };
+        default:
+            return state;
+    }
+};
+
 const preferenceReducer = (
     state = initialState.preferences,
     { type, payload }
@@ -165,6 +198,8 @@ const preferenceReducer = (
             return { ...state, timeLimit: payload };
         case SET_LANG:
 			return { ...state, lang: payload };
+		case SET_LEVEL:
+			return { ...state, level: payload };
         default:
             return state;
     }
@@ -173,5 +208,6 @@ const preferenceReducer = (
 export default combineReducers({
     time: timerReducer,
     word: wordReducer,
+	levelWord: levelWordReducer,
     preferences: preferenceReducer,
 });
