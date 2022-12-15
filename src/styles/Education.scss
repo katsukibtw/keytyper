@@ -19,7 +19,7 @@
 			border-radius: .6rem;
 			transition: .4s ease;
             grid-row-end: 0;
-            grid-column-end: span 4;
+            grid-column-end: span 5;
 
 			&:hover {
 				color: var(--bg);
@@ -38,19 +38,23 @@
     
     .level_list {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        width: 100%;
+        // grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: repeat(auto-fill, minmax(5rem, 11rem));
         grid-gap: .5rem;
+        place-content: center;
     
         &__entry {
-            display: inherit;
+            display: flex;
             flex-direction: row;
+            flex-wrap: nowrap;
             align-items: center;        
             justify-content: center;
             font-style: normal;
             font-size: 1.3rem;
             background-color: var(--bg-btn);
             color: var(--fg);
-            width: 13rem;
+            // width: 13rem;
             height: 2.5rem;
             border-radius: .5rem;
             transition: .4s ease;

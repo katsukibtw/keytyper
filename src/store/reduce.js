@@ -5,6 +5,8 @@ import {
     TIMER_DECREMENT,
     TIMERID_SET,
     TIMER_SET,
+    TIMER_END,
+    SET_REMAINED_TIME,
     APPEND_TYPED_HISTORY,
     PREV_WORD,
     SET_WORDLIST,
@@ -15,6 +17,7 @@ import {
     SET_CARET_REF,
     SET_LANG,
 	SET_LEVEL,
+    SET_MODE,
 	SET_LEVEL_WORD,
 	SET_LEVEL_CHAR,
 	APPEND_LEVEL_TYPED_HISTORY,
@@ -30,6 +33,7 @@ export const initialState = {
 		font: "",
         timeLimit: 0,
         lang: "",
+        mode: "init",
     },
     word: {
         currWord: "",
@@ -50,6 +54,7 @@ export const initialState = {
     time: {
         timer: 1,
         timerId: null,
+        remTime: null,
     },
 };
 
@@ -60,6 +65,10 @@ const timerReducer = (
     switch (type) {
         case TIMER_DECREMENT:
             return { ...state, timer: state.timer - 1 };
+        case TIMER_END:
+            return { ...state, timer: state.timer - state.timer };
+        case SET_REMAINED_TIME:
+            return { ...state, remTime: payload };
         case TIMER_SET:
             return { ...state, timer: payload };
         case TIMERID_SET:
@@ -141,8 +150,8 @@ const levelWordReducer = (
             return {
                 ...state,
                 typedLevelWord: "",
-                currLevelWord: state.wordList[nextIdx],
-                typedLevelHistory: [...state.typedHistory, state.typedWord],
+                currLevelWord: state.levelWordList[nextIdx],
+                typedLevelHistory: [...state.typedLevelHistory, state.typedLevelWord],
             };
         case PREV_LEVEL_WORD:
             const prevIdx = state.typedLevelHistory.length - 1;
@@ -200,6 +209,8 @@ const preferenceReducer = (
 			return { ...state, lang: payload };
 		case SET_LEVEL:
 			return { ...state, level: payload };
+        case SET_MODE:
+            return { ...state, mode: payload };
         default:
             return state;
     }

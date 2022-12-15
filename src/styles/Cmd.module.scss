@@ -1,7 +1,7 @@
 .cmd {
 	position: absolute;
 	inset: 0;
-	background: hsl(0, 0%, 0%, .9);
+	background: hsl(0, 0%, 0%, .7);
 	z-index: 1000;
 	transition: .4s ease;
 	display: grid;
@@ -16,6 +16,7 @@
 			opacity: 1;
 		}
 	}
+	backdrop-filter: blur(10px);
 }
 .cmd_container {
 	width: 30rem;

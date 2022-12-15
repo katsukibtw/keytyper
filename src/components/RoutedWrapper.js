@@ -1,6 +1,6 @@
 import { resetLevel } from "../actions/resetLevel";
 import { useDispatch, useSelector } from "react-redux";
-import { setLevelRef, setLevelCaretRef } from "../store/actions";
+import { setLevelRef, setLevelCaretRef, appendLevelTypedHistory, timerEnd, setLevelWord, setRemainedTime } from "../store/actions";
 import { useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { faArrowLeft, faArrowRotateLeft } from '@fortawesome/free-solid-svg-icons';
@@ -21,12 +21,14 @@ export default function RoutedWrapper() {
         dispatch(setLevelRef(activeWord));
         dispatch(setLevelCaretRef(caretRef));
     }, [dispatch]);
-
+    
     useEffect(() => {
-        if (typedLevelWord === levelWordList[levelWordList.length - 1]) {
-            dispatch(timerSet(0));
+        if (typedLevelWord === levelWordList[levelWordList.length - 1] && typedLevelHistory.length === levelWordList.length - 1){
+            dispatch(setRemainedTime(timer));
+            dispatch(timerEnd());
+            dispatch(setLevelWord(currLevelWord));
         }
-    });
+    })
 
     const handleResetClick = () => {
         if (timer) {
@@ -38,7 +40,7 @@ export default function RoutedWrapper() {
 		<div className="test">
             <div className="timer">{timer}</div>
             <div className="wrapper">
-                {levelWordList.slice(0, 501).map((word, idx) => {
+                {levelWordList.map((word, idx) => {
                     const isActive =
                         currLevelWord === word && typedLevelHistory.length === idx;
                     return (

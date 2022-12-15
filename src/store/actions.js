@@ -4,6 +4,8 @@ export const TIMER_DECREMENT = "TIMERDECREMENT";
 export const APPEND_TYPED_HISTORY = "APPENDTYPEDHISTORY";
 export const TIMER_SET = "TIMERSET";
 export const TIMERID_SET = "TIMERIDSET";
+export const TIMER_END = "TIMEREND";
+export const SET_REMAINED_TIME = "SETREMAINEDTIME";
 export const PREV_WORD = "PREVWORD";
 export const SET_WORDLIST = "SETWORDLIST";
 export const SET_THEME = "SETTHEME";
@@ -23,9 +25,14 @@ export const SET_LEVEL_WORDLIST = "SETLEVELWORDLIST";
 export const SET_LEVEL_REF = "SETLEVELREF";
 export const SET_LEVEL_CARET_REF = "SETLEVELCARETREF";
 
+// this thing is used to log in which part of site user is
+export const SET_MODE = "SETMODE";
+
 // Time Actions
 export const timerDecrement = () => ({ type: TIMER_DECREMENT });
 export const timerSet = (payload) => ({ type: TIMER_SET, payload });
+export const timerEnd = (payload) => ({ type: TIMER_END, payload });
+export const setRemainedTime = (payload) => ({ type: SET_REMAINED_TIME, payload });
 export const setTimerId = (payload) => ({
     type: TIMERID_SET,
     payload,
@@ -85,3 +92,4 @@ export const setFont = (payload) => ({ type: SET_FONT, payload });
 export const setTime = (payload) => ({ type: SET_TIME, payload });
 export const setLang = (payload) => ({ type: SET_LANG, payload });
 export const setLevel = (payload) => ({ type: SET_LEVEL, payload });
+export const setMode = (payload) => ({ type: SET_MODE, payload });

@@ -42,7 +42,7 @@ export const recordLevel = (key, ctrlKey) => {
     const { dispatch, getState } = store;
     const {
         time: { timer, timerId },
-        levelWord: { typedLevelWord, currWord, activeLevelWordRef, caretRef },
+        levelWord: { typedLevelWord, currLevelWord, activeLevelWordRef, levelCaretRef },
         preferences: { timeLimit },
     } = getState();
 
@@ -55,7 +55,7 @@ export const recordLevel = (key, ctrlKey) => {
     if (!timerId && key !== "Tab") startTimer();
     const currWordEl = activeLevelWordRef?.current;
     currWordEl.scrollIntoView({ behavior: "smooth", block: "center" });
-    const caret = caretRef?.current;
+    const caret = levelCaretRef?.current;
     caret.classList.remove("blink");
     setTimeout(() => caret.classList.add("blink"), 500);
     switch (key) {
@@ -68,7 +68,7 @@ export const recordLevel = (key, ctrlKey) => {
         case " ":
             if (typedLevelWord === "") return;
             currWordEl.classList.add(
-                typedLevelWord !== currWord ? "wrong" : "right"
+                typedLevelWord !== currLevelWord ? "wrong" : "right"
             );
             dispatch(appendLevelTypedHistory());
             break;

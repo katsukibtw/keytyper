@@ -12,7 +12,7 @@ import {
     Outlet,
     useNavigate
 } from "react-router-dom";
-import { setLevel, setLevelWordList } from "../store/actions";
+import { setLevel, setLevelWordList, setMode, setTime, timerSet } from "../store/actions";
 import { useDispatch } from 'react-redux';
 
 export default function RouteEducation(props) {
@@ -44,6 +44,7 @@ export const LevelList = (props) => {
         import(`../edu_levels/${level}.json`).then((words) => 
             dispatch(setLevelWordList(words.default))
         );
+        dispatch(setTime(30));
         navigate("test");
     }
 
@@ -60,7 +61,7 @@ export const LevelList = (props) => {
                         </div>
                     );
                 })}
-                <Link className="exit_btn" to={indexPath}>
+                <Link className="exit_btn" to={indexPath} onClick={() => dispatch(setMode("init"))}>
                         <FontAwesomeIcon icon={faArrowLeft}/>
                 </Link>
             </div>

@@ -1,7 +1,7 @@
 import '../styles/TestWrapper.scss';
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setRef, setCaretRef } from "../store/actions";
+import { setRef, setCaretRef, setMode } from "../store/actions";
 import { Link } from "react-router-dom";
 import { faArrowLeft, faArrowRotateLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -92,7 +92,7 @@ export default function TestWrapper(props) {
                     <FontAwesomeIcon icon={faArrowRotateLeft} />
                 </button> 
                 : 
-                <Link className="exit_btn" to={indexPath}>
+                <Link className="exit_btn" to={indexPath} onClick={() => dispatch(setMode("init"))}>
                     <FontAwesomeIcon icon={faArrowLeft} />
                 </Link>
             }

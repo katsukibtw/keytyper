@@ -12,6 +12,7 @@ import {
 	setLevel,
     timerSet,
     setLevelWordList,
+    setMode,
 } from "../store/actions";
 import { useLocation } from "react-router-dom";
 import { indexPath } from "../App";
@@ -57,11 +58,16 @@ export default function Header() {
         dispatch(setTheme(theme));
 		dispatch(setFont(font));
 		
+        // for settings level on enter
 		const level = localStorage.getItem("level") || "s1_l1";
         import(`../edu_levels/${level}.json`).then((words) => 
             dispatch(setLevelWordList(words.default))
         );
 		dispatch(setLevel(level));
+        
+        // for settings init status to mode prop if it's broken on startup
+        const mode = localStorage.getItem("mode") || "init";
+        dispatch(setMode(mode));
     }, [dispatch]);
 
     // Set Theme

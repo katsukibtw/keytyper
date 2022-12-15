@@ -2,11 +2,11 @@ import '../styles/App.scss';
 import '../styles/themes.scss';
 import '../styles/fonts.scss';
 import RoutedWrapper from './RoutedWrapper';
-import Results from './Results';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setTimerId } from "../store/actions";
 import { recordLevel } from '../actions/recordLevel';
+import RoutedResults from './RoutedResults';
 
 export default function RoutedTest(props) { 
     const setShowCmd = props.setShowCmd;
@@ -62,7 +62,7 @@ export default function RoutedTest(props) {
 
     return (
         <div className="route_training">
-            {timer ? <RoutedWrapper /> : <Results />}
+            {timer ? <RoutedWrapper /> : <RoutedResults />}
         </div>
     );
 }

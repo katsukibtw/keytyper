@@ -17,9 +17,12 @@ import {
 import RouteTraining from "./routes/RouteTesting";
 import RouteEducation, { LevelList } from "./routes/RouteEducation";
 import RoutedTest from './components/RoutedTest';
+import { setMode } from './store/actions';
+import { useDispatch } from 'react-redux';
 
 function App() {
     const [ showCmd, setShowCmd ] = useState(false);
+    const dispatch = useDispatch();
 
 	useEffect(() => {
 		document.onkeydown = (e) => {
@@ -32,6 +35,10 @@ function App() {
 			document.onkeydown = null;
 		};
 	});
+    
+    const handleMovingToMode = (mode) => {
+        dispatch(setMode(mode));
+    }
 
 	return (
     <Router> 
@@ -42,8 +49,8 @@ function App() {
             <Routes>
                 <Route path={indexPath} element={
                     <div className="index_links">
-                        <Link className="route_link" to={`${indexPath}/training`}>Быстрая тренировка</Link>
-                        <Link className="route_link" to={`${indexPath}/education`}>Программа обучения</Link>
+                        <Link className="route_link" to={`${indexPath}/training`} onClick={() => handleMovingToMode("test")}>Быстрая тренировка</Link>
+                        <Link className="route_link" to={`${indexPath}/education`} onClick={() => handleMovingToMode("edu")}>Программа обучения</Link>
                         <div className="link_row">
                             <div className="link_row__title">Класс:</div>
                             <div className="link_row__links">
