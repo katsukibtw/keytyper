@@ -1,11 +1,10 @@
 import { resetLevel } from "../actions/resetLevel";
 import { useDispatch, useSelector } from "react-redux";
-import { setLevelRef, setLevelCaretRef, appendLevelTypedHistory, timerEnd, setLevelWord, setRemainedTime } from "../store/actions";
+import { setLevelRef, setLevelCaretRef, timerEnd, setLevelWord, setRemainedTime } from "../store/actions";
 import { useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { faArrowLeft, faArrowRotateLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { timerSet } from "../store/actions";
 
 export default function RoutedWrapper() {
     const {

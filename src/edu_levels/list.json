@@ -1,22 +1,64 @@
 [
     {
-        "name": "Уровень 1",
-        "filename": "s1_l1"
+        "step": 1,
+        "levels": [
+            {
+                "name": "Уровень 1",
+                "filename": "s1_l1"
+            },
+            {
+                "name": "Уровень 2",
+                "filename": "s1_l2"
+            },
+            {
+                "name": "Уровень 3",
+                "filename": "s1_l3"
+            },
+            {
+                "name": "Уровень 4",
+                "filename": "s1_l4"
+            },
+            {
+                "name": "Уровень 5",
+                "filename": "s1_l5"
+            },
+            {
+                "name": "Уровень 6",
+                "filename": "s1_l6"
+            },
+            {
+                "name": "Уровень 7",
+                "filename": "s1_l7"
+            },
+            {
+                "name": "Уровень 8",
+                "filename": "s1_l8"
+            },
+            {
+                "name": "Уровень 9",
+                "filename": "s1_l9"
+            }
+        ]
     },
     {
-        "name": "Уровень 2",
-        "filename": "s1_l2"
-    },
-    {
-        "name": "Уровень 3",
-        "filename": "s1_l3"
-    },
-    {
-        "name": "Уровень 4",
-        "filename": "s1_l4"
-    },
-    {
-        "name": "Уровень 5",
-        "filename": "s1_l5"
+        "step": 2,
+        "levels": [
+            {
+                "name": "Уровень 1",
+                "filename": "s2_l1"
+            },
+            {
+                "name": "Уровень 2",
+                "filename": "s2_l2"
+            },
+            {
+                "name": "Уровень 3",
+                "filename": "s2_l3"
+            },
+            {
+                "name": "Уровень 4",
+                "filename": "s2_l4"
+            }
+        ]
     }
 ]

@@ -12,7 +12,7 @@ import {
     Outlet,
     useNavigate
 } from "react-router-dom";
-import { setLevel, setLevelWordList, setMode, setTime, timerSet } from "../store/actions";
+import { setLevel, setLevelWordList, setMode, setTime } from "../store/actions";
 import { useDispatch } from 'react-redux';
 
 export default function RouteEducation(props) {
@@ -52,12 +52,24 @@ export const LevelList = (props) => {
             <div className="level_list">
                 {levelList.map((entry, idx) => {
                     return (
-                        <div
-                            to="test"
-                            className="level_list__entry" 
-                            onClick={() => handleLevelSelection(entry.filename)}
-                            key={entry + idx}>
-                        {entry.name}
+                        <div className="dumm" key={entry + idx + idx}>
+                            <div
+                                className="level_list__step_block" 
+                                key={entry + idx}>
+                                {`Этап ${entry.step}`}
+                            </div>
+                            <div className="level_list__container" key={entry + idx + idx}>
+                                {entry.levels.map((el, id) => {
+                                    return (
+                                        <div 
+                                            className="level_list__entry"
+                                            onClick={() => handleLevelSelection(el.filename)}
+                                            key={el + id}>
+                                                {el.name}
+                                        </div>
+                                    );
+                                })}
+                            </div>
                         </div>
                     );
                 })}

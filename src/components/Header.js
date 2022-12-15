@@ -37,7 +37,7 @@ export default function Header() {
     const [ showButtons, setShowButtons ] = useState(false);
 
 	const {
-        preferences: { timeLimit, theme, lang, font, level },
+        preferences: { timeLimit, theme, lang, font },
         time: { timerId },
     } = useSelector((state) => state);
     const dispatch = useDispatch();
