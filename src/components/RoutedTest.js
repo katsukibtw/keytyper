@@ -6,7 +6,7 @@ import Results from './Results';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setTimerId } from "../store/actions";
-import { recordTest } from "../actions/recordTest";
+import { recordLevel } from '../actions/recordLevel';
 
 export default function RoutedTest(props) { 
     const setShowCmd = props.setShowCmd;
@@ -27,7 +27,7 @@ export default function RoutedTest(props) {
                 e.key === "Backspace" ||
                 e.key === "Tab"
             ) {
-                recordTest(e.key, e.ctrlKey);
+                recordLevel(e.key, e.ctrlKey);
                 e.preventDefault();
             }
 		};

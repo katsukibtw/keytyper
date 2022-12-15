@@ -11,6 +11,7 @@ import {
 	setFont,
 	setLevel,
     timerSet,
+    setLevelWordList,
 } from "../store/actions";
 import { useLocation } from "react-router-dom";
 import { indexPath } from "../App";
@@ -57,6 +58,9 @@ export default function Header() {
 		dispatch(setFont(font));
 		
 		const level = localStorage.getItem("level") || "s1_l1";
+        import(`../edu_levels/${level}.json`).then((words) => 
+            dispatch(setLevelWordList(words.default))
+        );
 		dispatch(setLevel(level));
     }, [dispatch]);
 

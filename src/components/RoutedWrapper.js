@@ -1,6 +1,6 @@
 import { resetLevel } from "../actions/resetLevel";
 import { useDispatch, useSelector } from "react-redux";
-import { setRef, setCaretRef } from "../store/actions";
+import { setLevelRef, setLevelCaretRef } from "../store/actions";
 import { useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { faArrowLeft, faArrowRotateLeft } from '@fortawesome/free-solid-svg-icons';
@@ -18,8 +18,8 @@ export default function RoutedWrapper() {
     const caretRef = useRef(null);
 
 	useEffect(() => {
-        dispatch(setRef(activeWord));
-        dispatch(setCaretRef(caretRef));
+        dispatch(setLevelRef(activeWord));
+        dispatch(setLevelCaretRef(caretRef));
     }, [dispatch]);
 
     useEffect(() => {
@@ -101,5 +101,5 @@ export default function RoutedWrapper() {
                 </Link>
             }
         </div>
-	);
+    );
 }

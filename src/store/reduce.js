@@ -135,7 +135,7 @@ const levelWordReducer = (
         case SET_LEVEL_CHAR:
             return { ...state, typedLevelWord: payload };
         case SET_LEVEL_WORD:
-            return { ...state, typedLevelHistory: [...state.typedHistory, payload] };
+            return { ...state, typedLevelHistory: [...state.typedLevelHistory, payload] };
         case APPEND_LEVEL_TYPED_HISTORY:
             const nextIdx = state.typedLevelHistory.length + 1;
             return {
@@ -163,22 +163,22 @@ const levelWordReducer = (
                 levelCaretRef: payload,
             };
         case SET_LEVEL_WORDLIST:
-            const areNotWords = payload.some((word) =>
+            const lareNotWords = payload.some((word) =>
                 word.includes(" ")
             );
-            var shuffledWordList = payload.sort(
+            var shuffledLevelWordList = payload.sort(
                 () => Math.random() - 0.5
             );
-            if (areNotWords)
-                shuffledWordList = payload.flatMap((token) =>
+            if (lareNotWords)
+                shuffledLevelWordList = payload.flatMap((token) =>
                     token.split(" ")
                 );
             return {
                 ...state,
 				typedLevelWord: "",
 				typedLevelHistory: [],
-                currLevelWord: shuffledWordList[0],
-                levelWordList: shuffledWordList,
+                currLevelWord: shuffledLevelWordList[0],
+                levelWordList: shuffledLevelWordList,
             };
         default:
             return state;

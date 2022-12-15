@@ -15,13 +15,13 @@ export const SET_FONT = "SETFONT";
 
 // same things but for levels
 export const SET_LEVEL = "SETLEVEL";
-export const SET_LEVEL_WORD = "SETWORD";
-export const SET_LEVEL_CHAR = "SETCHAR";
-export const APPEND_LEVEL_TYPED_HISTORY = "APPENDTYPEDHISTORY";
-export const PREV_LEVEL_WORD = "PREVWORD";
-export const SET_LEVEL_WORDLIST = "SETWORDLIST";
-export const SET_LEVEL_REF = "SETREF";
-export const SET_LEVEL_CARET_REF = "SETCARETREF";
+export const SET_LEVEL_WORD = "SETLEVELWORD";
+export const SET_LEVEL_CHAR = "SETLEVELCHAR";
+export const APPEND_LEVEL_TYPED_HISTORY = "APPENDLEVELTYPEDHISTORY";
+export const PREV_LEVEL_WORD = "PREVLEVELWORD";
+export const SET_LEVEL_WORDLIST = "SETLEVELWORDLIST";
+export const SET_LEVEL_REF = "SETLEVELREF";
+export const SET_LEVEL_CARET_REF = "SETLEVELCARETREF";
 
 // Time Actions
 export const timerDecrement = () => ({ type: TIMER_DECREMENT });

@@ -12,7 +12,7 @@ import {
     Outlet,
     useNavigate
 } from "react-router-dom";
-import { setLevel } from "../store/actions";
+import { setLevel, setLevelWordList } from "../store/actions";
 import { useDispatch } from 'react-redux';
 
 export default function RouteEducation(props) {
@@ -41,6 +41,9 @@ export const LevelList = (props) => {
 
     const handleLevelSelection = (level) => {
         dispatch(setLevel(level));
+        import(`../edu_levels/${level}.json`).then((words) => 
+            dispatch(setLevelWordList(words.default))
+        );
         navigate("test");
     }
 
