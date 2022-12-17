@@ -82,6 +82,8 @@ export default function Header() {
                 ?.classList.add("selected");
             document.body.children[1].classList.remove(...options.theme);
             document.body.children[1].classList.add(theme);
+            document.body.classList.remove(...options.theme);
+            document.body.classList.add(theme);
             localStorage.setItem("theme", theme);
         }
     }, [dispatch, theme]);

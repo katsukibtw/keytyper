@@ -1,6 +1,7 @@
 .App {
 	position: absolute;
 	inset: 0;
+	height: 100vh;
 	color: var(--fg);
 	background: var(--bg);
 	margin: 0;
@@ -9,6 +10,31 @@
 	flex-direction: column;
 	align-items: space-between;
 	transition: .4s ease;
+	overflow-x: hidden;
+
+	.mobile_block {
+		position: absolute;
+		inset: 0;
+		background-color: var(--bg-block);
+		height: 100vh;
+		z-index: 10;
+		display: flex;
+		// align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		padding: 0 2rem;
+		backdrop-filter: blur(10px);
+		
+		&__smile {
+			font-size: 5rem;
+		}
+	}
+	
+	@media screen and (min-width: 800px) {
+		.mobile_block {
+			display: none;
+		}
+	}
 	
 	.route_training {
 		flex-grow: 1;

@@ -1,12 +1,15 @@
 import '../styles/App.scss';
 import '../styles/themes.scss';
 import '../styles/fonts.scss';
-import RoutedWrapper from './RoutedWrapper';
+// import RoutedWrapper from './RoutedWrapper';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setTimerId } from "../store/actions";
 import { recordLevel } from '../actions/recordLevel';
 import RoutedResults from './RoutedResults';
+import React, { lazy, Suspense } from "react";
+
+const Wrapper = lazy(() => import('./RoutedWrapper'));
 
 export default function RoutedTest(props) { 
     const setShowCmd = props.setShowCmd;
@@ -62,7 +65,9 @@ export default function RoutedTest(props) {
 
     return (
         <div className="route_training">
-            {timer ? <RoutedWrapper /> : <RoutedResults />}
+            <Suspense fallback={"Loading..."}>
+                {timer ? <Wrapper /> : <RoutedResults />}
+            </Suspense>
         </div>
     );
 }

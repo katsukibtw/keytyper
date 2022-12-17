@@ -12,6 +12,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: .4s ease;
+  background-color: var(--bg);
+  /* overflow: hidden; */
 }
 
 @font-face {

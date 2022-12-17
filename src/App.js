@@ -19,8 +19,10 @@ import RouteEducation, { LevelList } from "./routes/RouteEducation";
 import RoutedTest from './components/RoutedTest';
 import { setMode } from './store/actions';
 import { useDispatch } from 'react-redux';
+import Login from './components/Login';
 
 function App() {
+    
     const [ showCmd, setShowCmd ] = useState(false);
     const dispatch = useDispatch();
 
@@ -45,6 +47,7 @@ function App() {
 		<div className="App">
 			<Header />
 			{showCmd && <Cmd setShowCmd={setShowCmd}/>}
+            <MobileBlock />
 
             <Routes>
                 <Route path={indexPath} element={
@@ -64,12 +67,13 @@ function App() {
                         </div>
                     </div>
                 }/>
-                <Route path={`${indexPath}/training`} element={<RouteTraining setShowCmd={setShowCmd}/>}/>
+                <Route path={`${indexPath}/training`} element={<RouteTraining setShowCmd={setShowCmd}/>} />
                 <Route path={`${indexPath}/education`} element={<RouteEducation setShowCmd={setShowCmd}/>}>
                     <Route index element={<LevelList />} />
                     <Route path="test" element={<RoutedTest setShowCmd={setShowCmd} />} />
                 </Route>
                 <Route path={`${indexPath}/classroom`} element={<Placeholder setShowCmd={setShowCmd}/>}/>
+                <Route path={`${indexPath}/login`} element={<Login />} />
                 <Route index element={<Navigate to="/10v/skripko/keytyper" />}/>
             </Routes>
 
@@ -77,6 +81,16 @@ function App() {
 		</div>
     </Router>
 	);
+}
+
+const MobileBlock = () => {
+    return (
+        <div className="mobile_block">
+            <div className="mobile_block__smile">:(</div> 
+            <p className="mobile_block__text">К сожалению, на данный момент страница не адаптирована под мобильные устройства, пожалуйста, откройте сайт на компьютере
+            </p>
+        </div>
+    );
 }
 
 export const Placeholder = (props) => {
