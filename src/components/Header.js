@@ -13,9 +13,12 @@ import {
     timerSet,
     setLevelWordList,
     setMode,
+    setUserRefreshToken,
 } from "../store/actions";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { indexPath } from "../App";
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 export const options = {
     time: [15, 30, 45, 60, 120],
@@ -34,10 +37,13 @@ export const options = {
 
 export default function Header() {
     let location = useLocation();
+    const navigate = useNavigate();
     const [ showButtons, setShowButtons ] = useState(false);
+    const [ showLogoutButton, setShowLogoutButton ] = useState(false);
 
 	const {
         preferences: { timeLimit, theme, lang, font },
+        user: { name, refreshToken },
         time: { timerId },
     } = useSelector((state) => state);
     const dispatch = useDispatch();
@@ -68,6 +74,10 @@ export default function Header() {
         // for settings init status to mode prop if it's broken on startup
         const mode = localStorage.getItem("mode") || "init";
         dispatch(setMode(mode));
+        
+        // user things
+        const refreshToken = localStorage.getItem("refreshToken") || null;
+        dispatch(setUserRefreshToken(refreshToken));
     }, [dispatch]);
 
     // Set Theme
@@ -152,6 +162,20 @@ export default function Header() {
             target.blur();
         }
     };
+    
+    useEffect(() => 
+        setShowLogoutButton(refreshToken === null ? false : true)
+    );
+    
+    const Logout = async () => {
+        try {
+            await axios.delete('http://localhost:5000/api/logout');
+            navigate(`${indexPath}`);
+            dispatch(setUserRefreshToken(null));
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
 	return (
 		<div className={timerId ? "hidden head" : "head"}>
@@ -176,6 +200,10 @@ export default function Header() {
 			<div className={showButtons ? "hidden advice" : "advice"}>
 				Нажмите <div className="advice__button">Ctrl</div> + <div className="advice__button">E</div> , чтобы открыть панель управления.
 			</div>
+                {showLogoutButton ? 
+                    <div className="userspace"><div className="userspace__name">{name}</div><button className="login_link" onClick={Logout}>Выйти</button></div>
+                    : <Link to={`${indexPath}/login`} className="login_link" >Войти</Link>
+                }
 		</div>
 	);
 }

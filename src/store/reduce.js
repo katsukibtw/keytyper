@@ -24,7 +24,10 @@ import {
 	PREV_LEVEL_WORD,
 	SET_LEVEL_WORDLIST,
 	SET_LEVEL_REF,
-	SET_LEVEL_CARET_REF
+	SET_LEVEL_CARET_REF,
+    SET_USER_ID,
+    SET_USER_NAME,
+    SET_USER_REFRESH_TOKEN
 } from "./actions";
 
 export const initialState = {
@@ -50,6 +53,11 @@ export const initialState = {
         levelWordList: [],
         activeLevelWordRef: null,
         levelCaretRef: null,
+    },
+    user: {
+        id: '',
+        name: '',
+        refreshToken: null,
     },
     time: {
         timer: 1,
@@ -194,6 +202,22 @@ const levelWordReducer = (
     }
 };
 
+const userReducer = (
+    state = initialState.user,
+    { type, payload }
+) => {
+    switch (type) {
+        case SET_USER_ID:
+            return { ...state, id: payload };
+        case SET_USER_NAME:
+            return { ...state, name: payload };
+        case SET_USER_REFRESH_TOKEN:
+            return { ...state, refreshToken: payload };
+        default:
+            return state;
+    }
+}
+
 const preferenceReducer = (
     state = initialState.preferences,
     { type, payload }
@@ -220,5 +244,6 @@ export default combineReducers({
     time: timerReducer,
     word: wordReducer,
 	levelWord: levelWordReducer,
+    user: userReducer,
     preferences: preferenceReducer,
 });

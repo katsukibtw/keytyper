@@ -6,6 +6,7 @@
 	flex-direction: row;
 	gap: 1rem;
 	align-items: center;
+	justify-content: center;
 	transition: .4s ease;
 	
 	.title {
@@ -71,6 +72,30 @@
 			padding: .1rem .3rem;
 			border-radius: .2rem;
 		}
+	}
+	
+	.login_link {
+		padding: .5rem 2rem;
+		background-color: var(--bg-btn);
+		color: var(--fg);
+		font-family: var(--fc);
+		text-decoration: none;
+		border-radius: .5rem;
+		transition: .4s;
+		border: 0;
+		
+		&:hover {
+			background-color: var(--clr);
+			color: var(--bg);
+		}
+	}
+	
+	.userspace {
+		display: flex;
+		flex-direction: row;
+		gap: 1rem;
+		align-items: center;
+		font-family: var(--fc);
 	}
 }
 

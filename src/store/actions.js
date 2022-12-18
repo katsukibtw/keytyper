@@ -28,6 +28,11 @@ export const SET_LEVEL_CARET_REF = "SETLEVELCARETREF";
 // this thing is used to log in which part of site user is
 export const SET_MODE = "SETMODE";
 
+// user action types
+export const SET_USER_ID = "SETUSERID";
+export const SET_USER_NAME = "SETUSERNAME";
+export const SET_USER_REFRESH_TOKEN = "SETUSERREFRESHTOKEN";
+
 // Time Actions
 export const timerDecrement = () => ({ type: TIMER_DECREMENT });
 export const timerSet = (payload) => ({ type: TIMER_SET, payload });
@@ -85,6 +90,11 @@ export const setLevelCaretRef = (payload) => ({
     type: SET_LEVEL_CARET_REF,
     payload,
 });
+
+// User actions
+export const setUserId = (payload) => ({ type: SET_USER_ID, payload });
+export const setUserName = (payload) => ({ type: SET_USER_NAME, payload });
+export const setUserRefreshToken = (payload) => ({ type: SET_USER_REFRESH_TOKEN, payload });
 
 // Prefrences Actions
 export const setTheme = (payload) => ({ type: SET_THEME, payload });
