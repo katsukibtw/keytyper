@@ -1,11 +1,13 @@
 import { useSelector } from "react-redux";
 import "../styles/Results.scss";
 import { resetLevel } from "../actions/resetLevel";
+import { useEffect } from "react";
 
 export default function RoutedResults() {
     const {
         time: { remTime },
-        levelWord: { levelWordList, typedLevelHistory, currLevelWord },
+        levelWord: { levelWordList, typedLevelHistory, currLevelWord, levelId },
+        user: { id, name },
         preferences: { timeLimit },
     } = useSelector((state) => state);
     
@@ -18,6 +20,11 @@ export default function RoutedResults() {
         if (r) correctChars += levelWordList[idx].length;
     });
     const wpm = ((correctChars + spaces) * 60 * 5 * (remTime / levelWordList.length / (timeLimit - remTime) + .3)) / timeLimit / 5;
+    
+    const sendNewStatEntry = async () => {
+        
+    }
+
     return (
         <div className="result">
             <h1>{Math.round(wpm) + " wpm"}</h1>
