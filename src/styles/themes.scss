@@ -1,3 +1,7 @@
+:root {
+	--bg-block: hsl(0, 0%, 0%, .7);
+}
+
 .tokyonight {
 	--bg: #1a1b26;
 	--bg-btn: #16161e;
@@ -70,7 +74,6 @@
 
 .everforest {
 	--bg: #2b3339;
-	--bg-block: hsl(0, 0%, 0%, .7);
 	--bg-btn: #1b242b;
 	--fg: #d3c6aa;
 	--fg-dark: #a39679;

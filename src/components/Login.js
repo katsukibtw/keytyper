@@ -4,8 +4,11 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { indexPath } from "../App";
 import { useDispatch, useSelector } from "react-redux";
+import { setUserId, setUserName, setUserRefreshToken } from "../store/actions";
 
 export default function Login() {
+    
+    const dispatch = useDispatch();
     
     axios.defaults.withCredentials = true;
 
@@ -47,8 +50,14 @@ export default function Login() {
             await axios.post('http://localhost:5000/api/login', {
                 login: loginI,
                 pass: passI
+            }).then((res) => {
+                localStorage.setItem('refreshToken', res.data.refreshToken);
+                localStorage.setItem('userId', res.data.userId);
+                localStorage.setItem('username', res.data.name);
+                dispatch(setUserRefreshToken(res.data.refreshToken));
+                dispatch(setUserId(res.data.userId));
+                dispatch(setUserName(res.data.name));
             });
-            console.log('success!');
             navigate(`${indexPath}/education`)
         } catch (error) {
             if (error.response) {

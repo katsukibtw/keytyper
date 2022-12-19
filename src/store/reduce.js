@@ -25,9 +25,11 @@ import {
 	SET_LEVEL_WORDLIST,
 	SET_LEVEL_REF,
 	SET_LEVEL_CARET_REF,
+    SET_LEVEL_ID,
     SET_USER_ID,
     SET_USER_NAME,
-    SET_USER_REFRESH_TOKEN
+    SET_USER_REFRESH_TOKEN,
+    ADD_COMPL_LEVEL
 } from "./actions";
 
 export const initialState = {
@@ -53,10 +55,12 @@ export const initialState = {
         levelWordList: [],
         activeLevelWordRef: null,
         levelCaretRef: null,
+        levelId: '',
     },
     user: {
         id: '',
         name: '',
+        levelsCompl: [],
         refreshToken: null,
     },
     time: {
@@ -197,6 +201,8 @@ const levelWordReducer = (
                 currLevelWord: shuffledLevelWordList[0],
                 levelWordList: shuffledLevelWordList,
             };
+        case SET_LEVEL_ID:
+            return { ...state, levelId: payload };
         default:
             return state;
     }
@@ -213,6 +219,8 @@ const userReducer = (
             return { ...state, name: payload };
         case SET_USER_REFRESH_TOKEN:
             return { ...state, refreshToken: payload };
+        case ADD_COMPL_LEVEL:
+            return { ...state, levelsCompl: [ ...state.levelsCompl, payload ] };
         default:
             return state;
     }

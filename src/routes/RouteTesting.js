@@ -25,24 +25,20 @@ export default function RouteTesting(props) {
     const dispatch = useDispatch();
 
 
-	useEffect(() => {
-		document.onkeydown = (e) => {
-			if (e.ctrlKey && (e.key === "e" || e.key === "у")) {
-				setShowCmd((s) => !s);
-				e.preventDefault();
-			} else if (
-                e.key.length === 1 ||
-                e.key === "Backspace" ||
-                e.key === "Tab"
-            ) {
-                recordTest(e.key, e.ctrlKey);
-                e.preventDefault();
-            }
-		};
-		return () => {
-			document.onkeydown = null;
-		};
-	}, [dispatch, setShowCmd]);
+    const onKeyDown = (e) => {
+		if (e.ctrlKey && (e.key === "e" || e.key === "у")) {
+			setShowCmd((s) => !s);
+			e.preventDefault();
+		} else if (
+            e.key.length === 1 ||
+            e.key === "Backspace" ||
+            e.key === "Tab"
+        ) {
+            recordTest(e.key, e.ctrlKey);
+            e.preventDefault();
+        }
+        return null;
+	};
 	
 	useEffect(() => {
         let idx = typedWord.length - 1;
@@ -69,7 +65,10 @@ export default function RouteTesting(props) {
     }, [dispatch, timer, timerId]);
 
     return (
-        <div className="route_training">
+        <div 
+            className="route_training"
+            onKeyDown={onKeyDown}
+            tabIndex="0">
             {timer ? <TestWrapper /> : <Results />}
         </div>
     );

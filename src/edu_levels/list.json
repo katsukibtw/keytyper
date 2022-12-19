@@ -4,38 +4,47 @@
         "levels": [
             {
                 "name": "Уровень 1",
+                "id": 1,
                 "filename": "s1_l1"
             },
             {
                 "name": "Уровень 2",
+                "id": 2,
                 "filename": "s1_l2"
             },
             {
                 "name": "Уровень 3",
+                "id": 3,
                 "filename": "s1_l3"
             },
             {
                 "name": "Уровень 4",
+                "id": 4,
                 "filename": "s1_l4"
             },
             {
                 "name": "Уровень 5",
+                "id": 5,
                 "filename": "s1_l5"
             },
             {
                 "name": "Уровень 6",
+                "id": 6,
                 "filename": "s1_l6"
             },
             {
                 "name": "Уровень 7",
+                "id": 7,
                 "filename": "s1_l7"
             },
             {
                 "name": "Уровень 8",
+                "id": 8,
                 "filename": "s1_l8"
             },
             {
                 "name": "Уровень 9",
+                "id": 9,
                 "filename": "s1_l9"
             }
         ]
@@ -45,18 +54,22 @@
         "levels": [
             {
                 "name": "Уровень 1",
+                "id": 10,
                 "filename": "s2_l1"
             },
             {
                 "name": "Уровень 2",
+                "id": 11,
                 "filename": "s2_l2"
             },
             {
                 "name": "Уровень 3",
+                "id": 12,
                 "filename": "s2_l3"
             },
             {
                 "name": "Уровень 4",
+                "id": 13,
                 "filename": "s2_l4"
             }
         ]

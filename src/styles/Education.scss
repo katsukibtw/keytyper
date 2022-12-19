@@ -63,7 +63,7 @@
         
         &__container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(5rem, 12rem));
+            grid-template-columns: repeat(auto-fill, minmax(5rem, 14rem));
             grid-gap: .5rem;
             place-content: center;
             transition: .4s;
@@ -84,6 +84,7 @@
             height: 2.5rem;
             border-radius: .5rem;
             transition: .4s ease;
+            gap: .5rem;
 
             &:hover {
                 background-color: var(--clr);

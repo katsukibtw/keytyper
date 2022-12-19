@@ -24,6 +24,7 @@ export const PREV_LEVEL_WORD = "PREVLEVELWORD";
 export const SET_LEVEL_WORDLIST = "SETLEVELWORDLIST";
 export const SET_LEVEL_REF = "SETLEVELREF";
 export const SET_LEVEL_CARET_REF = "SETLEVELCARETREF";
+export const SET_LEVEL_ID = "SETLEVELID";
 
 // this thing is used to log in which part of site user is
 export const SET_MODE = "SETMODE";
@@ -32,6 +33,7 @@ export const SET_MODE = "SETMODE";
 export const SET_USER_ID = "SETUSERID";
 export const SET_USER_NAME = "SETUSERNAME";
 export const SET_USER_REFRESH_TOKEN = "SETUSERREFRESHTOKEN";
+export const ADD_COMPL_LEVEL = "ADDCOMPLLEVEL";
 
 // Time Actions
 export const timerDecrement = () => ({ type: TIMER_DECREMENT });
@@ -91,10 +93,13 @@ export const setLevelCaretRef = (payload) => ({
     payload,
 });
 
+export const setLevelId = (payload) => ({ type: SET_LEVEL_ID, payload });
+
 // User actions
 export const setUserId = (payload) => ({ type: SET_USER_ID, payload });
 export const setUserName = (payload) => ({ type: SET_USER_NAME, payload });
 export const setUserRefreshToken = (payload) => ({ type: SET_USER_REFRESH_TOKEN, payload });
+export const addComplLevel = (payload) => ({ type: ADD_COMPL_LEVEL, payload });
 
 // Prefrences Actions
 export const setTheme = (payload) => ({ type: SET_THEME, payload });

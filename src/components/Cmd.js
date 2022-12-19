@@ -121,7 +121,7 @@ export default function Cmd(props) {
             const command = commandList[highlightedOption];
             handleCommandSelection(command);
         } else if (e.key === "Escape") {
-            props.setShowPallet(false);
+            props.setShowCmd(false);
         }
         e.stopPropagation();
     };

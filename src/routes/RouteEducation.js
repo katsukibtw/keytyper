@@ -4,7 +4,7 @@ import '../styles/fonts.scss';
 import '../styles/Education.scss';
 import { indexPath } from "../App";
 import { useEffect, useState } from "react";
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import levelList from "../edu_levels/list.json";
 import { 
@@ -12,15 +12,15 @@ import {
     Outlet,
     useNavigate
 } from "react-router-dom";
-import { setLevel, setLevelWordList, setMode, setTime, setUserId, setUserName, setUserRefreshToken } from "../store/actions";
+import { setLevel, setLevelId, setLevelWordList, setMode, setTime, setUserId, setUserName, setUserRefreshToken } from "../store/actions";
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 
 export default function RouteEducation(props) {
-    // some store vars for checking user id
     const {
-        user: { refreshToken }
+        user: { refreshToken },
+        preferences: { mode }
     } = useSelector((state) => state);
     const dispatch = useDispatch();
     
@@ -29,16 +29,13 @@ export default function RouteEducation(props) {
     const [ user, setUser ] = useState([]);
     const [ usrName, setUsrName ] = useState('');
     const navigate = useNavigate();
-    
-    useEffect(() => {
-        refreshTokenFunc();
-    })
-    
+
     const refreshTokenFunc = async () => {
         try {
             const resp = await axios.get('http://localhost:5000/api/token', {
                 refreshToken: refreshToken
             });
+            console.log(refreshToken);
             setToken(resp.data.accessToken);
             dispatch(setUserRefreshToken(resp.data.accessToken));
             localStorage.setItem("refreshToken", refreshToken);
@@ -48,7 +45,7 @@ export default function RouteEducation(props) {
             dispatch(setUserId(decoded.userId));
             dispatch(setUserName(decoded.name));
         } catch (error) {
-            if (error.response) {
+            if (error.response && mode !== 'init') {
                 navigate(`${indexPath}/login`);
             }
         }
@@ -69,6 +66,12 @@ export default function RouteEducation(props) {
     }, (error) => {
         return Promise.reject(error);
     })
+
+    useEffect(() => {
+        if (refreshToken !== undefined) {
+            refreshTokenFunc();
+        }
+    }, [dispatch, refreshToken]);
 
 	useEffect(() => {
 		document.onkeydown = (e) => {
@@ -92,12 +95,16 @@ export default function RouteEducation(props) {
 export const LevelList = (props) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const {
+        user: { levelsCompl }
+    } = useSelector((state) => state);
 
-    const handleLevelSelection = (level) => {
+    const handleLevelSelection = (level, levelId) => {
         dispatch(setLevel(level));
         import(`../edu_levels/${level}.json`).then((words) => 
             dispatch(setLevelWordList(words.default))
         );
+        dispatch(setLevelId(levelId));
         dispatch(setTime(30));
         navigate("test");
     }
@@ -117,9 +124,13 @@ export const LevelList = (props) => {
                                     return (
                                         <div 
                                             className="level_list__entry"
-                                            onClick={() => handleLevelSelection(el.filename)}
+                                            onClick={() => handleLevelSelection(el.filename, el.id)}
                                             key={el + id}>
                                                 {el.name}
+                                                {levelsCompl.includes(el.id) ? 
+                                                    <FontAwesomeIcon icon={faCheck} className="level_list__entry__check" />
+                                                    : ''
+                                                }
                                         </div>
                                     );
                                 })}

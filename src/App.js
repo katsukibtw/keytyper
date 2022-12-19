@@ -12,31 +12,81 @@ import {
     Routes,
     Route,
     Link,
-    Navigate
+    Navigate,
+    useNavigate
   } from "react-router-dom";
 import RouteTraining from "./routes/RouteTesting";
 import RouteEducation, { LevelList } from "./routes/RouteEducation";
 import RoutedTest from './components/RoutedTest';
-import { setMode } from './store/actions';
-import { useDispatch } from 'react-redux';
+import { setMode, setUserId, setUserName, setUserRefreshToken } from './store/actions';
+import { useDispatch, useSelector } from 'react-redux';
 import Login from './components/Login';
+import axios from 'axios';
+import jwtDecode from 'jwt-decode';
 
 function App() {
+    // some store vars for checking user id
+    const {
+        user: { refreshToken },
+        preferences: { mode }
+    } = useSelector((state) => state);
+    const dispatch = useDispatch();
+    
+    const [ token, setToken ] = useState('');
+    const [ expire, setExpire ] = useState('');
+    const [ usrName, setUsrName ] = useState('');
     
     const [ showCmd, setShowCmd ] = useState(false);
-    const dispatch = useDispatch();
+    
+    const refreshTokenFunc = async () => {
+        try {
+            const resp = await axios.get('http://localhost:5000/api/auth', {
+                refreshToken: refreshToken
+            });
+            setToken(resp.data.accessToken);
+            dispatch(setUserRefreshToken(resp.data.accessToken));
+            localStorage.setItem("refreshToken", refreshToken);
+            const decoded = jwtDecode(resp.data.accessToken);
+            setUsrName(decoded.name);
+            setExpire(decoded.exp);
+            dispatch(setUserId(decoded.userId));
+            dispatch(setUserName(decoded.name));
+        } catch (error) {
+            if (error.response && mode !== 'init') {
+                console.log("refresh token error")
+            }
+        }
+    }
+    
+    const axiosJWT = axios.create();
+    axiosJWT.interceptors.request.use(async (config) => {
+        const currentDate = new Date();
+        if (expire * 1000 < currentDate.getTime()) {
+            const response = await axios.get('http://localhost:5000/api/token');
+            config.headers.Authorization = `Bearer ${response.data.accessToken}`;
+            setToken(response.data.accessToken);
+            const decoded = jwtDecode(response.data.accessToken);
+            setUsrName(decoded.name);
+            setExpire(decoded.exp);
+        }
+        return config;
+    }, (error) => {
+        return Promise.reject(error);
+    })
 
-	useEffect(() => {
-		document.onkeydown = (e) => {
-			if (e.ctrlKey && (e.key === "e" || e.key === "у")) {
-				setShowCmd((s) => !s);
-				e.preventDefault();
-			} 
-        };
-		return () => {
-			document.onkeydown = null;
-		};
-	});
+    useEffect(() => {
+        if (refreshToken) {
+            refreshTokenFunc();
+        }
+    }, [dispatch]);
+
+    const onKeyDown = (e) => {
+		if (e.ctrlKey && (e.key === "e" || e.key === "у")) {
+			setShowCmd((s) => !s);
+			e.preventDefault();
+		} 
+        return null;
+	};
     
     const handleMovingToMode = (mode) => {
         dispatch(setMode(mode));
@@ -44,7 +94,10 @@ function App() {
 
 	return (
     <Router> 
-		<div className="App">
+		<div 
+            className="App"
+            onKeyDown={onKeyDown}
+            tabIndex="0">
 			<Header />
 			{showCmd && <Cmd setShowCmd={setShowCmd}/>}
             <MobileBlock />

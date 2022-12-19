@@ -1,6 +1,6 @@
 import '../styles/Header.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faKeyboard } from '@fortawesome/free-regular-svg-icons';
+import { faKeyboard, faUser } from '@fortawesome/free-regular-svg-icons';
 import { resetTest } from "../actions/resetTest";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,11 +14,14 @@ import {
     setLevelWordList,
     setMode,
     setUserRefreshToken,
+    setUserId,
+    setUserName,
 } from "../store/actions";
 import { useLocation, useNavigate } from "react-router-dom";
 import { indexPath } from "../App";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { faDisplay } from '@fortawesome/free-solid-svg-icons';
 
 export const options = {
     time: [15, 30, 45, 60, 120],
@@ -39,13 +42,13 @@ export default function Header() {
     let location = useLocation();
     const navigate = useNavigate();
     const [ showButtons, setShowButtons ] = useState(false);
-    const [ showLogoutButton, setShowLogoutButton ] = useState(false);
 
 	const {
         preferences: { timeLimit, theme, lang, font },
         user: { name, refreshToken },
         time: { timerId },
     } = useSelector((state) => state);
+    const [ showLogoutButton, setShowLogoutButton ] = useState(!(refreshToken === null || refreshToken === 'null'));
     const dispatch = useDispatch();
 	const fonts = ["mononoki", "roboto_mono"];
     
@@ -77,7 +80,11 @@ export default function Header() {
         
         // user things
         const refreshToken = localStorage.getItem("refreshToken") || null;
+        const userId = localStorage.getItem('userId') || '';
+        const username = localStorage.getItem('username') || '';
         dispatch(setUserRefreshToken(refreshToken));
+        dispatch(setUserId(userId));
+        dispatch(setUserName(username));
     }, [dispatch]);
 
     // Set Theme
@@ -163,15 +170,18 @@ export default function Header() {
         }
     };
     
-    useEffect(() => 
-        setShowLogoutButton(refreshToken === null ? false : true)
-    );
+    useEffect(() => { 
+        setShowLogoutButton(!(refreshToken === null || refreshToken === "null"))
+    }, [refreshToken]);
     
     const Logout = async () => {
         try {
             await axios.delete('http://localhost:5000/api/logout');
             navigate(`${indexPath}`);
             dispatch(setUserRefreshToken(null));
+            dispatch(setUserId(''));
+            dispatch(setUserName(''));
+            localStorage.setItem('refreshToken', '');
         } catch (error) {
             console.log(error);
         }
@@ -179,7 +189,7 @@ export default function Header() {
 
 	return (
 		<div className={timerId ? "hidden head" : "head"}>
-			<div className='title'><FontAwesomeIcon icon={faKeyboard} className='icon' /><h1>keytyper</h1></div>
+			<Link to={`${indexPath}`} className='title'><FontAwesomeIcon icon={faKeyboard} className='icon' /><h1>keytyper</h1></Link>
 			<div className={showButtons ? "buttons" : "hidden buttons"}>
                 {Object.entries(options).map(([option, choices]) => (
                     <div key={option} className={option}>
@@ -201,8 +211,12 @@ export default function Header() {
 				Нажмите <div className="advice__button">Ctrl</div> + <div className="advice__button">E</div> , чтобы открыть панель управления.
 			</div>
                 {showLogoutButton ? 
-                    <div className="userspace"><div className="userspace__name">{name}</div><button className="login_link" onClick={Logout}>Выйти</button></div>
-                    : <Link to={`${indexPath}/login`} className="login_link" >Войти</Link>
+                    <div className="userspace">
+                        <button className="login_link" onClick={Logout}>Выйти</button>
+                        <div className="userspace__name">{name}</div>
+                        <div className="userspace__icon"><FontAwesomeIcon icon={faUser} className="userspace__default" /></div>
+                    </div>
+                    : <Link to={`${indexPath}/login`} className="login_link">Войти</Link>
                 }
 		</div>
 	);
