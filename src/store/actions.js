@@ -34,6 +34,7 @@ export const SET_USER_ID = "SETUSERID";
 export const SET_USER_NAME = "SETUSERNAME";
 export const SET_USER_REFRESH_TOKEN = "SETUSERREFRESHTOKEN";
 export const ADD_COMPL_LEVEL = "ADDCOMPLLEVEL";
+export const SET_COMPL_LEVEL = "SETCOMPLLEVEL";
 
 // Time Actions
 export const timerDecrement = () => ({ type: TIMER_DECREMENT });
@@ -41,8 +42,8 @@ export const timerSet = (payload) => ({ type: TIMER_SET, payload });
 export const timerEnd = (payload) => ({ type: TIMER_END, payload });
 export const setRemainedTime = (payload) => ({ type: SET_REMAINED_TIME, payload });
 export const setTimerId = (payload) => ({
-    type: TIMERID_SET,
-    payload,
+	type: TIMERID_SET,
+	payload,
 });
 
 // Word Actions
@@ -50,23 +51,23 @@ export const setWord = (payload) => ({ type: SET_WORD, payload });
 export const setChar = (payload) => ({ type: SET_CHAR, payload });
 export const setTypedWord = (payload) => ({ type: SET_CHAR, payload });
 export const appendTypedHistory = () => ({
-    type: APPEND_TYPED_HISTORY,
+	type: APPEND_TYPED_HISTORY,
 });
 export const backtrackWord = (payload) => ({
-    type: PREV_WORD,
-    payload,
+	type: PREV_WORD,
+	payload,
 });
 export const setWordList = (payload) => ({
-    type: SET_WORDLIST,
-    payload,
+	type: SET_WORDLIST,
+	payload,
 });
 export const setRef = (payload) => ({
-    type: SET_REF,
-    payload,
+	type: SET_REF,
+	payload,
 });
 export const setCaretRef = (payload) => ({
-    type: SET_CARET_REF,
-    payload,
+	type: SET_CARET_REF,
+	payload,
 });
 
 // Level actions
@@ -74,23 +75,23 @@ export const setLevelWord = (payload) => ({ type: SET_LEVEL_WORD, payload });
 export const setLevelChar = (payload) => ({ type: SET_LEVEL_CHAR, payload });
 export const setLevelTypedWord = (payload) => ({ type: SET_LEVEL_CHAR, payload });
 export const appendLevelTypedHistory = () => ({
-    type: APPEND_LEVEL_TYPED_HISTORY,
+	type: APPEND_LEVEL_TYPED_HISTORY,
 });
 export const backtrackLevelWord = (payload) => ({
-    type: PREV_LEVEL_WORD,
-    payload,
+	type: PREV_LEVEL_WORD,
+	payload,
 });
 export const setLevelWordList = (payload) => ({
-    type: SET_LEVEL_WORDLIST,
-    payload,
+	type: SET_LEVEL_WORDLIST,
+	payload,
 });
 export const setLevelRef = (payload) => ({
-    type: SET_LEVEL_REF,
-    payload,
+	type: SET_LEVEL_REF,
+	payload,
 });
 export const setLevelCaretRef = (payload) => ({
-    type: SET_LEVEL_CARET_REF,
-    payload,
+	type: SET_LEVEL_CARET_REF,
+	payload,
 });
 
 export const setLevelId = (payload) => ({ type: SET_LEVEL_ID, payload });
@@ -100,6 +101,7 @@ export const setUserId = (payload) => ({ type: SET_USER_ID, payload });
 export const setUserName = (payload) => ({ type: SET_USER_NAME, payload });
 export const setUserRefreshToken = (payload) => ({ type: SET_USER_REFRESH_TOKEN, payload });
 export const addComplLevel = (payload) => ({ type: ADD_COMPL_LEVEL, payload });
+export const setComplLevel = (payload) => ({ type: SET_COMPL_LEVEL, payload });
 
 // Prefrences Actions
 export const setTheme = (payload) => ({ type: SET_THEME, payload });
