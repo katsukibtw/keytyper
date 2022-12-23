@@ -39,7 +39,7 @@ function App() {
 
 	const refreshTokenFunc = async () => {
 		try {
-			const resp = await axios.get('http://localhost:5000/api/auth', {
+			const resp = await axios.get('http://94.181.190.26:6743/api/auth', {
 				refreshToken: refreshToken
 			});
 			setToken(resp.data.accessToken);
@@ -61,7 +61,7 @@ function App() {
 	axiosJWT.interceptors.request.use(async (config) => {
 		const currentDate = new Date();
 		if (expire * 1000 < currentDate.getTime()) {
-			const response = await axios.get('http://localhost:5000/api/token');
+			const response = await axios.get('http://94.181.190.26:6743/api/token');
 			config.headers.Authorization = `Bearer ${response.data.accessToken}`;
 			setToken(response.data.accessToken);
 			const decoded = jwtDecode(response.data.accessToken);

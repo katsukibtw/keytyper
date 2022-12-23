@@ -86,6 +86,10 @@
             transition: .4s ease;
             gap: .5rem;
 
+			&__check {
+				color: var(--clr);
+			}
+
             &:hover {
                 background-color: var(--clr);
                 color: var(--bg);

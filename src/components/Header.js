@@ -22,7 +22,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { indexPath } from "../App";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { faDisplay } from '@fortawesome/free-solid-svg-icons';
 
 export const options = {
 	time: [15, 30, 45, 60, 120],
@@ -177,7 +176,7 @@ export default function Header() {
 
 	const Logout = async () => {
 		try {
-			await axios.delete('http://localhost:5000/api/logout');
+			await axios.delete('http://94.181.190.26:6743/api/logout');
 			navigate(`${indexPath}`);
 			dispatch(setUserRefreshToken(null));
 			dispatch(setUserId(''));

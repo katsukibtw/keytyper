@@ -32,7 +32,7 @@ export default function RouteEducation(props) {
 
 	const Logout = async () => {
 		try {
-			await axios.delete('http://localhost:5000/api/logout');
+			await axios.delete('http://94.181.190.26:6743/api/logout');
 			navigate(`${indexPath}/login`);
 			dispatch(setUserRefreshToken(null));
 			dispatch(setUserId(''));
@@ -46,7 +46,7 @@ export default function RouteEducation(props) {
 
 	const refreshTokenFunc = async () => {
 		try {
-			const resp = await axios.get('http://localhost:5000/api/token', {
+			const resp = await axios.get('http://94.181.190.26:6743/api/token', {
 				refreshToken: refreshToken
 			}).catch((error) => {
 				if (error.response && error.response.status === 401) {
@@ -72,7 +72,7 @@ export default function RouteEducation(props) {
 	axiosJWT.interceptors.request.use(async (config) => {
 		const currentDate = new Date();
 		if (expire * 1000 < currentDate.getTime()) {
-			const response = await axios.get('http://localhost:5000/api/token');
+			const response = await axios.get('http://94.181.190.26:6743/api/token');
 			config.headers.Authorization = `Bearer ${response.data.accessToken}`;
 			setToken(response.data.accessToken);
 			const decoded = jwtDecode(response.data.accessToken);

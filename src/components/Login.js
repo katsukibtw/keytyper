@@ -28,7 +28,7 @@ export default function Login() {
 	const Register = async (e) => {
 		e.preventDefault();
 		try {
-			await axios.post('http://localhost:5000/api/users', {
+			await axios.post('http://94.181.190.26:6743/api/users', {
 				name: nameU,
 				login: loginU,
 				pass: passU,
@@ -45,7 +45,7 @@ export default function Login() {
 
 	const getUserStats = async (id) => {
 		try {
-			await axios.get('http://localhost:5000/api/stats', {
+			await axios.get('http://94.181.190.26:6743/api/stats', {
 				headers: {
 					user_id: id
 				}
@@ -66,7 +66,7 @@ export default function Login() {
 	const Auth = async (e) => {
 		e.preventDefault();
 		try {
-			await axios.post('http://localhost:5000/api/login', {
+			await axios.post('http://94.181.190.26:6743/api/login', {
 				login: loginI,
 				pass: passI
 			}).then((res) => {

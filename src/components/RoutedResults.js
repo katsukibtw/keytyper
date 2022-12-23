@@ -4,6 +4,7 @@ import { resetLevel } from "../actions/resetLevel";
 import { useEffect, useState } from "react";
 import axios from 'axios';
 import { addComplLevel } from '../store/actions';
+import { Link } from 'react-router-dom';
 
 export default function RoutedResults() {
 	const {
@@ -15,6 +16,7 @@ export default function RoutedResults() {
 	const dispatch = useDispatch();
 
 	const [msg, setMsg] = useState('');
+	const [success, setSuccess] = useState(false);
 
 	const spaces = levelWordList.indexOf(currLevelWord);
 	let correctChars = 0;
@@ -28,7 +30,7 @@ export default function RoutedResults() {
 
 	const sendNewStatEntry = async () => {
 		try {
-			const resp = await axios.post('http://localhost:5000/api/stats', {
+			const resp = await axios.post('http://94.181.190.26:6743/api/stats', {
 				level: levelId,
 				wpm: wpm,
 				errors: result.filter((x) => !x).length,
@@ -39,6 +41,7 @@ export default function RoutedResults() {
 			setMsg(resp.data.msg);
 			if (resp.data.corr) {
 				dispatch(addComplLevel(levelId));
+				setSuccess(true);
 			}
 		} catch (error) {
 			if (error.response) {
@@ -65,7 +68,9 @@ export default function RoutedResults() {
 				</div>
 				<div className="info__msg">{msg}</div>
 			</div>
-			<button className="btn" onClick={() => resetLevel()}>Restart</button>
+			{success ?
+				<Link to='..' className="btn" onClick={() => resetLevel()}>Выход из уровня</Link>
+				: <button className="btn" onClick={() => resetLevel()}>Restart</button>}
 		</div>
 	);
 }
