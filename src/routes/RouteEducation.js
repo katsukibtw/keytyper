@@ -12,14 +12,15 @@ import {
 	Outlet,
 	useNavigate
 } from "react-router-dom";
-import { setLevel, setLevelId, setLevelWordList, setMode, setTime, setUserId, setUserName, setUserRefreshToken, setComplLevel } from "../store/actions";
+import { setLevel, setLevelId, setLevelWordList, setMode, setTime, setUserId, setUserName, setUserRefreshToken, setComplLevel, addComplLevel } from "../store/actions";
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
+import React from 'react';
 
 export default function RouteEducation(props) {
 	const {
-		user: { refreshToken },
+		user: { id, refreshToken },
 		preferences: { mode }
 	} = useSelector((state) => state);
 	const dispatch = useDispatch();
@@ -30,9 +31,30 @@ export default function RouteEducation(props) {
 	const [usrName, setUsrName] = useState('');
 	const navigate = useNavigate();
 
+	const getUserStats = async (uid) => {
+		try {
+			await axios.get('http://94.181.190.26:9967/api/stats', {
+				headers: {
+					user_id: uid
+				},
+				withCredentials: true,
+			}).then((res) => {
+				res.data.forEach((entry) => {
+					if (entry.wpm >= 25 && entry.errors <= 3) {
+						dispatch(addComplLevel(entry.level));
+					}
+				});
+			});
+		} catch (error) {
+			if (error.response) {
+				console.log(error);
+			}
+		}
+	}
+
 	const Logout = async () => {
 		try {
-			await axios.delete('http://94.181.190.26:6743/api/logout');
+			await axios.delete('http://94.181.190.26:9967/api/logout');
 			navigate(`${indexPath}/login`);
 			dispatch(setUserRefreshToken(null));
 			dispatch(setUserId(''));
@@ -46,13 +68,17 @@ export default function RouteEducation(props) {
 
 	const refreshTokenFunc = async () => {
 		try {
-			const resp = await axios.get('http://94.181.190.26:6743/api/token', {
-				refreshToken: refreshToken
-			}).catch((error) => {
-				if (error.response && error.response.status === 401) {
-					Logout();
-				}
-			});
+			const resp = await axios.get('http://94.181.190.26:9967/api/token', {
+				headers: {
+					refreshToken: refreshToken
+				},
+				withCredentials: true,
+			})
+				.catch((error) => {
+					if (error.response) {
+						Logout();
+					}
+				});
 			setToken(resp.data.accessToken);
 			dispatch(setUserRefreshToken(resp.data.accessToken));
 			localStorage.setItem("refreshToken", refreshToken);
@@ -72,7 +98,8 @@ export default function RouteEducation(props) {
 	axiosJWT.interceptors.request.use(async (config) => {
 		const currentDate = new Date();
 		if (expire * 1000 < currentDate.getTime()) {
-			const response = await axios.get('http://94.181.190.26:6743/api/token');
+			const response = await axios.get('http://94.181.190.26:9967/api/token',
+				{ withCredentials: true });
 			config.headers.Authorization = `Bearer ${response.data.accessToken}`;
 			setToken(response.data.accessToken);
 			const decoded = jwtDecode(response.data.accessToken);
@@ -88,6 +115,7 @@ export default function RouteEducation(props) {
 		if (refreshToken !== undefined) {
 			refreshTokenFunc();
 		}
+		getUserStats(id);
 	}, [dispatch, refreshToken]);
 
 	const onKeyDown = (e) => {
@@ -126,37 +154,39 @@ export const LevelList = (props) => {
 	}
 
 	return (
-		<div className="level_list">
-			{levelList.map((entry, idx) => {
-				return (
-					<div className="dumm" key={entry + idx + idx}>
-						<div
-							className="level_list__step_block"
-							key={entry + idx}>
-							{`Этап ${entry.step}`}
+		<>
+			<div className="level_list">
+				{levelList.map((entry, idx) => {
+					return (
+						<div className="dumm" key={entry + idx + idx}>
+							<div
+								className="level_list__step_block"
+								key={entry + idx}>
+								{`Этап ${entry.step}`}
+							</div>
+							<div className="level_list__container" key={entry + idx + idx}>
+								{entry.levels.map((el, id) => {
+									return (
+										<div
+											className="level_list__entry"
+											onClick={() => handleLevelSelection(el.filename, el.id)}
+											key={el + id}>
+											{el.name}
+											{levelsCompl.includes(el.id) ?
+												<FontAwesomeIcon icon={faCheck} className="level_list__entry__check" />
+												: ''
+											}
+										</div>
+									);
+								})}
+							</div>
 						</div>
-						<div className="level_list__container" key={entry + idx + idx}>
-							{entry.levels.map((el, id) => {
-								return (
-									<div
-										className="level_list__entry"
-										onClick={() => handleLevelSelection(el.filename, el.id)}
-										key={el + id}>
-										{el.name}
-										{levelsCompl.includes(el.id) ?
-											<FontAwesomeIcon icon={faCheck} className="level_list__entry__check" />
-											: ''
-										}
-									</div>
-								);
-							})}
-						</div>
-					</div>
-				);
-			})}
+					);
+				})}
+			</div>
 			<Link className="exit_btn" to={indexPath} onClick={() => dispatch(setMode("init"))}>
 				<FontAwesomeIcon icon={faArrowLeft} />
 			</Link>
-		</div>
+		</>
 	);
 }

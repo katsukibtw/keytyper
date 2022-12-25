@@ -24,6 +24,7 @@ import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 
 function App() {
+	axios.defaults.withCredentials = true;
 	// some store vars for checking user id
 	const {
 		user: { refreshToken },
@@ -39,8 +40,9 @@ function App() {
 
 	const refreshTokenFunc = async () => {
 		try {
-			const resp = await axios.get('http://94.181.190.26:6743/api/auth', {
-				refreshToken: refreshToken
+			const resp = await axios.get('http://94.181.190.26:9967/api/auth', {
+				refreshToken: refreshToken,
+				withCredentials: true,
 			});
 			setToken(resp.data.accessToken);
 			dispatch(setUserRefreshToken(resp.data.accessToken));
@@ -61,7 +63,8 @@ function App() {
 	axiosJWT.interceptors.request.use(async (config) => {
 		const currentDate = new Date();
 		if (expire * 1000 < currentDate.getTime()) {
-			const response = await axios.get('http://94.181.190.26:6743/api/token');
+			const response = await axios.get('http://94.181.190.26:9967/api/token',
+				{ withCredentials: true });
 			config.headers.Authorization = `Bearer ${response.data.accessToken}`;
 			setToken(response.data.accessToken);
 			const decoded = jwtDecode(response.data.accessToken);

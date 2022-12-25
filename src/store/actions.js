@@ -12,6 +12,8 @@ export const SET_THEME = "SETTHEME";
 export const SET_TIME = "SETTIME";
 export const SET_REF = "SETREF";
 export const SET_CARET_REF = "SETCARETREF";
+export const INC_ERROR_COUNT = "INCERRORCOUNT";
+export const SET_ERRORS_TO_ZERO = "SETERRORSTOZERO";
 export const SET_LANG = "SETLANG";
 export const SET_FONT = "SETFONT";
 
@@ -25,6 +27,8 @@ export const SET_LEVEL_WORDLIST = "SETLEVELWORDLIST";
 export const SET_LEVEL_REF = "SETLEVELREF";
 export const SET_LEVEL_CARET_REF = "SETLEVELCARETREF";
 export const SET_LEVEL_ID = "SETLEVELID";
+export const INC_LEVEL_ERROR_COUNT = "INCLEVELERRORCOUNT";
+export const SET_LEVEL_ERRORS_TO_ZERO = "SETLEVELERRORSTOZERO";
 
 // this thing is used to log in which part of site user is
 export const SET_MODE = "SETMODE";
@@ -69,6 +73,12 @@ export const setCaretRef = (payload) => ({
 	type: SET_CARET_REF,
 	payload,
 });
+export const incErrorCount = () => ({
+	type: INC_ERROR_COUNT,
+});
+export const setErrorsToZero = () => ({
+	type: SET_ERRORS_TO_ZERO
+})
 
 // Level actions
 export const setLevelWord = (payload) => ({ type: SET_LEVEL_WORD, payload });
@@ -93,6 +103,12 @@ export const setLevelCaretRef = (payload) => ({
 	type: SET_LEVEL_CARET_REF,
 	payload,
 });
+export const incLevelErrorCount = () => ({
+	type: INC_LEVEL_ERROR_COUNT,
+});
+export const setLevelErrorsToZero = () => ({
+	type: SET_LEVEL_ERRORS_TO_ZERO
+})
 
 export const setLevelId = (payload) => ({ type: SET_LEVEL_ID, payload });
 

@@ -5,11 +5,12 @@ import { useNavigate } from "react-router-dom";
 import { indexPath } from "../App";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserId, setUserName, setUserRefreshToken, addComplLevel } from "../store/actions";
+import { useCookies } from 'react-cookie';
 
 export default function Login() {
 	const dispatch = useDispatch();
 
-	axios.defaults.withCredentials = true;
+	const [cookies, setCookie] = useCookies(['refreshToken']);
 
 	// some vars for login fields  
 	const [loginI, setLoginI] = useState('');
@@ -28,11 +29,12 @@ export default function Login() {
 	const Register = async (e) => {
 		e.preventDefault();
 		try {
-			await axios.post('http://94.181.190.26:6743/api/users', {
+			await axios.post('http://94.181.190.26:9967/api/users', {
 				name: nameU,
 				login: loginU,
 				pass: passU,
-				confPass: confPassU
+				confPass: confPassU,
+				withCredentials: true,
 			});
 			navigate(`${indexPath}/`)
 		} catch (error) {
@@ -45,13 +47,14 @@ export default function Login() {
 
 	const getUserStats = async (id) => {
 		try {
-			await axios.get('http://94.181.190.26:6743/api/stats', {
+			await axios.get('http://94.181.190.26:9967/api/stats', {
 				headers: {
 					user_id: id
-				}
+				},
+				withCredentials: true,
 			}).then((res) => {
 				res.data.forEach((entry) => {
-					if (entry.wpm >= 25 && entry.errors === 0) {
+					if (entry.wpm >= 25 && entry.errors <= 3) {
 						dispatch(addComplLevel(entry.level));
 					}
 				});
@@ -66,9 +69,10 @@ export default function Login() {
 	const Auth = async (e) => {
 		e.preventDefault();
 		try {
-			await axios.post('http://94.181.190.26:6743/api/login', {
+			await axios.post('http://94.181.190.26:9967/api/login', {
 				login: loginI,
-				pass: passI
+				pass: passI,
+				withCredentials: true,
 			}).then((res) => {
 				localStorage.setItem('refreshToken', res.data.refreshToken);
 				localStorage.setItem('userId', res.data.userId);
@@ -77,6 +81,13 @@ export default function Login() {
 				dispatch(setUserId(res.data.userId));
 				dispatch(setUserName(res.data.name));
 				getUserStats(res.data.userId);
+				setCookie('refreshToken', res.data.refreshToken, {
+					httpOnly: false,
+					sameSite: 'strict',
+					secure: false,
+					path: '/',
+					maxAge: 1000 * 60 * 60 * 24
+				});
 			});
 			navigate(`${indexPath}/education`)
 		} catch (error) {

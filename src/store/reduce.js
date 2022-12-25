@@ -15,6 +15,8 @@ import {
 	SET_TIME,
 	SET_REF,
 	SET_CARET_REF,
+	INC_ERROR_COUNT,
+	SET_ERRORS_TO_ZERO,
 	SET_LANG,
 	SET_LEVEL,
 	SET_MODE,
@@ -30,7 +32,9 @@ import {
 	SET_USER_NAME,
 	SET_USER_REFRESH_TOKEN,
 	ADD_COMPL_LEVEL,
-	SET_COMPL_LEVEL
+	SET_COMPL_LEVEL,
+	INC_LEVEL_ERROR_COUNT,
+	SET_LEVEL_ERRORS_TO_ZERO
 } from "./actions";
 
 export const initialState = {
@@ -48,6 +52,7 @@ export const initialState = {
 		wordList: [],
 		activeWordRef: null,
 		caretRef: null,
+		errors: 0,
 	},
 	levelWord: {
 		currLevelWord: "",
@@ -57,6 +62,7 @@ export const initialState = {
 		activeLevelWordRef: null,
 		levelCaretRef: null,
 		levelId: '',
+		levelErrors: 0,
 	},
 	user: {
 		id: '',
@@ -144,6 +150,10 @@ const wordReducer = (
 				currWord: shuffledWordList[0],
 				wordList: shuffledWordList,
 			};
+		case INC_ERROR_COUNT:
+			return { ...state, errors: state.errors + 1 }
+		case SET_ERRORS_TO_ZERO:
+			return { ...state, errors: 0 }
 		default:
 			return state;
 	}
@@ -204,6 +214,10 @@ const levelWordReducer = (
 			};
 		case SET_LEVEL_ID:
 			return { ...state, levelId: payload };
+		case INC_LEVEL_ERROR_COUNT:
+			return { ...state, levelErrors: state.levelErrors + 1 }
+		case SET_LEVEL_ERRORS_TO_ZERO:
+			return { ...state, levelErrors: 0 }
 		default:
 			return state;
 	}
@@ -221,6 +235,7 @@ const userReducer = (
 		case SET_USER_REFRESH_TOKEN:
 			return { ...state, refreshToken: payload };
 		case ADD_COMPL_LEVEL:
+			if (state.levelsCompl.includes(payload)) return state;
 			return { ...state, levelsCompl: [...state.levelsCompl, payload] };
 		case SET_COMPL_LEVEL:
 			return { ...state, levelsCompl: payload };

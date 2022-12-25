@@ -176,7 +176,7 @@ export default function Header() {
 
 	const Logout = async () => {
 		try {
-			await axios.delete('http://94.181.190.26:6743/api/logout');
+			await axios.delete('http://94.181.190.26:9967/api/logout');
 			navigate(`${indexPath}`);
 			dispatch(setUserRefreshToken(null));
 			dispatch(setUserId(''));

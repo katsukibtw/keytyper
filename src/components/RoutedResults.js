@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 export default function RoutedResults() {
 	const {
 		time: { remTime },
-		levelWord: { levelWordList, typedLevelHistory, currLevelWord, levelId },
+		levelWord: { levelWordList, typedLevelHistory, currLevelWord, levelId, levelErrors },
 		user: { id },
 		preferences: { timeLimit },
 	} = useSelector((state) => state);
@@ -30,14 +30,15 @@ export default function RoutedResults() {
 
 	const sendNewStatEntry = async () => {
 		try {
-			const resp = await axios.post('http://94.181.190.26:6743/api/stats', {
+			const resp = await axios.post('http://94.181.190.26:9967/api/stats', {
 				level: levelId,
 				wpm: wpm,
-				errors: result.filter((x) => !x).length,
+				errors: levelErrors,
 				cr_words: result.filter((x) => x).length,
 				time: timeLimit,
 				user_id: id,
-			});
+			},
+				{ withCredentials: true });
 			setMsg(resp.data.msg);
 			if (resp.data.corr) {
 				dispatch(addComplLevel(levelId));
@@ -63,8 +64,8 @@ export default function RoutedResults() {
 					<div>{result.filter((x) => x).length}</div>
 				</div>
 				<div className="info__row">
-					<div>Слова с ошибками:</div>
-					<div>{result.filter((x) => !x).length}</div>
+					<div>Количество ошибок:</div>
+					<div>{levelErrors}</div>
 				</div>
 				<div className="info__msg">{msg}</div>
 			</div>

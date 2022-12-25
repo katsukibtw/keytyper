@@ -4,7 +4,7 @@ import "../styles/Results.scss";
 
 export default function Results() {
     const {
-        word: { wordList, typedHistory, currWord },
+        word: { wordList, typedHistory, currWord, errors },
         preferences: { timeLimit },
     } = useSelector((state) => state);
     
@@ -27,7 +27,7 @@ export default function Results() {
 				</div>
 				<div className="info__row">
 					<div>Слова с ошибками:</div>
-					<div>{result.filter((x) => !x).length}</div>
+					<div>{errors}</div>
 				</div>
 			</div>
             <button className="btn" onClick={() => resetTest()}>Restart</button>
