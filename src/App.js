@@ -22,6 +22,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Login from './components/Login';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
+import Dashboard from './components/Dashboard';
 
 function App() {
 	axios.defaults.withCredentials = true;
@@ -40,8 +41,10 @@ function App() {
 
 	const refreshTokenFunc = async () => {
 		try {
-			const resp = await axios.get('http://94.181.190.26:9967/api/auth', {
-				refreshToken: refreshToken,
+			const resp = await axios.get('http://94.181.190.26:9967/api/token', {
+				headers: {
+					refreshToken: refreshToken
+				},
 				withCredentials: true,
 			});
 			setToken(resp.data.accessToken);
@@ -129,6 +132,7 @@ function App() {
 					</Route>
 					<Route path={`${indexPath}/classroom`} element={<Placeholder setShowCmd={setShowCmd} />} />
 					<Route path={`${indexPath}/login`} element={<Login />} />
+					<Route path={`${indexPath}/dashboard`} element={<Dashboard setShowCmd={setShowCmd} />} />
 					<Route index element={<Navigate to="/10v/skripko/keytyper" />} />
 				</Routes>
 

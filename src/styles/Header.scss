@@ -6,9 +6,16 @@
 	flex-direction: row;
 	gap: 1rem;
 	align-items: center;
-	justify-content: center;
+	justify-content: space-between;
 	transition: .4s ease;
 	
+	.right_section {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		gap: 1rem;
+
 	.title {
 		display: flex;
 		flex-direction: row;
@@ -75,6 +82,7 @@
 			border-radius: .2rem;
 		}
 	}
+	}
 	
 	.login_link {
 		padding: .5rem 2rem;
@@ -96,20 +104,37 @@
 	.userspace {
 		display: flex;
 		flex-direction: row;
+		justify-content: space-between;
 		gap: 1rem;
 		align-items: center;
 		font-family: var(--fc);
-		width: 10em;
+		width: max-content;
 		height: 4rem;
+		transition: .4s;
 		
-		&__icon {
-			background-color: var(--bg-btn);
-			font-size: 1.2rem;
-			width: 2.5rem;
-			display: grid;
-			place-items: center;
-			border-radius: .5rem;
-			height: 2.5rem;
+		&__user {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			gap: .5rem;
+			text-decoration: none;
+			color: var(--fg);
+
+			&__icon {
+				background-color: var(--bg-btn);
+				font-size: 1.2rem;
+				width: 2.5rem;
+				display: grid;
+				place-items: center;
+				border-radius: .5rem;
+				height: 2.5rem;
+			}
+
+			&:hover {
+				transition: .4s;
+				color: var(--clr);
+			}
 		}
 		
 		.login_link {
@@ -117,9 +142,9 @@
 		}
 		
 		&:hover {
-			width: 20rem;
+			// width: 15.5rem;
 			
-			.login_link {
+			.login_link { 
 				display: flex;
 				animation: appear .4s ease forwards;
 				

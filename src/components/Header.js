@@ -190,32 +190,36 @@ export default function Header() {
 
 	return (
 		<div className={timerId ? "hidden head" : "head"}>
-			<Link to={`${indexPath}`} className='title'><FontAwesomeIcon icon={faKeyboard} className='icon' /><h1>keytyper</h1></Link>
-			<div className={showButtons ? "buttons" : "hidden buttons"}>
-				{Object.entries(options).map(([option, choices]) => (
-					<div key={option} className={option}>
-						{option}:
-						{choices.map((choice) => (
-							<button
-								className="head__btn"
-								key={choice}
-								data-option={option}
-								value={choice}
-								onClick={(e) => handleOptions(e)}>
-								{choice}
-							</button>
-						))}
-					</div>
-				))}
-			</div>
-			<div className={showButtons ? "hidden advice" : "advice"}>
-				Нажмите <div className="advice__button">Ctrl</div> + <div className="advice__button">E</div> , чтобы открыть панель управления.
+			<div className="right_section">
+				<Link to={`${indexPath}`} className='title'><FontAwesomeIcon icon={faKeyboard} className='icon' /><h1>keytyper</h1></Link>
+				<div className={showButtons ? "buttons" : "hidden buttons"}>
+					{Object.entries(options).map(([option, choices]) => (
+						<div key={option} className={option}>
+							{option}:
+							{choices.map((choice) => (
+								<button
+									className="head__btn"
+									key={choice}
+									data-option={option}
+									value={choice}
+									onClick={(e) => handleOptions(e)}>
+									{choice}
+								</button>
+							))}
+						</div>
+					))}
+				</div>
+				<div className={showButtons ? "hidden advice" : "advice"}>
+					Нажмите <div className="advice__button">Ctrl</div> + <div className="advice__button">E</div> , чтобы открыть панель управления.
+				</div>
 			</div>
 			{showLogoutButton ?
 				<div className="userspace">
 					<button className="login_link" onClick={Logout}>Выйти</button>
-					<div className="userspace__name">{name}</div>
-					<div className="userspace__icon"><FontAwesomeIcon icon={faUser} className="userspace__default" /></div>
+					<Link to={`${indexPath}/dashboard`} className="userspace__user">
+						<div className="userspace__user__name">{name}</div>
+						<div className="userspace__user__icon"><FontAwesomeIcon icon={faUser} className="userspace__default" /></div>
+					</Link>
 				</div>
 				: <Link to={`${indexPath}/login`} className="login_link">Войти</Link>
 			}
