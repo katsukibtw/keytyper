@@ -8,8 +8,7 @@ import { faArrowLeft, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import levelList from "../edu_levels/list.json";
 import {
-	Link,
-	Outlet,
+	Link, Outlet,
 	useNavigate
 } from "react-router-dom";
 import { setLevel, setLevelId, setLevelWordList, setMode, setTime, setUserId, setUserName, setUserRefreshToken, setComplLevel, addComplLevel } from "../store/actions";
@@ -154,7 +153,7 @@ export const LevelList = (props) => {
 	}
 
 	return (
-		<>
+		<div className="level_cont">
 			<div className="level_list">
 				{levelList.map((entry, idx) => {
 					return (
@@ -184,9 +183,156 @@ export const LevelList = (props) => {
 					);
 				})}
 			</div>
-			<Link className="exit_btn" to={indexPath} onClick={() => dispatch(setMode("init"))}>
-				<FontAwesomeIcon icon={faArrowLeft} />
-			</Link>
-		</>
+			<div className="desc">
+				<div className="desc__text">Главная задача этого раздела - обучение слепой печати с помощью специальных упражнений. Вам необходимо проходить все уровни максимально аккуратно и при этом быстро, тренируя тем самым мышечную память рук. Старайтесь при этом как можно меньше смотреть на клавиатуру и больше смотреть в экран. Неплохо будет также совмещать это с тренировками в разделе "Быстрая тренировка". Чем чаще будете тренироваться, тем лучше будет получаться :)</div>
+				<div className="desc__keyboard">
+					<div className="desc__keyboard__text">Руки на клавиатуре должны лежать так, чтобы указательные пальцы находились на отмеченных клавишах (на этих клавишах есть бугорки, которые помогают найти пальцам нужное положение). Каждый палец отвечает за свою зону (они выделены на схеме разными цветами). Старайтесь не путать зоны между пальцами.</div>
+					<div className="desc__keyboard__row">
+						<div className="desc__keyboard__row__key zone1">
+							<div className="desc__keyboard__row__key__symbol1">q</div>
+							<div className="desc__keyboard__row__key__symbol2">й</div>
+						</div>
+						<div className="desc__keyboard__row__key zone2">
+							<div className="desc__keyboard__row__key__symbol1">w</div>
+							<div className="desc__keyboard__row__key__symbol2">ц</div>
+						</div>
+						<div className="desc__keyboard__row__key zone3">
+							<div className="desc__keyboard__row__key__symbol1">e</div>
+							<div className="desc__keyboard__row__key__symbol2">у</div>
+						</div>
+						<div className="desc__keyboard__row__key zone4">
+							<div className="desc__keyboard__row__key__symbol1">r</div>
+							<div className="desc__keyboard__row__key__symbol2">к</div>
+						</div>
+						<div className="desc__keyboard__row__key zone4">
+							<div className="desc__keyboard__row__key__symbol1">t</div>
+							<div className="desc__keyboard__row__key__symbol2">е</div>
+						</div>
+						<div className="desc__keyboard__row__key zone5">
+							<div className="desc__keyboard__row__key__symbol1">y</div>
+							<div className="desc__keyboard__row__key__symbol2">н</div>
+						</div>
+						<div className="desc__keyboard__row__key zone5">
+							<div className="desc__keyboard__row__key__symbol1">u</div>
+							<div className="desc__keyboard__row__key__symbol2">г</div>
+						</div>
+						<div className="desc__keyboard__row__key zone6">
+							<div className="desc__keyboard__row__key__symbol1">i</div>
+							<div className="desc__keyboard__row__key__symbol2">ш</div>
+						</div>
+						<div className="desc__keyboard__row__key zone7">
+							<div className="desc__keyboard__row__key__symbol1">o</div>
+							<div className="desc__keyboard__row__key__symbol2">щ</div>
+						</div>
+						<div className="desc__keyboard__row__key zone8">
+							<div className="desc__keyboard__row__key__symbol1">p</div>
+							<div className="desc__keyboard__row__key__symbol2">з</div>
+						</div>
+						<div className="desc__keyboard__row__key zone8">
+							<div className="desc__keyboard__row__key__symbol1">{"[ {"}</div>
+							<div className="desc__keyboard__row__key__symbol2">х</div>
+						</div>
+						<div className="desc__keyboard__row__key zone8">
+							<div className="desc__keyboard__row__key__symbol1">{"] }"}</div>
+							<div className="desc__keyboard__row__key__symbol2">ъ</div>
+						</div>
+					</div>
+					<div className="desc__keyboard__row">
+						<div className="desc__keyboard__row__key zone1">
+							<div className="desc__keyboard__row__key__symbol1">a</div>
+							<div className="desc__keyboard__row__key__symbol2">ф</div>
+						</div>
+						<div className="desc__keyboard__row__key zone2">
+							<div className="desc__keyboard__row__key__symbol1">s</div>
+							<div className="desc__keyboard__row__key__symbol2">ы</div>
+						</div>
+						<div className="desc__keyboard__row__key zone3">
+							<div className="desc__keyboard__row__key__symbol1">d</div>
+							<div className="desc__keyboard__row__key__symbol2">в</div>
+						</div>
+						<div className="desc__keyboard__row__key main zone4">
+							<div className="desc__keyboard__row__key__symbol1">f</div>
+							<div className="desc__keyboard__row__key__symbol2">а</div>
+						</div>
+						<div className="desc__keyboard__row__key zone4">
+							<div className="desc__keyboard__row__key__symbol1">g</div>
+							<div className="desc__keyboard__row__key__symbol2">п</div>
+						</div>
+						<div className="desc__keyboard__row__key zone5">
+							<div className="desc__keyboard__row__key__symbol1">h</div>
+							<div className="desc__keyboard__row__key__symbol2">р</div>
+						</div>
+						<div className="desc__keyboard__row__key main zone5">
+							<div className="desc__keyboard__row__key__symbol1">j</div>
+							<div className="desc__keyboard__row__key__symbol2">о</div>
+						</div>
+						<div className="desc__keyboard__row__key zone6">
+							<div className="desc__keyboard__row__key__symbol1">k</div>
+							<div className="desc__keyboard__row__key__symbol2">л</div>
+						</div>
+						<div className="desc__keyboard__row__key zone7">
+							<div className="desc__keyboard__row__key__symbol1">l</div>
+							<div className="desc__keyboard__row__key__symbol2">д</div>
+						</div>
+						<div className="desc__keyboard__row__key zone8">
+							<div className="desc__keyboard__row__key__symbol1">{"; :"}</div>
+							<div className="desc__keyboard__row__key__symbol2">ж</div>
+						</div>
+						<div className="desc__keyboard__row__key zone8">
+							<div className="desc__keyboard__row__key__symbol1">{"' \""}</div>
+							<div className="desc__keyboard__row__key__symbol2">э</div>
+						</div>
+					</div>
+					<div className="desc__keyboard__row">
+						<div className="desc__keyboard__row__key zone1">
+							<div className="desc__keyboard__row__key__symbol1">z</div>
+							<div className="desc__keyboard__row__key__symbol2">я</div>
+						</div>
+						<div className="desc__keyboard__row__key zone2">
+							<div className="desc__keyboard__row__key__symbol1">x</div>
+							<div className="desc__keyboard__row__key__symbol2">ч</div>
+						</div>
+						<div className="desc__keyboard__row__key zone3">
+							<div className="desc__keyboard__row__key__symbol1">c</div>
+							<div className="desc__keyboard__row__key__symbol2">с</div>
+						</div>
+						<div className="desc__keyboard__row__key zone4">
+							<div className="desc__keyboard__row__key__symbol1">v</div>
+							<div className="desc__keyboard__row__key__symbol2">м</div>
+						</div>
+						<div className="desc__keyboard__row__key zone4">
+							<div className="desc__keyboard__row__key__symbol1">b</div>
+							<div className="desc__keyboard__row__key__symbol2">и</div>
+						</div>
+						<div className="desc__keyboard__row__key zone5">
+							<div className="desc__keyboard__row__key__symbol1">n</div>
+							<div className="desc__keyboard__row__key__symbol2">т</div>
+						</div>
+						<div className="desc__keyboard__row__key zone5">
+							<div className="desc__keyboard__row__key__symbol1">m</div>
+							<div className="desc__keyboard__row__key__symbol2">ь</div>
+						</div>
+						<div className="desc__keyboard__row__key zone6">
+							<div className="desc__keyboard__row__key__symbol1">{", <"}</div>
+							<div className="desc__keyboard__row__key__symbol2">б</div>
+						</div>
+						<div className="desc__keyboard__row__key zone7">
+							<div className="desc__keyboard__row__key__symbol1">{". >"}</div>
+							<div className="desc__keyboard__row__key__symbol2">ю</div>
+						</div>
+						<div className="desc__keyboard__row__key zone8">
+							<div className="desc__keyboard__row__key__symbol1">{"/ ?"}</div>
+							<div className="desc__keyboard__row__key__symbol2">{". ,"}</div>
+						</div>
+					</div>
+					<div className="desc__keyboard__row">
+						<div className="desc__keyboard__row__spacebar"></div>
+					</div>
+				</div>
+				<Link className="exit_btn" to={indexPath} onClick={() => dispatch(setMode("init"))}>
+					<FontAwesomeIcon icon={faArrowLeft} />
+				</Link>
+			</div>
+		</div>
 	);
 }

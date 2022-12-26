@@ -53,7 +53,7 @@ export default function RoutedWrapper() {
 									id="caret"
 									className="blink"
 									style={{
-										left: typedLevelWord.length * 14.5833,
+										left: typedLevelWord.length * 14,
 									}}>
 									|
 								</span>
@@ -90,7 +90,7 @@ export default function RoutedWrapper() {
 				})}
 			</div>
 			<div className={timerId ? "hidden advice" : "advice"}>
-				Нажмите <div className="advice__button">Ctrl</div> + <div className="advice__button">E</div> , чтобы открыть панель управления.
+				Правильно поставьте пальцы на клавиатуре перед прохождением уровня :)
 			</div>
 			{timerId ?
 				<button className="reset_btn" onClick={handleResetClick}>

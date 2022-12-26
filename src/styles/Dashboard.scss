@@ -130,7 +130,21 @@
 				overflow: scroll;
 
 				&::-webkit-scrollbar {
-					display: none;
+					height: 100%;
+					width: .2rem;
+				}
+	
+				&::-webkit-scrollbar-track {
+					background: var(--bg);
+				}
+	
+				&::-webkit-scrollbar-thumb {
+					background: var(--fg-dark);
+					border-radius: 1000rem;
+				}
+
+				&::-webkit-scrollbar-thumb:hover {
+					background: var(--fg-darker);
 				}
 
 				&__header {

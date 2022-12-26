@@ -48,7 +48,7 @@ export default function TestWrapper(props) {
 									id="caret"
 									className="blink"
 									style={{
-										left: typedWord.length * 14.5833,
+										left: typedWord.length * 14,
 									}}>
 									|
 								</span>

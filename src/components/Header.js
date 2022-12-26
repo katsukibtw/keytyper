@@ -27,7 +27,7 @@ export const options = {
 	time: [15, 30, 45, 60, 120],
 	theme: [
 		"tokyonight",
-		"clear",
+		"solarized",
 		"catppuccin",
 		"gruvbox",
 		"gruvbox_light",

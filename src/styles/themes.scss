@@ -10,16 +10,36 @@
 	--fg-darker: #5b6073;
 	--fg-wrong: #f7768e;
 	--clr: #7aa2f7;
+
+	// some additional colors
+	--cyan: #7dcfff;
+	--red: #f7768e;
+	--green: #9ece6a;
+	--yellow: #e0af68;
+	--purple: #9d7cd8;
+	--pink: #ff007c;
+	--orange: #ff9e64;
+	--blue: #7aa2f7;
 }
 
-.clear {
-	--bg: white;
-	--bg-btn: #d8d8d8;
-	--fg: black;
-	--fg-dark: #a9b1d6;
-	--fg-darker: #393c48;
-	--fg-wrong: red;
-	--clr: blue;
+.solarized {
+	--bg: #002b36;
+	--bg-btn: #00222b;
+	--fg: #2aa198;
+	--fg-dark: #839496;
+	--fg-darker: #5c6e71;
+	--fg-wrong: #dc322f;
+	--clr: #859900;
+
+	// some additional colors
+	--cyan: #2aa198;
+	--red: #dc322f;
+	--green: #859900;
+	--yellow: #b58900;
+	--purple: #6c71c4;
+	--pink: #d33682;
+	--orange: #dc882f;
+	--blue: #268bd2;
 }
 
 .catppuccin {
@@ -30,6 +50,16 @@
 	--fg-darker: #585b70;
 	--fg-wrong: #f38ba8;
 	--clr: #f9e2af;
+
+	// some additional colors
+	--cyan: #89dceb;
+	--red: #f38ba8;
+	--green: #a6e3a1;
+	--yellow: #f9e2af;
+	--purple: #cba6f7;
+	--pink: #eba0ac;
+	--orange: #fab387;
+	--blue: #89b4fa;
 }
 
 .gruvbox {
@@ -40,6 +70,16 @@
 	--fg-darker: #928374;
 	--fg-wrong: #cc241d;
 	--clr: #d79921;
+
+	// some additional colors
+	--cyan: #83a598;
+	--red: #cc241d;
+	--green: #98971a;
+	--yellow: #d78821;
+	--purple: #b16286;
+	--pink: #d3869b;
+	--orange: #d65d0e;
+	--blue: #458588;
 }
 
 .gruvbox_light {
@@ -50,6 +90,16 @@
 	--fg-darker: #504945;
 	--fg-wrong: #cc241d;
 	--clr: #076678;
+
+	// some additional colors
+	--cyan: #83a598;
+	--red: #cc241d;
+	--green: #98971a;
+	--yellow: #d78821;
+	--purple: #b16286;
+	--pink: #d3869b;
+	--orange: #d65d0e;
+	--blue: #458588;
 }
 
 .nord {
@@ -60,6 +110,16 @@
 	--fg-darker: #7c889d;
 	--fg-wrong: #bf616a;
 	--clr: #b48ead;
+
+	// some additional colors
+	--cyan: #7dcfff;
+	--red: #BF616A;
+	--green: #A3BE8C;
+	--yellow: #EBCB8B;
+	--purple: #B48EAD;
+	--pink: #C78FA1;
+	--orange: #D08770;
+	--blue: #5E81AC;
 }
 
 .nord_light {
@@ -70,6 +130,16 @@
 	--fg-darker: #4c566a;
 	--fg-wrong: #bf616a;
 	--clr: #b48ead;
+
+	// some additional colors
+	--cyan: #7dcfff;
+	--red: #BF616A;
+	--green: #A3BE8C;
+	--yellow: #EBCB8B;
+	--purple: #B48EAD;
+	--pink: #C78FA1;
+	--orange: #D08770;
+	--blue: #5E81AC;
 }
 
 .everforest {
@@ -80,4 +150,14 @@
 	--fg-darker: #7f745b;
 	--fg-wrong: #e67e80;
 	--clr: #a7c080;
+
+	// some additional colors
+	--cyan: #7fbbb3;
+	--red: #e67e80;
+	--green: #a7c080;
+	--yellow: #dbbc7f;
+	--purple: #d699b6;
+	--pink: #D58795;
+	--orange: #ff9e64;
+	--blue: #7aa2f7;
 }

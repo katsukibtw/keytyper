@@ -104,8 +104,8 @@ export default function Login() {
 				<div className="login__header">Регистрация</div>
 				<input onChange={(e) => setNameU(e.target.value)} className="login__input" type="text" placeholder="Введите свой ник" />
 				<input onChange={(e) => setLoginU(e.target.value)} className="login__input" type="text" placeholder="Введите свой логин" />
-				<input onChange={(e) => setPassU(e.target.value)} title="Пароль должен содержать строчные и заглавные символы латиницы и цифры" pattern="[a-zA-Z0-9]{8,}" className="login__input" type="password" placeholder="Введите свой пароль" />
-				<input onChange={(e) => setConfPassU(e.target.value)} title="Пароль должен содержать строчные и заглавные символы латиницы и цифры" pattern="[a-zA-Z0-9]{8,}" className="login__input" type="password" placeholder="Введите свой пароль повторно" />
+				<input onChange={(e) => setPassU(e.target.value)} title="Пароль должен содержать строчные и заглавные символы латиницы и цифры" pattern="[A-Za-z0-9._+-@|\/\\]{8,}" className="login__input" type="password" placeholder="Введите свой пароль" />
+				<input onChange={(e) => setConfPassU(e.target.value)} title="Пароль должен содержать строчные и заглавные символы латиницы и цифры" pattern="[A-Za-z0-9._+-@|\/\\]{8,}" className="login__input" type="password" placeholder="Введите свой пароль повторно" />
 				<div className="login__msg">{msgU}</div>
 				<input type="submit" className="login__btn" value="Submit" />
 			</form>
