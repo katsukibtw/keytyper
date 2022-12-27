@@ -1,7 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 // import { options } from "./Header";
-import { useDispatch } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { indexPath } from "../App";
 import { setTime, setTheme, setLang, setFont } from "../store/actions";
 import styles from "../styles/Cmd.module.scss";
@@ -13,12 +12,15 @@ export default function Cmd(props) {
 	const [commandList, setCommandList] = useState([]);
 	const dispatch = useDispatch();
 	const cmdTextBox = useRef(null);
-	const location = useLocation();
+
+	const {
+		preferences: { mode }
+	} = useSelector((state) => state);
 
 	var options = {};
 
 	useEffect(() => {
-		if (location.pathname !== indexPath + "/education/test") {
+		if (mode === "test") {
 			options = {
 				time: [15, 30, 45, 60, 120],
 				theme: [

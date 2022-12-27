@@ -30,7 +30,7 @@
 		display: flex;
 		flex-wrap: wrap;
 		gap: .7rem;
-		font-size: 1.5rem;
+		font-size: var(--fs);
 		font-family: var(--fc);
 		height: 7rem;
 		overflow: hidden;
