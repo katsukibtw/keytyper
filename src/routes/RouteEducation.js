@@ -4,7 +4,7 @@ import '../styles/fonts.scss';
 import '../styles/Education.scss';
 import { indexPath } from "../App";
 import { useEffect, useState } from "react";
-import { faArrowLeft, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faCheck, faPlay } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import levelList from "../edu_levels/list.json";
 import {
@@ -117,19 +117,8 @@ export default function RouteEducation(props) {
 		getUserStats(id);
 	}, [dispatch, refreshToken]);
 
-	const onKeyDown = (e) => {
-		if (e.ctrlKey && (e.key === "e" || e.key === "у")) {
-			props.setShowCmd((s) => !s);
-			e.preventDefault();
-		}
-		return null;
-	};
-
 	return (
-		<div
-			className="edu_cont"
-			onKeyDown={onKeyDown}
-			tabIndex="0">
+		<div className="edu_cont">
 			<Outlet />
 		</div>
 	);
@@ -152,16 +141,29 @@ export const LevelList = (props) => {
 		navigate("test");
 	}
 
+	const onKeyDown = (e) => {
+		if (e.ctrlKey && (e.key === "e" || e.key === "у")) {
+			props.setShowCmd((s) => !s);
+			e.preventDefault();
+		}
+		return null;
+	};
+
 	return (
-		<div className="level_cont">
+		<div
+			className="level_cont"
+			onKeyDown={onKeyDown}
+			tabIndex="0">
 			<div className="level_list">
 				{levelList.map((entry, idx) => {
 					return (
 						<div className="dumm" key={entry + idx + idx}>
 							<div
-								className="level_list__step_block"
+								className={idx === 0 ? "level_list__step_block active" : "level_list__step_block"}
+								id={idx}
+								onClick={() => document.getElementById(idx).classList.toggle('active')}
 								key={entry + idx}>
-								{`Этап ${entry.step}`}
+								<FontAwesomeIcon icon={faPlay} className="indicator" />{`Этап ${entry.step}`}
 							</div>
 							<div className="level_list__container" key={entry + idx + idx}>
 								{entry.levels.map((el, id) => {
