@@ -1,7 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 // import { options } from "./Header";
 import { useDispatch, useSelector } from "react-redux";
-import { indexPath } from "../App";
 import { setTime, setTheme, setLang, setFont } from "../store/actions";
 import styles from "../styles/Cmd.module.scss";
 
@@ -22,8 +21,8 @@ export default function Cmd(props) {
 	useEffect(() => {
 		if (mode === "test") {
 			options = {
-				time: [15, 30, 45, 60, 120],
-				theme: [
+				время: [15, 30, 45, 60, 120],
+				тема: [
 					"tokyonight",
 					"solarized",
 					"catppuccin",
@@ -33,12 +32,12 @@ export default function Cmd(props) {
 					"nord_light",
 					"everforest",
 				],
-				lang: ["eng", "eng_hard", "rus", "rus_hard"],
-				font: ["mononoki", "roboto_mono", "jetbrains_mono", "ubuntu_mono"],
+				язык: ["eng", "eng_hard", "rus", "rus_hard"],
+				шрифт: ["mononoki", "roboto_mono", "jetbrains_mono", "ubuntu_mono"],
 			};
 		} else {
 			options = {
-				theme: [
+				тема: [
 					"tokyonight",
 					"solarized",
 					"catppuccin",
@@ -48,7 +47,7 @@ export default function Cmd(props) {
 					"nord_light",
 					"everforest",
 				],
-				font: ["mononoki", "roboto_mono", "jetbrains_mono", "ubuntu_mono"],
+				шрифт: ["mononoki", "roboto_mono", "jetbrains_mono", "ubuntu_mono"],
 			};
 		}
 	});
@@ -90,18 +89,18 @@ export default function Cmd(props) {
 			return;
 		}
 		switch (selectedOption) {
-			case "time":
+			case "время":
 				dispatch(setTime(+command));
 				break;
-			case "theme":
+			case "тема":
 				dispatch(setTheme(command));
 				break;
-			case "lang":
+			case "язык":
 				dispatch(setLang(command));
 				break;
-			case "font":
+			case "шрифт":
 				dispatch(setFont(command));
-				document.body.children[1].classList.remove(...options.font);
+				document.body.children[1].classList.remove(...options.шрифт);
 				document.body.children[1].classList.add(command);
 				localStorage.setItem("font", command);
 				break;

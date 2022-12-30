@@ -398,5 +398,255 @@
 				"filename": "s6_l15"
 			}
 		]
+	},
+	{
+		"step": 7,
+		"levels": [
+			{
+				"name": "Уровень 1",
+				"id": 75,
+				"filename": "s7_l1"
+			},
+			{
+				"name": "Уровень 2",
+				"id": 76,
+				"filename": "s7_l2"
+			},
+			{
+				"name": "Уровень 3",
+				"id": 77,
+				"filename": "s7_l3"
+			},
+			{
+				"name": "Уровень 4",
+				"id": 78,
+				"filename": "s7_l4"
+			},
+			{
+				"name": "Уровень 5",
+				"id": 79,
+				"filename": "s7_l5"
+			},
+			{
+				"name": "Уровень 6",
+				"id": 80,
+				"filename": "s7_l6"
+			},
+			{
+				"name": "Уровень 7",
+				"id": 81,
+				"filename": "s7_l7"
+			},
+			{
+				"name": "Уровень 8",
+				"id": 82,
+				"filename": "s7_l8"
+			},
+			{
+				"name": "Уровень 9",
+				"id": 83,
+				"filename": "s7_l9"
+			},
+			{
+				"name": "Уровень 10",
+				"id": 84,
+				"filename": "s7_l10"
+			},
+			{
+				"name": "Уровень 11",
+				"id": 85,
+				"filename": "s7_l11"
+			},
+			{
+				"name": "Уровень 12",
+				"id": 86,
+				"filename": "s7_l12"
+			},
+			{
+				"name": "Уровень 13",
+				"id": 87,
+				"filename": "s7_l13"
+			},
+			{
+				"name": "Уровень 14",
+				"id": 88,
+				"filename": "s7_l14"
+			},
+			{
+				"name": "Уровень 15",
+				"id": 89,
+				"filename": "s7_l15"
+			}
+		]
+	},
+	{
+		"step": 8,
+		"levels": [
+			{
+				"name": "Уровень 1",
+				"id": 90,
+				"filename": "s8_l1"
+			},
+			{
+				"name": "Уровень 2",
+				"id": 91,
+				"filename": "s8_l2"
+			},
+			{
+				"name": "Уровень 3",
+				"id": 92,
+				"filename": "s8_l3"
+			},
+			{
+				"name": "Уровень 4",
+				"id": 93,
+				"filename": "s8_l4"
+			},
+			{
+				"name": "Уровень 5",
+				"id": 94,
+				"filename": "s8_l5"
+			},
+			{
+				"name": "Уровень 6",
+				"id": 95,
+				"filename": "s8_l6"
+			},
+			{
+				"name": "Уровень 7",
+				"id": 96,
+				"filename": "s8_l7"
+			},
+			{
+				"name": "Уровень 8",
+				"id": 97,
+				"filename": "s8_l8"
+			},
+			{
+				"name": "Уровень 9",
+				"id": 98,
+				"filename": "s8_l9"
+			},
+			{
+				"name": "Уровень 10",
+				"id": 99,
+				"filename": "s8_l10"
+			},
+			{
+				"name": "Уровень 11",
+				"id": 100,
+				"filename": "s8_l11"
+			},
+			{
+				"name": "Уровень 12",
+				"id": 101,
+				"filename": "s8_l12"
+			},
+			{
+				"name": "Уровень 13",
+				"id": 102,
+				"filename": "s8_l13"
+			},
+			{
+				"name": "Уровень 14",
+				"id": 103,
+				"filename": "s8_l14"
+			},
+			{
+				"name": "Уровень 15",
+				"id": 104,
+				"filename": "s8_l15"
+			}
+		]
+	},
+	{
+		"step": 9,
+		"levels": [
+			{
+				"name": "Уровень 1",
+				"id": 105,
+				"filename": "s9_l1"
+			},
+			{
+				"name": "Уровень 2",
+				"id": 106,
+				"filename": "s9_l2"
+			},
+			{
+				"name": "Уровень 3",
+				"id": 107,
+				"filename": "s9_l3"
+			},
+			{
+				"name": "Уровень 4",
+				"id": 108,
+				"filename": "s9_l4"
+			},
+			{
+				"name": "Уровень 5",
+				"id": 109,
+				"filename": "s9_l5"
+			},
+			{
+				"name": "Уровень 6",
+				"id": 110,
+				"filename": "s9_l6"
+			},
+			{
+				"name": "Уровень 7",
+				"id": 111,
+				"filename": "s9_l7"
+			},
+			{
+				"name": "Уровень 8",
+				"id": 112,
+				"filename": "s9_l8"
+			},
+			{
+				"name": "Уровень 9",
+				"id": 113,
+				"filename": "s9_l9"
+			},
+			{
+				"name": "Уровень 10",
+				"id": 114,
+				"filename": "s9_l10"
+			},
+			{
+				"name": "Уровень 11",
+				"id": 115,
+				"filename": "s9_l11"
+			},
+			{
+				"name": "Уровень 12",
+				"id": 116,
+				"filename": "s9_l12"
+			},
+			{
+				"name": "Уровень 13",
+				"id": 117,
+				"filename": "s9_l13"
+			},
+			{
+				"name": "Уровень 14",
+				"id": 118,
+				"filename": "s9_l14"
+			},
+			{
+				"name": "Уровень 15",
+				"id": 119,
+				"filename": "s9_l15"
+			}
+		]
+	},
+	{
+		"step": 10,
+		"levels": [
+			{
+				"name": "Уровень 1",
+				"id": 120,
+				"filename": "s10_l1"
+			}
+		]
 	}
 ]

@@ -195,7 +195,11 @@ export default function Header() {
 				<div className={showButtons ? "buttons" : "hidden buttons"}>
 					{Object.entries(options).map(([option, choices]) => (
 						<div key={option} className={option}>
-							{option}:
+							{option === 'time'
+								? "время"
+								: option === "theme"
+									? "тема"
+									: "язык"}:
 							{choices.map((choice) => (
 								<button
 									className="head__btn"
