@@ -52,7 +52,12 @@ export default function RoutedResults() {
 	}
 
 	useEffect(() => {
-		sendNewStatEntry();
+		if (JSON.stringify(levelWordList) === JSON.stringify(typedLevelHistory)) {
+			sendNewStatEntry();
+		} else {
+			setMsg(':( Вы не успели напечатать все слова. Попробуйте еще раз');
+			setSuccess(false);
+		}
 	}, []);
 
 	return (

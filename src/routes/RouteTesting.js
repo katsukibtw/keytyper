@@ -3,13 +3,14 @@ import '../styles/themes.scss';
 import '../styles/fonts.scss';
 import TestWrapper from '../components/TestWrapper';
 import Results from '../components/Results';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setTimerId, incErrorCount } from "../store/actions";
 import { recordTest } from "../actions/recordTest";
 
 export default function RouteTesting(props) {
 	const setShowCmd = props.setShowCmd;
+	const contRef = useRef('');
 	// const level = useLocation().state.level || "";
 
 	// useEffect(() => {
@@ -65,10 +66,15 @@ export default function RouteTesting(props) {
 		}
 	}, [dispatch, timer, timerId]);
 
+	useEffect(() => {
+		contRef.current.focus();
+	});
+
 	return (
 		<div
 			className="route_training"
 			onKeyDown={onKeyDown}
+			ref={contRef}
 			tabIndex="0">
 			{timer ? <TestWrapper /> : <Results />}
 		</div>

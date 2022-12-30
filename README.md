@@ -6,9 +6,9 @@ To set up your own version of Keytyper clone this repository and run following c
 This thing is written using React and Redux (in bare functional without users or any db elements).
 
 ```
-yarn install
-yarn start # to test it on development server
-yarn build # to build production version for deploy
+bun install
+bun run start # to test it on development server
+bun run build # to build production version for deploy
 ```
 
 Notice that for using all features of this app you need a backend, but it is not done yet, so it's in a private repo for now.

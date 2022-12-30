@@ -59,13 +59,14 @@ export default function RoutedTest(props) {
 		}
 	}, [dispatch, timer, timerId]);
 
-	const setDivFocus = () => {
+	useEffect(() => {
 		divRef.current.focus();
-	}
+	});
 
 	return (
 		<div
 			className="route_training"
+			ref={divRef}
 			onKeyDown={onKeyDown}
 			tabIndex="0">
 			<Suspense fallback={"Loading..."}>
