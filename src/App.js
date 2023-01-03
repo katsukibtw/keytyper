@@ -5,7 +5,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import { useState, useEffect } from 'react';
 import Cmd from './components/Cmd';
-import { faArrowLeft, faPlus, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faPlus, faRightToBracket, faMagnifyingGlass, faClock } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
 	BrowserRouter as Router,
@@ -110,16 +110,24 @@ function App() {
 				<Routes>
 					<Route path={indexPath} element={
 						<div className="index_links">
-							<Link className="route_link" to={`${indexPath}/training`} onClick={() => handleMovingToMode("test")}>Быстрая тренировка</Link>
-							<Link className="route_link" to={`${indexPath}/education`} onClick={() => handleMovingToMode("edu")}>Программа обучения</Link>
+							<Link className="route_link" to={`${indexPath}/training`} onClick={() => handleMovingToMode("test")}>
+								<FontAwesomeIcon icon={faClock} className="route_link__icon" />
+								<div className="route_link__text">Быстрая тренировка</div>
+							</Link>
+							<Link className="route_link" to={`${indexPath}/education`} onClick={() => handleMovingToMode("edu")}>
+								<FontAwesomeIcon icon={faMagnifyingGlass} className="route_link__icon" />
+								<div className="route_link__text">Программа обучения</div>
+							</Link>
 							<div className="link_row">
 								<div className="link_row__title">Класс:</div>
 								<div className="link_row__links">
 									<Link className="route_link gridded" to={`${indexPath}/classroom`}>
-										<FontAwesomeIcon icon={faPlus} />
+										<FontAwesomeIcon icon={faPlus} className="route_link__icon" />
+										<div className="route_link__text">Создать</div>
 									</Link>
 									<Link className="route_link gridded" to={`${indexPath}/classroom`}>
-										<FontAwesomeIcon icon={faArrowRight} />
+										<FontAwesomeIcon icon={faRightToBracket} />
+										<div className="route_link__text">Войти</div>
 									</Link>
 								</div>
 							</div>

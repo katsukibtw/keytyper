@@ -1,6 +1,7 @@
 import '../styles/Header.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faKeyboard, faUser } from '@fortawesome/free-regular-svg-icons';
+import { faRightToBracket, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { resetTest } from "../actions/resetTest";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -90,10 +91,6 @@ export default function Header() {
 	// Set Theme
 	useEffect(() => {
 		if (theme) {
-			document.querySelector(".theme")?.childNodes.forEach((el) => {
-				if (el instanceof HTMLButtonElement)
-					el.classList.remove("selected");
-			});
 			document
 				.querySelector(`button[value="${theme}"]`)
 				?.classList.add("selected");
@@ -118,10 +115,6 @@ export default function Header() {
 	// Set Time
 	useEffect(() => {
 		if (timeLimit !== 0) {
-			document.querySelector(".time")?.childNodes.forEach((el) => {
-				if (el instanceof HTMLButtonElement)
-					el.classList.remove("selected");
-			});
 			document
 				.querySelector(`button[value="${timeLimit}"]`)
 				?.classList.add("selected");
@@ -134,10 +127,6 @@ export default function Header() {
 	// Set Type
 	useEffect(() => {
 		if (lang !== "") {
-			document.querySelector(".lang")?.childNodes.forEach((el) => {
-				if (el instanceof HTMLButtonElement)
-					el.classList.remove("selected");
-			});
 			document
 				.querySelector(`button[value="${lang}"]`)
 				?.classList.add("selected");
@@ -148,16 +137,11 @@ export default function Header() {
 	}, [dispatch, lang]);
 
 	const handleOptions = ({ target }) => {
-		if (target.dataset.option) {
-			if (target.value === theme || +target.value === timeLimit) {
-				target.blur();
-				return;
-			}
-			switch (target.dataset.option) {
+		const option = target.classList[1];
+		if (option) {
+			switch (option) {
 				case "theme":
-					setTimeout(() => {
-						dispatch(setTheme(target.value));
-					}, 750);
+					dispatch(setTheme(target.value));
 					break;
 				case "time":
 					dispatch(setTime(+target.value));
@@ -194,22 +178,31 @@ export default function Header() {
 				<Link to={`${indexPath}`} className='title'><FontAwesomeIcon icon={faKeyboard} className='icon' /><h1>keytyper</h1></Link>
 				<div className={showButtons ? "buttons" : "hidden buttons"}>
 					{Object.entries(options).map(([option, choices]) => (
-						<div key={option} className={option}>
+						<div key={option} className={`option ${option}`}>
 							{option === 'time'
 								? "время"
 								: option === "theme"
 									? "тема"
 									: "язык"}:
-							{choices.map((choice) => (
-								<button
-									className="head__btn"
-									key={choice}
-									data-option={option}
-									value={choice}
-									onClick={(e) => handleOptions(e)}>
-									{choice}
-								</button>
-							))}
+							<select
+								className={`option__select ${option}`}
+								value={option === 'time'
+									? timeLimit
+									: option === 'theme'
+										? theme
+										: lang}
+								onChange={(e) => handleOptions(e)}>
+								{choices.map((choice) => (
+									<option
+										className="head__btn"
+										key={choice}
+										data-option={option}
+										value={choice}>
+										{choice}
+									</option>
+								))}
+							</select>
+							{option === "lang" ? '' : <div className="option__sep" />}
 						</div>
 					))}
 				</div>
@@ -219,13 +212,19 @@ export default function Header() {
 			</div>
 			{showLogoutButton ?
 				<div className="userspace">
-					<button className="login_link" onClick={Logout}>Выйти</button>
+					<button className="login_link" onClick={Logout}>
+						<FontAwesomeIcon icon={faArrowLeft} className="login_link__icon" />
+						<div className="login_link__text">Выйти</div>
+					</button>
 					<Link to={`${indexPath}/dashboard`} className="userspace__user">
 						<div className="userspace__user__name">{name}</div>
 						<div className="userspace__user__icon"><FontAwesomeIcon icon={faUser} className="userspace__default" /></div>
 					</Link>
 				</div>
-				: <Link to={`${indexPath}/login`} className="login_link">Войти</Link>
+				: <Link to={`${indexPath}/login`} className="login_link">
+					<FontAwesomeIcon icon={faRightToBracket} className="login_link__icon" />
+					<div className="login_link__text">Войти</div>
+				</Link>
 			}
 		</div>
 	);

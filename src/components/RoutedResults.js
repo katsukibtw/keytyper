@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import axios from 'axios';
 import { addComplLevel } from '../store/actions';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRotateLeft, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 export default function RoutedResults() {
 	const {
@@ -75,8 +77,15 @@ export default function RoutedResults() {
 				<div className="info__msg">{msg}</div>
 			</div>
 			{success ?
-				<Link to='..' className="btn" onClick={() => resetLevel()}>Выход из уровня</Link>
-				: <button className="btn" onClick={() => resetLevel()}>Restart</button>}
+				<Link to='..' className="btn" onClick={() => resetLevel()}>
+					<FontAwesomeIcon icon={faArrowLeft} className="btn__icon" />
+					<div className="btn__text">Выход из уровня</div>
+				</Link>
+				:
+				<button className="btn" onClick={() => resetLevel()}>
+					<FontAwesomeIcon icon={faArrowRotateLeft} className="btn__icon" />
+					<div className="btn__text">Заново</div>
+				</button>}
 		</div>
 	);
 }

@@ -1,6 +1,8 @@
 import { resetTest } from "../actions/resetTest";
 import { useSelector } from "react-redux";
 import "../styles/Results.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRotateLeft } from "@fortawesome/free-solid-svg-icons";
 
 export default function Results() {
 	const {
@@ -30,7 +32,10 @@ export default function Results() {
 					<div>{errors}</div>
 				</div>
 			</div>
-			<button className="btn" onClick={() => resetTest()}>Restart</button>
+			<button className="btn" onClick={() => resetTest()}>
+				<FontAwesomeIcon icon={faArrowRotateLeft} className="btn__icon" />
+				<div className="btn__text">Заново</div>
+			</button>
 		</div>
 	);
 }

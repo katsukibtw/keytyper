@@ -32,7 +32,7 @@ export default function TestWrapper(props) {
 
 	return (
 		<div className="test">
-			<div className="timer">{timer}</div>
+			<div className={timerId ? "timer" : "hidden timer"}>{timer}</div>
 			<div className="wrapper">
 				{wordList.slice(0, 501).map((word, idx) => {
 					const isActive =

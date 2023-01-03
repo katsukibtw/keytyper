@@ -36,6 +36,12 @@
 		font-family: var(--fc);
 		color: var(--fg-dark);
 		transition: .4s ease;
+		background-color: var(--bg-btn);
+		padding: .8rem 1rem;
+			border-radius: .6rem;
+			display: flex;
+			flex-direction: row;
+			gap: 1rem;
 		
 		&.hidden {
 			opacity: 0;
@@ -43,9 +49,35 @@
 			transition: .4s ease;
 		}
 		
+		.option {
+			display: flex;
+				flex-direction: row;
+				gap: .5rem;
+				align-items: center;
+
+				&__sep {
+					background-color: var(--fg-darker);
+					width: .1rem;
+					height: 1.25rem;
+					border-radius: 1000rem;
+					margin: 0 0 0 .5rem;
+				}
+
+				&__select {
+					font-size: .9rem;
+					width: 8rem;
+					background-color: var(--bg);
+					border: 0;
+					color: var(--fg);
+					font-family: var(--fc);
+					padding: .4rem .5rem;
+					border-radius: .25rem;
+				}
+		}
+		
 		.head__btn {
 			font-family: var(--fc);
-			background-color: var(--bg);
+			background-color: var(--bg-btn);
 			color: var(--fg-dark);
 			border: 0;
 			padding: 0 .3rem;
@@ -95,6 +127,9 @@
 		border-radius: .5rem;
 		transition: .4s;
 		border: 0;
+		display: flex;
+		flex-direction: row;
+		gap: .5rem;
 		
 		&:hover {
 			background-color: var(--clr);

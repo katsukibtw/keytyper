@@ -24,6 +24,12 @@
 		margin: 8vh 0 0;
 		font-weight: 700;
 		color: var(--clr);
+		opacity: 1;
+		transition: .4s ease;
+	}
+
+	.hidden {
+		opacity: 0;
 	}
 	
 	.wrapper {
