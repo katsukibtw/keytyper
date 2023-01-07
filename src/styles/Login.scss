@@ -7,6 +7,19 @@
     justify-content: center;
     align-items: center;
     gap: 3rem;
+
+	.rb {
+		border: .1rem solid var(--red);
+		color: var(--red);
+
+		&:focus {
+			color: var(--fg);
+		}
+	}
+
+	&__header {
+		font-weight: 600;
+	}
     
     &__cont {
         display: inherit;
@@ -34,8 +47,8 @@
         border: 0;
         font-family: var(--fc);
         font-size: 1.1rem;
-        padding: .5rem;
-        width: 7rem;
+        padding: .5rem 2rem;
+        // width: 7rem;
 		border-radius: .5rem;
         transition: .4s;
         

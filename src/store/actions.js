@@ -40,6 +40,29 @@ export const SET_USER_REFRESH_TOKEN = "SETUSERREFRESHTOKEN";
 export const ADD_COMPL_LEVEL = "ADDCOMPLLEVEL";
 export const SET_COMPL_LEVEL = "SETCOMPLLEVEL";
 
+// rooms action types
+export const SET_ROOM_SAFECODE = "SETROOMSAFECODE";
+export const SET_ROOM_NAME = "SETROOMNAME";
+export const SET_ROOM_USERNAME = "SETROOMUSERNAME";
+export const SET_ROOM_USER_ID = "SETROOMUSERID";
+export const SET_ROOM_ID = "SETROOMID";
+
+// room levels actions 
+export const SET_ROOM_LEVEL = "SETROOMLEVEL";
+export const SET_ROOM_WORD = "SETROOMWORD";
+export const SET_ROOM_CHAR = "SETROOMCHAR";
+export const APPEND_ROOM_TYPED_HISTORY = "APPENDROOMTYPEDHISTORY";
+export const PREV_ROOM_WORD = "PREVROOMWORD";
+export const SET_ROOM_WORDLIST = "SETROOMWORDLIST";
+export const SET_ROOM_REF = "SETROOMREF";
+export const SET_ROOM_CARET_REF = "SETROOMCARETREF";
+export const SET_ROOM_LEVEL_ID = "SETROOMLEVELID";
+export const ADD_COMPL_ROOM = "ADDCOMPLROOM";
+export const SET_COMPL_ROOM = "SETCOMPLROOM";
+export const INC_ROOM_ERROR_COUNT = "INCROOMERRORCOUNT";
+export const SET_ROOM_ERRORS_TO_ZERO = "SETROOMERRORSTOZERO";
+
+
 // Time Actions
 export const timerDecrement = () => ({ type: TIMER_DECREMENT });
 export const timerSet = (payload) => ({ type: TIMER_SET, payload });
@@ -119,10 +142,50 @@ export const setUserRefreshToken = (payload) => ({ type: SET_USER_REFRESH_TOKEN,
 export const addComplLevel = (payload) => ({ type: ADD_COMPL_LEVEL, payload });
 export const setComplLevel = (payload) => ({ type: SET_COMPL_LEVEL, payload });
 
+// Room actions 
+export const setRoomSafecode = (payload) => ({ type: SET_ROOM_SAFECODE, payload });
+export const setRoomName = (payload) => ({ type: SET_ROOM_NAME, payload });
+export const setRoomUsername = (payload) => ({ type: SET_ROOM_USERNAME, payload });
+export const setRoomUserId = (payload) => ({ type: SET_ROOM_USER_ID, payload });
+export const setRoomId = (payload) => ({ type: SET_ROOM_ID, payload });
+
+// Room level actions 
+export const setRoomWord = (payload) => ({ type: SET_ROOM_WORD, payload });
+export const setRoomChar = (payload) => ({ type: SET_ROOM_CHAR, payload });
+export const setRoomTypedWord = (payload) => ({ type: SET_ROOM_CHAR, payload });
+export const appendRoomTypedHistory = () => ({
+	type: APPEND_ROOM_TYPED_HISTORY,
+});
+export const backtrackRoomWord = (payload) => ({
+	type: PREV_ROOM_WORD,
+	payload,
+});
+export const setRoomWordList = (payload) => ({
+	type: SET_ROOM_WORDLIST,
+	payload,
+});
+export const setRoomRef = (payload) => ({
+	type: SET_ROOM_REF,
+	payload,
+});
+export const setRoomCaretRef = (payload) => ({
+	type: SET_ROOM_CARET_REF,
+	payload,
+});
+export const incRoomErrorCount = () => ({
+	type: INC_ROOM_ERROR_COUNT,
+});
+export const setRoomErrorsToZero = () => ({
+	type: SET_ROOM_ERRORS_TO_ZERO
+})
+
+export const setRoomLevelId = (payload) => ({ type: SET_ROOM_LEVEL_ID, payload });
+
 // Prefrences Actions
 export const setTheme = (payload) => ({ type: SET_THEME, payload });
 export const setFont = (payload) => ({ type: SET_FONT, payload });
 export const setTime = (payload) => ({ type: SET_TIME, payload });
 export const setLang = (payload) => ({ type: SET_LANG, payload });
 export const setLevel = (payload) => ({ type: SET_LEVEL, payload });
+export const setRoomLevel = (payload) => ({ type: SET_ROOM_LEVEL, payload });
 export const setMode = (payload) => ({ type: SET_MODE, payload });

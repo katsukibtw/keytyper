@@ -1,0 +1,112 @@
+.stats {
+	width: 80vw;
+	height: 74vh;
+	margin-inline: auto;
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: .5rem;
+	animation: appear .4s ease forwards;
+
+	.container {
+		width: 80%;
+		height: 72vh;
+		background-color: var(--bg-btn);
+		border-radius: .5rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		font-family: var(--fc);
+		overflow: scroll;
+		gap: .5rem;
+
+		&::-webkit-scrollbar {
+			height: 100%;
+			width: .2rem;
+		}
+
+		&::-webkit-scrollbar-track {
+			background: var(--bg);
+		}
+
+		&::-webkit-scrollbar-thumb {
+			background: var(--fg-dark);
+			border-radius: 1000rem;
+		}
+
+		&::-webkit-scrollbar-thumb:hover {
+			background: var(--fg-darker);
+		}
+
+		&__row {
+			width: 95%;
+			margin: 0 1rem;
+			display: grid;
+			grid-template-rows: 1fr;
+			grid-template-columns: repeat(6, 1fr);
+
+			&__entry {
+				display: grid;
+				place-content: center;
+			}
+		}
+		
+		.first {
+			color: var(--fg-darker);
+		}
+
+		&__header {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			position: relative;
+			width: 100%;
+			height: 3.5rem;
+			margin: 0 0 .5rem 0;
+			
+			&__exitbtn {
+				background-color: var(--bg);
+				color: var(--fg-darker);
+				padding: .5rem 1.8rem;
+				border-radius: .4rem;
+				font-size: 1.3rem;
+				position: absolute;
+				left: .5rem;
+				top: .5rem;
+				transition: .4s ease;
+
+				&:hover {
+					background-color: var(--clr);
+					color: var(--bg);
+					transition: .4s ease;
+				}
+			}
+
+			&__roomname {
+				font-style: italic;
+			}
+
+			&::before {
+				position: absolute;
+				content: '';
+				background-color: var(--fg);
+				width: 50%;
+				height: .15rem;
+				bottom: .5rem;
+				border-radius: 1000rem;
+			}
+		}
+	}
+
+	@keyframes appear {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
+	}
+}

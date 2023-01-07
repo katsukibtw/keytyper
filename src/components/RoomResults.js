@@ -1,49 +1,47 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import "../styles/Results.scss";
-import { resetLevel } from "../actions/resetLevel";
+import { resetRoom } from "../actions/resetRoom";
 import { useEffect, useState } from "react";
 import axios from 'axios';
-import { addComplLevel } from '../store/actions';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRotateLeft, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
-export default function RoutedResults() {
+export default function RoomResults() {
 	const {
 		time: { remTime },
-		levelWord: { levelWordList, typedLevelHistory, currLevelWord, levelId, levelErrors },
-		user: { id },
+		roomWord: { roomWordList, typedRoomHistory, currRoomWord, roomLevelId, roomErrors },
+		room: { room_id, user_id },
 		preferences: { timeLimit },
 	} = useSelector((state) => state);
-	const dispatch = useDispatch();
 
 	const [msg, setMsg] = useState('');
 	const [success, setSuccess] = useState(false);
 
-	const spaces = levelWordList.indexOf(currLevelWord);
+	const spaces = roomWordList.indexOf(currRoomWord);
 	let correctChars = 0;
-	const result = typedLevelHistory.map(
-		(typedWord, idx) => typedWord === levelWordList[idx]
+	const result = typedRoomHistory.map(
+		(typedWord, idx) => typedWord === roomWordList[idx]
 	);
 	result.forEach((r, idx) => {
-		if (r) correctChars += levelWordList[idx].length;
+		if (r) correctChars += roomWordList[idx].length;
 	});
-	const wpm = ((correctChars + spaces) * 60 * 5 * (remTime / levelWordList.length / (timeLimit - remTime) + .3)) / timeLimit / 5;
+	const wpm = ((correctChars + spaces) * 60 * 5 * (remTime / roomWordList.length / (timeLimit - remTime) + .3)) / timeLimit / 5;
 
 	const sendNewStatEntry = async () => {
 		try {
 			const resp = await axios.post('http://94.181.190.26:9967/api/stats', {
-				level: levelId,
+				level: roomLevelId,
 				wpm: wpm,
-				errors: levelErrors,
+				errors: roomErrors,
 				cr_words: result.filter((x) => x).length,
 				time: timeLimit,
-				user_id: id,
+				room_user_id: user_id,
+				room_id: room_id,
 			},
 				{ withCredentials: true });
 			setMsg(resp.data.msg);
 			if (resp.data.corr) {
-				dispatch(addComplLevel(levelId));
 				setSuccess(true);
 			}
 		} catch (error) {
@@ -54,7 +52,7 @@ export default function RoutedResults() {
 	}
 
 	useEffect(() => {
-		if (levelWordList.length === typedLevelHistory.length) {
+		if (roomWordList.length === typedRoomHistory.length) {
 			sendNewStatEntry();
 		} else {
 			setMsg(':( Вы не успели напечатать все слова. Попробуйте еще раз');
@@ -72,17 +70,17 @@ export default function RoutedResults() {
 				</div>
 				<div className="info__row">
 					<div>Количество ошибок:</div>
-					<div>{levelErrors}</div>
+					<div>{roomErrors}</div>
 				</div>
 				<div className="info__msg">{msg}</div>
 			</div>
 			{success ?
-				<Link to='..' className="btn" onClick={() => resetLevel()}>
+				<Link to='..' className="btn" onClick={() => resetRoom()}>
 					<FontAwesomeIcon icon={faArrowLeft} className="btn__icon" />
 					<div className="btn__text">Выход из уровня</div>
 				</Link>
 				:
-				<button className="btn" onClick={() => resetLevel()}>
+				<button className="btn" onClick={() => resetRoom()}>
 					<FontAwesomeIcon icon={faArrowRotateLeft} className="btn__icon" />
 					<div className="btn__text">Заново</div>
 				</button>}

@@ -1,5 +1,5 @@
 import "../styles/Login.scss";
-import { useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { indexPath } from "../App";
@@ -12,16 +12,16 @@ export default function Login() {
 
 	const [cookies, setCookie] = useCookies(['refreshToken']);
 
-	// some vars for login fields  
-	const [loginI, setLoginI] = useState('');
-	const [passI, setPassI] = useState('');
+	// refs for login fields
+	const loginI = useRef();
+	const passI = useRef();
 	const [msgI, setMsgI] = useState('');
 
-	// same vars but for register fields (i'm not gonna separate this pages)
-	const [nameU, setNameU] = useState('');
-	const [loginU, setLoginU] = useState('');
-	const [passU, setPassU] = useState('');
-	const [confPassU, setConfPassU] = useState('');
+	// refs for sing up fields
+	const nameU = useRef();
+	const loginU = useRef();
+	const passU = useRef();
+	const confPassU = useRef();
 	const [msgU, setMsgU] = useState('');
 
 	const navigate = useNavigate();
@@ -30,10 +30,10 @@ export default function Login() {
 		e.preventDefault();
 		try {
 			await axios.post('http://94.181.190.26:9967/api/users', {
-				name: nameU,
-				login: loginU,
-				pass: passU,
-				confPass: confPassU,
+				name: nameU.current.value,
+				login: loginU.current.value,
+				pass: passU.current.value,
+				confPass: confPassU.current.value,
 				withCredentials: true,
 			});
 			navigate(`${indexPath}/`)
@@ -70,13 +70,12 @@ export default function Login() {
 		e.preventDefault();
 		try {
 			await axios.post('http://94.181.190.26:9967/api/login', {
-				login: loginI,
-				pass: passI,
+				login: loginI.current.value,
+				pass: passI.current.value,
 				withCredentials: true,
 			}).then((res) => {
 				localStorage.setItem('refreshToken', res.data.refreshToken);
-				localStorage.setItem('userId', res.data.userId);
-				localStorage.setItem('username', res.data.name);
+				localStorage.setItem('userId', res.data.userId); localStorage.setItem('username', res.data.name);
 				dispatch(setUserRefreshToken(res.data.refreshToken));
 				dispatch(setUserId(res.data.userId));
 				dispatch(setUserName(res.data.name));
@@ -93,30 +92,31 @@ export default function Login() {
 		} catch (error) {
 			if (error.response) {
 				setMsgI(error.response.data.msg);
-				console.log(msgI);
 			}
 		}
 	}
+
+	// className rb sets red border and color on input field if msg is not empty
 
 	return (
 		<div className="login">
 			<form className="login__cont" onSubmit={Register}>
 				<div className="login__header">Регистрация</div>
-				<input onChange={(e) => setNameU(e.target.value)} className="login__input" type="text" placeholder="Введите свой ник" />
-				<input onChange={(e) => setLoginU(e.target.value)} className="login__input" type="text" placeholder="Введите свой логин" />
-				<input onChange={(e) => setPassU(e.target.value)} title="Пароль должен содержать строчные и заглавные символы латиницы и цифры" pattern="[A-Za-z0-9._+-@|\/\\]{8,}" className="login__input" type="password" placeholder="Введите свой пароль" />
-				<input onChange={(e) => setConfPassU(e.target.value)} title="Пароль должен содержать строчные и заглавные символы латиницы и цифры" pattern="[A-Za-z0-9._+-@|\/\\]{8,}" className="login__input" type="password" placeholder="Введите свой пароль повторно" />
+				<input ref={nameU} className={msgU ? "rb login__input" : "login__input"} type="text" placeholder="Введите свой ник" />
+				<input ref={loginU} className={msgU ? "rb login__input" : "login__input"} type="text" placeholder="Введите свой логин" />
+				<input ref={passU} title="Пароль должен содержать строчные и заглавные символы латиницы и цифры" pattern="[A-Za-z0-9._+-@|\/\\]{8,}" className={msgU ? "rb login__input" : "login__input"} type="password" placeholder="Введите свой пароль" />
+				<input ref={confPassU} title="Пароль должен содержать строчные и заглавные символы латиницы и цифры" pattern="[A-Za-z0-9._+-@|\/\\]{8,}" className={msgU ? "rb login__input" : "login__input"} type="password" placeholder="Введите свой пароль повторно" />
 				<div className="login__msg">{msgU}</div>
-				<input type="submit" className="login__btn" value="Submit" />
+				<button type="submit" className="login__btn">Зарегистрироваться</button>
 			</form>
 
 			<form className="login__cont" onSubmit={Auth}>
 				<div className="login__header">Вход</div>
-				<input onChange={(e) => setLoginI(e.target.value)} className="login__input" type="text" placeholder="Введите свой логин" />
-				<input onChange={(e) => setPassI(e.target.value)} className="login__input" type="password" placeholder="Введите свой пароль" />
+				<input ref={loginI} className={msgI ? "rb login__input" : "login__input"} type="text" placeholder="Введите свой логин" />
+				<input ref={passI} className={msgI ? "rb login__input" : "login__input"} type="password" placeholder="Введите свой пароль" />
 				<div className="login__msg">{msgI}</div>
-				<button className="login__btn">Submit</button>
+				<button type="submit" className="login__btn">Войти</button>
 			</form>
-		</div>
+		</div >
 	);
 }

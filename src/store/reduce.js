@@ -34,7 +34,23 @@ import {
 	ADD_COMPL_LEVEL,
 	SET_COMPL_LEVEL,
 	INC_LEVEL_ERROR_COUNT,
-	SET_LEVEL_ERRORS_TO_ZERO
+	SET_LEVEL_ERRORS_TO_ZERO,
+	SET_ROOM_LEVEL,
+	SET_ROOM_WORD,
+	SET_ROOM_CHAR,
+	APPEND_ROOM_TYPED_HISTORY,
+	PREV_ROOM_WORD,
+	SET_ROOM_WORDLIST,
+	SET_ROOM_REF,
+	SET_ROOM_CARET_REF,
+	SET_ROOM_LEVEL_ID,
+	INC_ROOM_ERROR_COUNT,
+	SET_ROOM_ERRORS_TO_ZERO,
+	SET_ROOM_SAFECODE,
+	SET_ROOM_NAME,
+	SET_ROOM_USERNAME,
+	SET_ROOM_USER_ID,
+	SET_ROOM_ID,
 } from "./actions";
 
 export const initialState = {
@@ -43,6 +59,8 @@ export const initialState = {
 		font: "",
 		timeLimit: 0,
 		lang: "",
+		level: '',
+		roomLevel: '',
 		mode: "init",
 	},
 	word: {
@@ -69,6 +87,23 @@ export const initialState = {
 		name: '',
 		levelsCompl: [],
 		refreshToken: null,
+	},
+	room: {
+		room_id: '',
+		safe_code: '',
+		roomname: '',
+		username: '',
+		user_id: '',
+	},
+	roomWord: {
+		currRoomWord: "",
+		typedRoomWord: "",
+		typedRoomHistory: [],
+		roomWordList: [],
+		activeRoomWordRef: null,
+		roomCaretRef: null,
+		roomLevelId: '',
+		roomErrors: 0,
 	},
 	time: {
 		timer: 1,
@@ -223,6 +258,70 @@ const levelWordReducer = (
 	}
 };
 
+const roomWordReducer = (
+	state = initialState.roomWord,
+	{ type, payload }
+) => {
+	switch (type) {
+		case SET_ROOM_CHAR:
+			return { ...state, typedRoomWord: payload };
+		case SET_ROOM_WORD:
+			return { ...state, typedRoomHistory: [...state.typedRoomHistory, payload] };
+		case APPEND_ROOM_TYPED_HISTORY:
+			const nextIdx = state.typedRoomHistory.length + 1;
+			return {
+				...state,
+				typedRoomWord: "",
+				currRoomWord: state.roomWordList[nextIdx],
+				typedRoomHistory: [...state.typedRoomHistory, state.typedRoomWord],
+			};
+		case PREV_ROOM_WORD:
+			const prevIdx = state.typedRoomHistory.length - 1;
+			return {
+				...state,
+				currRoomWord: state.roomWordList[prevIdx],
+				typedRoomWord: !payload ? state.typedRoomHistory[prevIdx] : "",
+				typedRoomHistory: state.typedRoomHistory.splice(0, prevIdx),
+			};
+		case SET_ROOM_REF:
+			return {
+				...state,
+				activeRoomWordRef: payload,
+			};
+		case SET_ROOM_CARET_REF:
+			return {
+				...state,
+				roomCaretRef: payload,
+			};
+		case SET_ROOM_WORDLIST:
+			const lareNotWords = payload.some((word) =>
+				word.includes(" ")
+			);
+			var shuffledRoomWordList = payload.sort(
+				() => Math.random() - 0.5
+			);
+			if (lareNotWords)
+				shuffledRoomWordList = payload.flatMap((token) =>
+					token.split(" ")
+				);
+			return {
+				...state,
+				typedRoomWord: "",
+				typedRoomHistory: [],
+				currRoomWord: shuffledRoomWordList[0],
+				roomWordList: shuffledRoomWordList,
+			};
+		case SET_ROOM_LEVEL_ID:
+			return { ...state, roomLevelId: payload };
+		case INC_ROOM_ERROR_COUNT:
+			return { ...state, roomErrors: state.roomErrors + 1 }
+		case SET_ROOM_ERRORS_TO_ZERO:
+			return { ...state, roomErrors: 0 }
+		default:
+			return state;
+	}
+};
+
 const userReducer = (
 	state = initialState.user,
 	{ type, payload }
@@ -244,6 +343,26 @@ const userReducer = (
 	}
 }
 
+const roomReducer = (
+	state = initialState.room,
+	{ type, payload }
+) => {
+	switch (type) {
+		case SET_ROOM_SAFECODE:
+			return { ...state, safe_code: payload }
+		case SET_ROOM_USERNAME:
+			return { ...state, username: payload }
+		case SET_ROOM_NAME:
+			return { ...state, roomname: payload }
+		case SET_ROOM_USER_ID:
+			return { ...state, user_id: payload }
+		case SET_ROOM_ID:
+			return { ...state, room_id: payload }
+		default:
+			return state
+	}
+}
+
 const preferenceReducer = (
 	state = initialState.preferences,
 	{ type, payload }
@@ -259,6 +378,8 @@ const preferenceReducer = (
 			return { ...state, lang: payload };
 		case SET_LEVEL:
 			return { ...state, level: payload };
+		case SET_ROOM_LEVEL:
+			return { ...state, roomLevel: payload };
 		case SET_MODE:
 			return { ...state, mode: payload };
 		default:
@@ -271,5 +392,7 @@ export default combineReducers({
 	word: wordReducer,
 	levelWord: levelWordReducer,
 	user: userReducer,
+	room: roomReducer,
+	roomWord: roomWordReducer,
 	preferences: preferenceReducer,
 });

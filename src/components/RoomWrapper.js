@@ -1,37 +1,37 @@
-import { resetLevel } from "../actions/resetLevel";
+import { resetRoom } from "../actions/resetRoom";
 import { useDispatch, useSelector } from "react-redux";
-import { setLevelRef, setLevelCaretRef, timerEnd, setLevelWord, setRemainedTime, incLevelErrorCount } from "../store/actions";
+import { setRoomRef, setRoomCaretRef, timerEnd, setRoomWord, setRemainedTime } from "../store/actions";
 import { useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { faArrowLeft, faArrowRotateLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export default function RoutedWrapper() {
+export default function RoomWrapper() {
 	const {
-		levelWord: { typedLevelWord, currLevelWord, levelWordList, typedLevelHistory },
+		roomWord: { typedRoomWord, currRoomWord, roomWordList, typedRoomHistory },
 		time: { timer, timerId }
 	} = useSelector((state) => state);
 	const dispatch = useDispatch();
-	const extraLetters = typedLevelWord.slice(currLevelWord.length).split("");
+	const extraLetters = typedRoomWord.slice(currRoomWord.length).split("");
 	const activeWord = useRef(null);
 	const caretRef = useRef(null);
 
 	useEffect(() => {
-		dispatch(setLevelRef(activeWord));
-		dispatch(setLevelCaretRef(caretRef));
+		dispatch(setRoomRef(activeWord));
+		dispatch(setRoomCaretRef(caretRef));
 	}, [dispatch]);
 
 	useEffect(() => {
-		if (typedLevelWord === levelWordList[levelWordList.length - 1] && typedLevelHistory.length === levelWordList.length - 1) {
+		if (typedRoomWord === roomWordList[roomWordList.length - 1] && typedRoomHistory.length === roomWordList.length - 1) {
 			dispatch(setRemainedTime(timer));
 			dispatch(timerEnd());
-			dispatch(setLevelWord(currLevelWord));
+			dispatch(setRoomWord(currRoomWord));
 		}
 	})
 
 	const handleResetClick = () => {
 		if (timer) {
-			resetLevel();
+			resetRoom();
 		}
 	}
 
@@ -39,9 +39,9 @@ export default function RoutedWrapper() {
 		<div className="test">
 			<div className={timerId ? "timer" : "hidden timer"}>{timer}</div>
 			<div className="wrapper">
-				{levelWordList.map((word, idx) => {
+				{roomWordList.map((word, idx) => {
 					const isActive =
-						currLevelWord === word && typedLevelHistory.length === idx;
+						currRoomWord === word && typedRoomHistory.length === idx;
 					return (
 						<div
 							key={word + idx}
@@ -53,7 +53,7 @@ export default function RoutedWrapper() {
 									id="caret"
 									className="blink"
 									style={{
-										left: typedLevelWord.length * 14,
+										left: typedRoomWord.length * 14,
 									}}>
 									|
 								</span>
@@ -71,9 +71,9 @@ export default function RoutedWrapper() {
 										</span>
 									);
 								})
-								: typedLevelHistory[idx]
-									? typedLevelHistory[idx]
-										.slice(levelWordList[idx].length)
+								: typedRoomHistory[idx]
+									? typedRoomHistory[idx]
+										.slice(roomWordList[idx].length)
 										.split("")
 										.map((char, charId) => {
 											return (

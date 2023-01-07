@@ -17,7 +17,10 @@ import {
 	setUserRefreshToken,
 	setUserId,
 	setUserName,
-	setComplLevel
+	setComplLevel,
+	setRoomUsername,
+	setRoomSafecode,
+	setRoomName
 } from "../store/actions";
 import { useLocation, useNavigate } from "react-router-dom";
 import { indexPath } from "../App";
@@ -40,12 +43,12 @@ export const options = {
 };
 
 export default function Header() {
-	let location = useLocation();
+	const location = useLocation();
 	const navigate = useNavigate();
 	const [showButtons, setShowButtons] = useState(false);
 
 	const {
-		preferences: { timeLimit, theme, lang, font },
+		preferences: { timeLimit, theme, lang, font, mode },
 		user: { name, refreshToken },
 		time: { timerId },
 	} = useSelector((state) => state);
@@ -172,10 +175,19 @@ export default function Header() {
 		}
 	}
 
+	const onHeaderLinkClick = () => {
+		if (mode === "room") {
+			dispatch(setRoomUsername(''));
+			dispatch(setRoomSafecode(''));
+			dispatch(setRoomName(''));
+		}
+		dispatch(setMode(''));
+	}
+
 	return (
 		<div className={timerId ? "hidden head" : "head"}>
 			<div className="right_section">
-				<Link to={`${indexPath}`} className='title'><FontAwesomeIcon icon={faKeyboard} className='icon' /><h1>keytyper</h1></Link>
+				<Link to={indexPath} className='title' onClick={onHeaderLinkClick}><FontAwesomeIcon icon={faKeyboard} className='icon' /><h1>keytyper</h1></Link>
 				<div className={showButtons ? "buttons" : "hidden buttons"}>
 					{Object.entries(options).map(([option, choices]) => (
 						<div key={option} className={`option ${option}`}>
@@ -210,7 +222,7 @@ export default function Header() {
 					Нажмите <div className="advice__button">Ctrl</div> + <div className="advice__button">E</div> , чтобы открыть панель управления.
 				</div>
 			</div>
-			{showLogoutButton ?
+			{mode === "room" ? '' : showLogoutButton ?
 				<div className="userspace">
 					<button className="login_link" onClick={Logout}>
 						<FontAwesomeIcon icon={faArrowLeft} className="login_link__icon" />
