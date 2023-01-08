@@ -6,6 +6,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRotateLeft, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { host } from '../App';
 
 export default function RoomResults() {
 	const {
@@ -30,7 +31,7 @@ export default function RoomResults() {
 
 	const sendNewStatEntry = async () => {
 		try {
-			const resp = await axios.post('http://94.181.190.26:9967/api/stats', {
+			const resp = await axios.post(`${host}/api/stats`, {
 				level: roomLevelId,
 				wpm: wpm,
 				errors: roomErrors,

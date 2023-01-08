@@ -41,7 +41,11 @@ import JoinRoom from './components/JoinRoom';
 import SocketContext from './SocketContext';
 import { io } from 'socket.io-client';
 
-const socket = io('http://94.181.190.26:9967', { transports: ['websocket', 'polling', 'flashsocket'] });
+// some minor configuration for hosting
+export const host = 'http://94.181.190.26:9967';
+export const indexPath = "/10v/skripko/keytyper";
+
+const socket = io(host, { transports: ['websocket', 'polling', 'flashsocket'] });
 
 function App() {
 	axios.defaults.withCredentials = true;
@@ -60,7 +64,7 @@ function App() {
 
 	const refreshTokenFunc = async () => {
 		try {
-			const resp = await axios.get('http://94.181.190.26:9967/api/token', {
+			const resp = await axios.get(`${host}/api/token`, {
 				headers: {
 					refreshToken: refreshToken
 				},
@@ -85,7 +89,7 @@ function App() {
 	axiosJWT.interceptors.request.use(async (config) => {
 		const currentDate = new Date();
 		if (expire * 1000 < currentDate.getTime()) {
-			const response = await axios.get('http://94.181.190.26:9967/api/token',
+			const response = await axios.get(`${host}/api/token`,
 				{ withCredentials: true });
 			config.headers.Authorization = `Bearer ${response.data.accessToken}`;
 			setToken(response.data.accessToken);
@@ -224,5 +228,4 @@ export const Placeholder = (props) => {
 	);
 }
 
-export const indexPath = "/10v/skripko/keytyper";
 export default App;

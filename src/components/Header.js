@@ -23,7 +23,7 @@ import {
 	setRoomName
 } from "../store/actions";
 import { useLocation, useNavigate } from "react-router-dom";
-import { indexPath } from "../App";
+import { indexPath, host } from "../App";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -163,7 +163,7 @@ export default function Header() {
 
 	const Logout = async () => {
 		try {
-			await axios.delete('http://94.181.190.26:9967/api/logout');
+			await axios.delete(`${host}/api/logout`);
 			navigate(`${indexPath}`);
 			dispatch(setUserRefreshToken(null));
 			dispatch(setUserId(''));

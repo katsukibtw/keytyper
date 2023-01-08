@@ -6,7 +6,6 @@ import { useDispatch } from 'react-redux';
 import { setRoomSafecode, setRoomName, setRoomUsername } from '../store/actions';
 import { useNavigate } from 'react-router-dom';
 import { indexPath } from '../App';
-import SocketContext from '../SocketContext';
 
 const CreateRoom = ({ socket }) => {
 

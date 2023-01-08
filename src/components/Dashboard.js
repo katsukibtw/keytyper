@@ -1,6 +1,6 @@
 import "../styles/Dashboard.scss";
 import { Link } from 'react-router-dom';
-import { indexPath } from '../App';
+import { indexPath, host } from '../App';
 import { faArrowLeft, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useSelector, useDispatch } from 'react-redux';
@@ -28,7 +28,7 @@ const Dashboard = (props) => {
 
 	const getUserStats = async (uid) => {
 		try {
-			const resp = await axios.get('http://94.181.190.26:9967/api/stats', {
+			const resp = await axios.get(`${host}/api/stats`, {
 				headers: {
 					user_id: uid
 				},

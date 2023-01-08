@@ -7,6 +7,7 @@ import { addComplLevel } from '../store/actions';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRotateLeft, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { host } from '../App';
 
 export default function RoutedResults() {
 	const {
@@ -32,7 +33,7 @@ export default function RoutedResults() {
 
 	const sendNewStatEntry = async () => {
 		try {
-			const resp = await axios.post('http://94.181.190.26:9967/api/stats', {
+			const resp = await axios.post(`${host}/api/stats`, {
 				level: levelId,
 				wpm: wpm,
 				errors: levelErrors,

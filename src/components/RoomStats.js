@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { host } from '../App';
 
 const RoomStats = ({ socket }, props) => {
 	const {
@@ -14,7 +15,7 @@ const RoomStats = ({ socket }, props) => {
 
 	const getRoomStats = async ({ room }) => {
 		try {
-			const resp = await axios.get('http://localhost:9967/api/roomstats', {
+			const resp = await axios.get(`${host}/api/roomstats`, {
 				headers: {
 					room_id: room
 				},

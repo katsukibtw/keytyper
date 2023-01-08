@@ -1,11 +1,8 @@
-// import io from 'socket.io-client';
 import { useDispatch } from 'react-redux';
 import { setRoomSafecode, setRoomName, setRoomUsername, setRoomUserId, setRoomId } from '../store/actions';
 import { useRef, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { indexPath } from '../App';
-
-// const socket = io('http://localhost:9967', { transports: ['websocket', 'polling', 'flashsocket'] });
 
 const JoinRoom = ({ socket }) => {
 	const dispatch = useDispatch();

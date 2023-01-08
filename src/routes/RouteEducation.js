@@ -2,7 +2,7 @@ import '../styles/App.scss';
 import '../styles/themes.scss';
 import '../styles/fonts.scss';
 import '../styles/Education.scss';
-import { indexPath } from "../App";
+import { indexPath, host } from "../App";
 import { useEffect, useState } from "react";
 import { faArrowLeft, faCheck, faPlay } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -32,7 +32,7 @@ export default function RouteEducation(props) {
 
 	const getUserStats = async (uid) => {
 		try {
-			await axios.get('http://94.181.190.26:9967/api/stats', {
+			await axios.get(`${host}/api/stats`, {
 				headers: {
 					user_id: uid
 				},
@@ -53,7 +53,7 @@ export default function RouteEducation(props) {
 
 	const Logout = async () => {
 		try {
-			await axios.delete('http://94.181.190.26:9967/api/logout');
+			await axios.delete(`${host}/api/logout`);
 			navigate(`${indexPath}/login`);
 			dispatch(setUserRefreshToken(null));
 			dispatch(setUserId(''));
@@ -67,7 +67,7 @@ export default function RouteEducation(props) {
 
 	const refreshTokenFunc = async () => {
 		try {
-			const resp = await axios.get('http://94.181.190.26:9967/api/token', {
+			const resp = await axios.get(`${host}/api/token`, {
 				headers: {
 					refreshToken: refreshToken
 				},
@@ -97,7 +97,7 @@ export default function RouteEducation(props) {
 	axiosJWT.interceptors.request.use(async (config) => {
 		const currentDate = new Date();
 		if (expire * 1000 < currentDate.getTime()) {
-			const response = await axios.get('http://94.181.190.26:9967/api/token',
+			const response = await axios.get(`${host}/api/token`,
 				{ withCredentials: true });
 			config.headers.Authorization = `Bearer ${response.data.accessToken}`;
 			setToken(response.data.accessToken);

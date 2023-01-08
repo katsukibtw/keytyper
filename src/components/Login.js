@@ -2,8 +2,8 @@ import "../styles/Login.scss";
 import { useRef, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { indexPath } from "../App";
-import { useDispatch, useSelector } from "react-redux";
+import { indexPath, host } from "../App";
+import { useDispatch } from "react-redux";
 import { setUserId, setUserName, setUserRefreshToken, addComplLevel } from "../store/actions";
 import { useCookies } from 'react-cookie';
 
@@ -29,7 +29,7 @@ export default function Login() {
 	const Register = async (e) => {
 		e.preventDefault();
 		try {
-			await axios.post('http://94.181.190.26:9967/api/users', {
+			await axios.post(`${host}/api/users`, {
 				name: nameU.current.value,
 				login: loginU.current.value,
 				pass: passU.current.value,
@@ -47,7 +47,7 @@ export default function Login() {
 
 	const getUserStats = async (id) => {
 		try {
-			await axios.get('http://94.181.190.26:9967/api/stats', {
+			await axios.get(`${host}/api/stats`, {
 				headers: {
 					user_id: id
 				},
@@ -69,7 +69,7 @@ export default function Login() {
 	const Auth = async (e) => {
 		e.preventDefault();
 		try {
-			await axios.post('http://94.181.190.26:9967/api/login', {
+			await axios.post(`${host}/api/login`, {
 				login: loginI.current.value,
 				pass: passI.current.value,
 				withCredentials: true,
@@ -88,7 +88,7 @@ export default function Login() {
 					maxAge: 1000 * 60 * 60 * 24
 				});
 			});
-			navigate(`${indexPath}/education`)
+			navigate(`${indexPath}/education`);
 		} catch (error) {
 			if (error.response) {
 				setMsgI(error.response.data.msg);
