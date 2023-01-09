@@ -58,7 +58,7 @@
 
 			.stat_header {
 				font-size: 1rem;
-				margin: .5rem 0 0;
+				// margin: .5rem 0 0;
 				color: var(--fg-dark);
 				display: flex;
 				justify-content: center;
@@ -76,12 +76,14 @@
 			}
 
 			.stats {
-				margin: 1rem .5rem 0;
+				// margin: 1rem .5rem 0;
 				display: flex;
 				flex-direction: row;
 				justify-content: center;
 				align-items: center;
 				gap: .5rem;
+				width: 100%;
+				height: 100%;
 
 				&__entry {
 					display: flex;

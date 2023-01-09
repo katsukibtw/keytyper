@@ -14,7 +14,8 @@ const JoinRoom = ({ socket }) => {
 	const [msg, setMsg] = useState('');
 	const [roomCode, setRoomCode] = useState('');
 
-	const onFormSumbit = () => {
+	const onFormSumbit = (e) => {
+		e.preventDefault();
 		if (roomCodeRef?.current.value && !nicknameRef?.current) {
 			socket.emit('check if room exists', { safe_code: roomCodeRef?.current.value });
 		} else if (!roomCodeRef?.current.value) {
@@ -50,7 +51,7 @@ const JoinRoom = ({ socket }) => {
 	})
 
 	return (
-		<div className="join_room">
+		<form className="join_room" onSubmit={onFormSumbit}>
 			<div className="join_room__header">Вход в комнату</div>
 			<div className="join_room__form">
 				<input className="join_room__form__input" type='text' ref={roomCodeRef} placeholder="Введите секретный код комнаты" />
@@ -58,9 +59,9 @@ const JoinRoom = ({ socket }) => {
 					<input className="join_room__form__input" type='text' ref={nicknameRef} placeholder="Введите своё имя" />
 				}
 				{msg && <div className="join_room__form__msg">{msg}</div>}
-				<button className="join_room__form__btn" onClick={onFormSumbit}>{roomCode ? "Войти" : "Далее"}</button>
+				<button type="submit" className="join_room__form__btn">{roomCode ? "Войти" : "Далее"}</button>
 			</div>
-		</div>
+		</form>
 	)
 }
 

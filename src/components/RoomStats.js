@@ -12,6 +12,7 @@ const RoomStats = ({ socket }, props) => {
 		room: { roomname, room_id }
 	} = useSelector((state) => state);
 	const [stats, setStats] = useState([]);
+	const [msg, setMsg] = useState('');
 
 	const getRoomStats = async ({ room }) => {
 		try {
@@ -21,8 +22,14 @@ const RoomStats = ({ socket }, props) => {
 				},
 				withCredentials: true,
 			});
-
-			setStats(resp.data);
+			console.log(resp.data);
+			if (resp.data.length === 0) {
+				setMsg(':( Пока что здесь нет записей');
+				setStats([]);
+			} else {
+				setMsg('');
+				setStats(resp.data);
+			}
 		} catch (error) {
 			if (error.response) {
 				console.log(error);
@@ -52,6 +59,7 @@ const RoomStats = ({ socket }, props) => {
 					<div className="container__row__entry">Никнейм</div>
 					<div className="container__row__entry">Дата</div>
 				</div>
+				{msg && <div className="container__row msg">{msg}</div>}
 				{stats.map((el, idx) => {
 					const date = new Date(el.createdAt);
 					return (
