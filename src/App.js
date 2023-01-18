@@ -42,7 +42,7 @@ import SocketContext from './SocketContext';
 import { io } from 'socket.io-client';
 
 // some minor configuration for hosting
-export const host = 'http://localhost:9967';
+export const host = 'http://94.181.190.26:9967';
 export const indexPath = "/10v/skripko/keytyper";
 
 const socket = io(host, { transports: ['websocket', 'polling', 'flashsocket'] });

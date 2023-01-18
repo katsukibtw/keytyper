@@ -1,12 +1,12 @@
 .login {
-    flex-grow: 1;
-    width: 50%;
-    margin-inline: auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 3rem;
+	flex-grow: 1;
+	width: 50%;
+	margin-inline: auto;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	gap: 3rem;
 
 	.rb {
 		border: .1rem solid var(--red);
@@ -20,41 +20,41 @@
 	&__header {
 		font-weight: 600;
 	}
-    
-    &__cont {
-        display: inherit;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: .5rem;
-    }
 
-    &__input {
-        font-family: var(--fc);
-        font-size: 1.1rem;
+	&__cont {
+		display: inherit;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: .5rem;
+	}
+
+	&__input {
+		font-family: var(--fc);
+		font-size: 1.1rem;
 		width: 20rem;
 		height: 1.3rem;
 		border-radius: .5rem;
-        color: var(--fg);
-        background-color: var(--bg-btn);
-        border: 0;
-        padding: .5rem;
-    }
-    
-    &__btn {
-        background-color: var(--bg-btn);
-        color: var(--fg);
-        border: 0;
-        font-family: var(--fc);
-        font-size: 1.1rem;
-        padding: .5rem 2rem;
-        // width: 7rem;
+		color: var(--fg);
+		background-color: var(--bg-btn);
+		border: 0;
+		padding: .5rem;
+	}
+
+	&__btn {
+		background-color: var(--bg-btn);
+		color: var(--fg);
+		border: 0;
+		font-family: var(--fc);
+		font-size: 1.1rem;
+		padding: .5rem 2rem;
+		// width: 7rem;
 		border-radius: .5rem;
-        transition: .4s;
-        
-        &:hover {
-            background-color: var(--clr);
-            color: var(--bg);
-        }
-    }
+		transition: .4s;
+
+		&:hover {
+			background-color: var(--clr);
+			color: var(--bg);
+		}
+	}
 }

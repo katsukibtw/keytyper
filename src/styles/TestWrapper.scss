@@ -12,12 +12,12 @@
 	animation: fade-in .4s ease;
 
 	@keyframes fade-in {
-		0% {
-			opacity: 0;
-		}
-		100% {
-			opacity: 1;
-		}
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 	}
 
 	.timer {
@@ -31,7 +31,7 @@
 	.hidden {
 		opacity: 0;
 	}
-	
+
 	.wrapper {
 		display: flex;
 		flex-wrap: wrap;
@@ -48,7 +48,7 @@
 
 			&.wrong {
 				text-decoration: 2px underline var(--fg-wrong);
-            }
+			}
 		}
 
 		.typedWord {
@@ -69,7 +69,7 @@
 		.extra {
 			opacity: 0.6;
 		}
-		
+
 		#caret {
 			transition: left 0.1s ease;
 			margin-left: -7.29165px;
@@ -82,13 +82,13 @@
 			}
 		}
 		@keyframes blink {
-			0%,
-			100% {
-				opacity: 1;
-			}
-			50% {
-				opacity: 0;
-			}
+		0%,
+		100% {
+			opacity: 1;
+		}
+		50% {
+			opacity: 0;
+		}
 		}
 	}
 
@@ -104,7 +104,7 @@
 		width: 100%;
 		color: var(--fg-dark);
 		margin: 1rem 0 0;
-		
+
 		&.hidden {
 			transform: translateY(10rem);
 			opacity: 0;
@@ -149,14 +149,14 @@
 		border: 0;
 		opacity: .5;
 		animation: move .4s ease forwards;
-		
+
 		@keyframes move {
-			0% {
-				transform: translateY(0);
-			}	
-			100% {
-				transform: translateY(-6vh);
-			}
+		0% {
+			transform: translateY(0);
+		}	
+		100% {
+			transform: translateY(-6vh);
+		}
 		}
 
 		&:hover {
