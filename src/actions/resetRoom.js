@@ -5,6 +5,7 @@ export const resetRoom = async () => {
 	const { dispatch, getState } = store;
 	const {
 		time: { timerId },
+		roomWord: { roomLevelId },
 		preferences: { timeLimit, roomLevel },
 	} = getState();
 	document
@@ -14,9 +15,15 @@ export const resetRoom = async () => {
 		clearInterval(timerId);
 		dispatch(setTimerId(null));
 	}
-	import(`../edu_levels/${roomLevel}.json`).then((words) =>
-		dispatch(setRoomWordList(words.default))
-	);
+	if ([121, 122, 123, 124].includes(roomLevelId)) {
+		import(`../langs/${roomLevel}.json`).then((words) => {
+			dispatch(setRoomWordList(words.default));
+		});
+	} else {
+		import(`../edu_levels/${roomLevel}.json`).then((words) =>
+			dispatch(setRoomWordList(words.default))
+		);
+	}
 	dispatch(timerSet(timeLimit));
 	dispatch(setRoomErrorsToZero());
 };

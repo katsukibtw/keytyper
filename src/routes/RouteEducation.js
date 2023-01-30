@@ -157,31 +157,36 @@ export const LevelList = (props) => {
 			<div className="level_list">
 				{levelList.map((entry, idx) => {
 					return (
-						<div className="dumm" key={entry + idx + idx}>
-							<div
-								className={idx === 0 ? "level_list__step_block active" : "level_list__step_block"}
-								id={idx}
-								onClick={() => document.getElementById(idx).classList.toggle('active')}
-								key={entry + idx}>
-								<FontAwesomeIcon icon={faPlay} className="indicator" />{`Этап ${entry.step}`}
-							</div>
-							<div className="level_list__container" key={entry + idx + idx}>
-								{entry.levels.map((el, id) => {
-									return (
-										<div
-											className="level_list__entry"
-											onClick={() => handleLevelSelection(el.filename, el.id)}
-											key={el + id}>
-											{el.name}
-											{levelsCompl.includes(el.id) ?
-												<FontAwesomeIcon icon={faCheck} className="level_list__entry__check" />
-												: ''
-											}
-										</div>
-									);
-								})}
-							</div>
-						</div>
+						<>
+							{
+								entry.step !== 0 &&
+								<div className="dumm" key={entry + idx + idx}>
+									<div
+										className={idx === 1 ? "level_list__step_block active" : "level_list__step_block"}
+										id={idx}
+										onClick={() => document.getElementById(idx).classList.toggle('active')}
+										key={entry + idx}>
+										<FontAwesomeIcon icon={faPlay} className="indicator" />{`Этап ${entry.step}`}
+									</div>
+									<div className="level_list__container" key={entry + idx + idx}>
+										{entry.levels.map((el, id) => {
+											return (
+												<div
+													className="level_list__entry"
+													onClick={() => handleLevelSelection(el.filename, el.id)}
+													key={el + id}>
+													{el.name}
+													{levelsCompl.includes(el.id) ?
+														<FontAwesomeIcon icon={faCheck} className="level_list__entry__check" />
+														: ''
+													}
+												</div>
+											);
+										})}
+									</div>
+								</div>
+							}
+						</>
 					);
 				})}
 			</div>

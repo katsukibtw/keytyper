@@ -47,7 +47,7 @@ export const indexPath = "/10v/skripko/keytyper";
 
 const socket = io(host, { transports: ['websocket', 'polling', 'flashsocket'] });
 
-function App() {
+const App = () => {
 	axios.defaults.withCredentials = true;
 	// some store vars for checking user id
 	const {

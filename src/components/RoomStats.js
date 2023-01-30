@@ -64,7 +64,17 @@ const RoomStats = ({ socket }, props) => {
 					const date = new Date(el.createdAt);
 					return (
 						<div className="container__row">
-							<div className="container__row__entry" key={el + idx}>{el.level}</div>
+							<div className="container__row__entry" key={el + idx}>{
+								el.level === 121 ?
+									'Русский'
+									: el.level === 122 ?
+										'Русский (С)'
+										: el.level === 123 ?
+											'Английский'
+											: el.level === 124 ?
+												'Английский (С)'
+												: el.level
+							}</div>
 							<div className="container__row__entry" key={el + idx + idx}>{el.wpm}</div>
 							<div className="container__row__entry" key={el + idx + idx + idx}>{el.errors}</div>
 							<div className="container__row__entry" key={el + idx + idx + idx + idx}>{el.cr_words}</div>

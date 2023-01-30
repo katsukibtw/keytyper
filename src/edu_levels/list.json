@@ -1,5 +1,30 @@
 [
 	{
+		"step": 0,
+		"levels": [
+			{
+				"name": "Русский",
+				"id": 121,
+				"filename": "rus"
+			},
+			{
+				"name": "Русский (С)",
+				"id": 122,
+				"filename": "rus_hard"
+			},
+			{
+				"name": "Английский",
+				"id": 123,
+				"filename": "eng"
+			},
+			{
+				"name": "Английский (С)",
+				"id": 124,
+				"filename": "eng_hard"
+			}
+		]
+	},
+	{
 		"step": 1,
 		"levels": [
 			{

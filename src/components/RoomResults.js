@@ -27,7 +27,8 @@ export default function RoomResults() {
 	result.forEach((r, idx) => {
 		if (r) correctChars += roomWordList[idx].length;
 	});
-	const wpm = ((correctChars + spaces) * 60 * 5 * (remTime / roomWordList.length / (timeLimit - remTime) + .3)) / timeLimit / 5;
+	const wpm = [121, 122, 123, 124].includes(roomLevelId) ? ((correctChars + spaces) * 60) / timeLimit / 5
+		: ((correctChars + spaces) * 60 * 5 * (remTime / roomWordList.length / (timeLimit - remTime) + .3)) / timeLimit / 5;
 
 	const sendNewStatEntry = async () => {
 		try {
@@ -41,9 +42,13 @@ export default function RoomResults() {
 				room_id: room_id,
 			},
 				{ withCredentials: true });
-			setMsg(resp.data.msg);
-			if (resp.data.corr) {
-				setSuccess(true);
+			if ([121, 122, 123, 124].includes(roomLevelId)) {
+				setMsg('Результат успешно сохранен');
+			} else {
+				setMsg(resp.data.msg);
+				if (resp.data.corr) {
+					setSuccess(true);
+				}
 			}
 		} catch (error) {
 			if (error.response) {
@@ -53,7 +58,7 @@ export default function RoomResults() {
 	}
 
 	useEffect(() => {
-		if (roomWordList.length === typedRoomHistory.length) {
+		if (roomWordList.length === typedRoomHistory.length || [121, 122, 123, 124].includes(roomLevelId)) {
 			sendNewStatEntry();
 		} else {
 			setMsg(':( Вы не успели напечатать все слова. Попробуйте еще раз');

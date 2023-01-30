@@ -66,9 +66,15 @@ const RouteRoom = ({ socket }, props) => {
 
 	const goToLevel = ({ filename, level_id }) => {
 		dispatch(setRoomLevel(filename));
-		import(`../edu_levels/${filename}.json`).then((words) =>
-			dispatch(setRoomWordList(words.default))
-		);
+		if ([121, 122, 123, 124].includes(level_id)) {
+			import(`../langs/${filename}.json`).then((words) => {
+				dispatch(setRoomWordList(words.default));
+			});
+		} else {
+			import(`../edu_levels/${filename}.json`).then((words) =>
+				dispatch(setRoomWordList(words.default))
+			);
+		}
 		dispatch(setRoomLevelId(level_id));
 		dispatch(setTime(30));
 		navigate("test");
@@ -153,7 +159,7 @@ const RouteRoom = ({ socket }, props) => {
 								<div className="level_list__container" key={entry + idx + idx}>
 									{entry.levels.map((el, id) => {
 										return (
-											levelSet.filter((level) => level.id === el.id)[0] ?
+											entry.step === 0 ?
 												<div
 													className="level_list__entry"
 													onClick={() => goToLevel({ filename: el.filename, level_id: el.id })}
@@ -164,7 +170,18 @@ const RouteRoom = ({ socket }, props) => {
 														: ''
 													}
 												</div>
-												: ''
+												: levelSet.filter((level) => level.id === el.id)[0] ?
+													<div
+														className="level_list__entry"
+														onClick={() => goToLevel({ filename: el.filename, level_id: el.id })}
+														key={el + id}>
+														{el.name}
+														{levelsCompl.includes(el.id) ?
+															<FontAwesomeIcon icon={faCheck} className="level_list__entry__check" />
+															: ''
+														}
+													</div>
+													: ''
 										);
 									})}
 								</div>
@@ -180,28 +197,32 @@ const RouteRoom = ({ socket }, props) => {
 						<div className="settings__chooselevels">
 							{levelList.map((entry, idx) => {
 								return (
-									<div className="dumm" key={entry + idx + idx}>
-										<div
-											className={idx === 0 ? "step_block active" : "step_block"}
-											id={idx}
-											onClick={() => document.getElementById(idx).classList.toggle('active')}
-											key={entry + idx}>
-											<FontAwesomeIcon icon={faPlay} className="indicator" />{`Этап ${entry.step}`}
-										</div>
-										<div className="container" key={entry + idx + idx}>
-											{entry.levels.map((el, id) => {
-												return (
-													<div
-														className={levelSet.filter((level) => { return level.id === el.id })[0] ? "entry toggled" : "entry"}
-														onClick={() => handleLevelSelection({ filename: el.filename, level_id: el.id })}
-														id={`el${el.id}`}
-														key={el + id}>
-														{el.name.split(' ')[1]}
-													</div>
-												);
-											})}
-										</div>
-									</div>
+									<>
+										{entry.step !== 0 &&
+											<div className="dumm" key={entry + idx + idx}>
+												<div
+													className={idx === 0 ? "step_block active" : "step_block"}
+													id={idx}
+													onClick={() => document.getElementById(idx).classList.toggle('active')}
+													key={entry + idx}>
+													<FontAwesomeIcon icon={faPlay} className="indicator" />{`Этап ${entry.step}`}
+												</div>
+												<div className="container" key={entry + idx + idx}>
+													{entry.levels.map((el, id) => {
+														return (
+															<div
+																className={levelSet.filter((level) => { return level.id === el.id })[0] ? "entry toggled" : "entry"}
+																onClick={() => handleLevelSelection({ filename: el.filename, level_id: el.id })}
+																id={`el${el.id}`}
+																key={el + id}>
+																{el.name.split(' ')[1]}
+															</div>
+														);
+													})}
+												</div>
+											</div>
+										}
+									</>
 								);
 							})}
 						</div>
