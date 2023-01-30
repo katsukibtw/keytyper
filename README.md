@@ -15,3 +15,5 @@ This thing is written using React and Redux (in bare functional without users or
 
 Notice that for using all features of this app you need a backend, but it is not done yet, so it's in a private repo for now.
 Backend is written with Express, Sequalize and Cors. Authentication is set on JWT
+
+> Maybe i'll add some screenshots there soon
