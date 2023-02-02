@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkkeytyper=self.webpackChunkkeytyper||[]).push([[896],{896:function(e){e.exports=JSON.parse('["49-1=48","12-3=9","15-9=6","12-8=4","11-4=7","19-13=6","12-3=9","10-6=4","9-4=5"]')}}]);

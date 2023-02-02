@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkkeytyper=self.webpackChunkkeytyper||[]).push([[1527],{1527:function(e){e.exports=JSON.parse('["\u0432\u043e\u043b","\u043b\u043e\u0432","\u0432\u0430\u043b","\u043b\u0430\u0432\u0430","\u043e\u0432\u0430\u043b","\u043e\u043b\u043e\u0432\u043e"]')}}]);
