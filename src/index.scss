@@ -8,7 +8,7 @@ body {
   /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', */
     /* 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', */
     /* sans-serif; */
-  font-family: 'Open Sans', monospace;
+  font-family: 'Inter', monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: .4s ease;
@@ -16,24 +16,25 @@ body {
   /* overflow: hidden; */
 }
 
+
 @font-face {
 	font-family: 'mononoki';
 	src: local('mononoki'),
-		url('./fonts/mononoki/mononoki-Regular.ttf');
+		url('./fonts/mononoki/mononoki-Regular.woff2') format('woff2');
 	font-weight: 400;
 }
 
 @font-face {
 	font-family: 'mononoki';
 	src: local('mononoki'),
-		url('./fonts/mononoki/mononoki-Bold.ttf');
+		url('./fonts/mononoki/mononoki-Bold.woff2') format('woff2');
 	font-weight: 700;
 }
 
 @font-face {
 	font-family: 'mononoki';
 	src: local('mononoki'),
-		url('./fonts/mononoki/mononoki-Italic.ttf');
+		url('./fonts/mononoki/mononoki-Italic.woff2') format('woff2');
 	font-weight: 400;
 	font-style: italic;
 }
@@ -41,7 +42,93 @@ body {
 @font-face {
 	font-family: 'mononoki';
 	src: local('mononoki'),
-		url('./fonts/mononoki/mononoki-BoldItalic.ttf');
+		url('./fonts/mononoki/mononoki-BoldItalic.woff2') format('woff2');
 	font-weight: 700;
+	font-style: italic;
+}
+
+
+@font-face {
+	font-family: 'UbuntuMono';
+	src: local('Ubuntu Mono'),
+		url('./fonts/ubuntu-mono/UbuntuMono-Regular.woff2') format('woff2');
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: 'UbuntuMono';
+	src: local('Ubuntu Mono'),
+		url('./fonts/ubuntu-mono/UbuntuMono-Bold.woff2') format('woff2');
+	font-weight: 700;
+}
+
+@font-face {
+	font-family: 'UbuntuMono';
+	src: local('Ubuntu Mono'),
+		url('./fonts/ubuntu-mono/UbuntuMono-Italic.woff2') format('woff2');
+	font-weight: 400;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'UbuntuMono';
+	src: local('Ubuntu Mono'),
+		url('./fonts/ubuntu-mono/UbuntuMono-BoldItalic.woff2') format('woff2');
+	font-weight: 700;
+	font-style: italic;
+}
+
+
+@font-face {
+	font-family: 'JetBrainsMono';
+	src: local('JetBrains Mono'),
+		url('./fonts/jetbrainsmono/JetBrainsMono-Regular.woff2') format('woff2');
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: 'JetBrainsMono';
+	src: local('JetBrains Mono'),
+		url('./fonts/jetbrainsmono/JetBrainsMono-Bold.woff2') format('woff2');
+	font-weight: 700;
+}
+
+@font-face {
+	font-family: 'JetBrainsMono';
+	src: local('JetBrains Mono'),
+		url('./fonts/jetbrainsmono/JetBrainsMono-Italic.woff2') format('woff2');
+	font-weight: 400;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'JetBrainsMono';
+	src: local('JetBrains Mono'),
+		url('./fonts/jetbrainsmono/JetBrainsMono-BoldItalic.woff2') format('woff2');
+	font-weight: 700;
+	font-style: italic;
+}
+
+
+@font-face {
+	font-family: 'Inter';
+	src: url('./fonts/inter/Inter.var.woff2') format('woff2-variations');
+}
+
+@font-face {
+	font-family: 'Inter';
+	src: url('./fonts/inter/Inter-italic.var.woff2') format('woff2-variations');
+	font-style: italic;
+}
+
+
+@font-face {
+	font-family: 'RobotoMono';
+	src: url('./fonts/roboto-mono/RobotoMono-Regular.woff2') format('woff2-variations');
+}
+
+@font-face {
+	font-family: 'RobotoMono';
+	src: url('./fonts/roboto-mono/RobotoMono-Italic.woff2') format('woff2-variations');
 	font-style: italic;
 }

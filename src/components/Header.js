@@ -38,6 +38,7 @@ export const options = {
 		"nord",
 		"nord_light",
 		"everforest",
+		"mellow"
 	],
 	lang: ["eng", "eng_hard", "rus", "rus_hard"],
 };

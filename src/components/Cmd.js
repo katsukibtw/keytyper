@@ -31,6 +31,7 @@ export default function Cmd(props) {
 					"nord",
 					"nord_light",
 					"everforest",
+					"mellow",
 				],
 				язык: ["eng", "eng_hard", "rus", "rus_hard"],
 				шрифт: ["mononoki", "roboto_mono", "jetbrains_mono", "ubuntu_mono"],
@@ -46,6 +47,7 @@ export default function Cmd(props) {
 					"nord",
 					"nord_light",
 					"everforest",
+					"mellow",
 				],
 				шрифт: ["mononoki", "roboto_mono", "jetbrains_mono", "ubuntu_mono"],
 			};
