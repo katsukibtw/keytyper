@@ -65,8 +65,9 @@ export default function RoutedResults() {
 
 	return (
 		<div className="result">
-			<h1>{Math.round(wpm) + " с\/м"}</h1>
+			<h1>{Math.round(wpm) + " СВМ"}</h1>
 			<div className="info">
+				<div className="advice">СВМ - Слова в минуту</div>
 				<div className="info__row">
 					<div>Слова без ошибок:</div>
 					<div>{result.filter((x) => x).length}</div>
