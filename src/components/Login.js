@@ -75,11 +75,12 @@ export default function Login() {
 				withCredentials: true,
 			}).then((res) => {
 				localStorage.setItem('refreshToken', res.data.refreshToken);
-				localStorage.setItem('userId', res.data.userId); localStorage.setItem('username', res.data.name);
+				localStorage.setItem('userId', res.data.id);
+				localStorage.setItem('username', res.data.name);
 				dispatch(setUserRefreshToken(res.data.refreshToken));
-				dispatch(setUserId(res.data.userId));
+				dispatch(setUserId(res.data.id));
 				dispatch(setUserName(res.data.name));
-				getUserStats(res.data.userId);
+				getUserStats(res.data.id);
 				setCookie('refreshToken', res.data.refreshToken, {
 					httpOnly: false,
 					sameSite: 'strict',

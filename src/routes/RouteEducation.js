@@ -84,7 +84,7 @@ export default function RouteEducation(props) {
 			const decoded = jwtDecode(resp.data.accessToken);
 			setUsrName(decoded.name);
 			setExpire(decoded.exp);
-			dispatch(setUserId(decoded.userId));
+			dispatch(setUserId(decoded.id));
 			dispatch(setUserName(decoded.name));
 		} catch (error) {
 			if (error.response && mode !== 'init') {

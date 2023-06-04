@@ -29,37 +29,39 @@ export default function RoutedResults() {
 	result.forEach((r, idx) => {
 		if (r) correctChars += levelWordList[idx].length;
 	});
-	const wpm = ((correctChars + spaces) * 60 * 5 * (remTime / levelWordList.length / (timeLimit - remTime) + .3)) / timeLimit / 5;
+	const wpm = Math.round(((correctChars + spaces) * 60 * 5 * (remTime / levelWordList.length / (timeLimit - remTime) + .3)) / timeLimit / 5);
+
+	const sendNewStatEntry = async () => {
+		try {
+			const resp = await axios.post(`${host}/api/stats`, {
+				level: levelId,
+				wpm: wpm,
+				errors: levelErrors,
+				cr_words: result.filter((x) => x).length,
+				time: timeLimit,
+				user_id: id,
+			},
+				{ withCredentials: true });
+			setMsg(resp.data.msg);
+			if (resp.data.corr) {
+				dispatch(addComplLevel(levelId));
+				setSuccess(true);
+			}
+		} catch (error) {
+			if (error.response) {
+				console.log(error);
+			}
+		}
+	}
 
 	useEffect(() => {
 		if (levelWordList.length === typedLevelHistory.length) {
-			const sendNewStatEntry = async () => {
-				try {
-					const resp = await axios.post(`${host}/api/stats`, {
-						level: levelId,
-						wpm: wpm,
-						errors: levelErrors,
-						cr_words: result.filter((x) => x).length,
-						time: timeLimit,
-						user_id: id,
-					},
-						{ withCredentials: true });
-					setMsg(resp.data.msg);
-					if (resp.data.corr) {
-						dispatch(addComplLevel(levelId));
-						setSuccess(true);
-					}
-				} catch (error) {
-					if (error.response) {
-						console.log(error);
-					}
-				}
-			}
+			sendNewStatEntry();
 		} else {
 			setMsg(':( Вы не успели напечатать все слова. Попробуйте еще раз');
 			setSuccess(false);
 		}
-	}, [dispatch, id, levelErrors, levelId, levelWordList.length, result, timeLimit, typedLevelHistory, wpm]);
+	}, []);
 
 	return (
 		<div className="result">
