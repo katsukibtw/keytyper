@@ -122,13 +122,14 @@
 
 	.exit_btn {
 		color: var(--fg);
-		margin: 2rem auto 0;
+		margin: 1rem auto 0;
 		background-color: var(--bg-btn);
 		padding: .7rem 2.5rem;
 		border-radius: .6rem;
 		transition: .4s ease;
 		border: 0;
 		opacity: .5;
+		font-size: 1.4rem;
 
 		&:hover {
 			opacity: 1;
@@ -140,7 +141,7 @@
 
 	.reset_btn {
 		color: var(--fg);
-		margin: 2rem auto 0;
+		margin: 1rem auto 0;
 		font-size: 1.4rem;
 		background-color: var(--bg-btn);
 		padding: .7rem 2.5rem;
@@ -148,16 +149,16 @@
 		transition: .4s ease;
 		border: 0;
 		opacity: .5;
-		animation: move .4s ease forwards;
+		// animation: move .4s ease forwards;
 
-		@keyframes move {
-		0% {
-			transform: translateY(0);
-		}	
-		100% {
-			transform: translateY(-6vh);
-		}
-		}
+		// @keyframes move {
+		// 0% {
+			// transform: translateY(0);
+		// }	
+		// 100% {
+			// transform: translateY(-2vh);
+		// }
+		// }
 
 		&:hover {
 			color: var(--bg);

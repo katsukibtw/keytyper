@@ -1,7 +1,7 @@
 import '../styles/Header.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faKeyboard, faUser } from '@fortawesome/free-regular-svg-icons';
-import { faRightToBracket, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faRightToBracket, faArrowLeft, faGear } from '@fortawesome/free-solid-svg-icons';
 import { resetTest } from "../actions/resetTest";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,7 +20,8 @@ import {
 	setComplLevel,
 	setRoomUsername,
 	setRoomSafecode,
-	setRoomName
+	setRoomName,
+	setShowSettings
 } from "../store/actions";
 import { useLocation, useNavigate } from "react-router-dom";
 import { indexPath, host } from "../App";
@@ -43,7 +44,7 @@ export const options = {
 	lang: ["eng", "eng_hard", "rus", "rus_hard"],
 };
 
-export default function Header() {
+export default function Header(props) {
 	const location = useLocation();
 	const navigate = useNavigate();
 	const [showButtons, setShowButtons] = useState(false);
@@ -55,9 +56,7 @@ export default function Header() {
 	} = useSelector((state) => state);
 	const [showLogoutButton, setShowLogoutButton] = useState(!(refreshToken === null || refreshToken === 'null'));
 	const dispatch = useDispatch();
-	const fonts = ["mononoki", "roboto_mono"];
-
-	useEffect(() => {
+	const fonts = ["mononoki", "roboto_mono"]; useEffect(() => {
 		setShowButtons(location.pathname === indexPath + "/training" ? true : false);
 	}, [location]);
 
@@ -183,6 +182,13 @@ export default function Header() {
 			dispatch(setRoomName(''));
 		}
 		dispatch(setMode(''));
+		navigate(indexPath);
+		navigate(0);
+	}
+
+	const onSettingsButtonClick = (e) => {
+		dispatch(setShowSettings(true));
+		e.preventDefault();
 	}
 
 	return (
@@ -219,26 +225,31 @@ export default function Header() {
 						</div>
 					))}
 				</div>
-				<div className={showButtons ? "hidden advice" : "advice"}>
-					Нажмите <div className="advice__button">Ctrl</div> + <div className="advice__button">E</div> , чтобы открыть панель управления.
-				</div>
 			</div>
-			{mode === "room" ? '' : showLogoutButton ?
-				<div className="userspace">
-					<button className="login_link" onClick={Logout}>
-						<FontAwesomeIcon icon={faArrowLeft} className="login_link__icon" />
-						<div className="login_link__text">Выйти</div>
-					</button>
-					<Link to={`${indexPath}/dashboard`} className="userspace__user">
-						<div className="userspace__user__name">{name}</div>
-						<div className="userspace__user__icon"><FontAwesomeIcon icon={faUser} className="userspace__default" /></div>
+			<div className="section">
+				<button
+					className="settings_btn"
+					onClick={onSettingsButtonClick}
+				>
+					<FontAwesomeIcon icon={faGear} />
+				</button>
+				{mode === "room" ? '' : showLogoutButton ?
+					<div className="userspace">
+						<button className="login_link" onClick={Logout}>
+							<FontAwesomeIcon icon={faArrowLeft} className="login_link__icon" />
+							<div className="login_link__text">Выйти</div>
+						</button>
+						<Link to={`${indexPath}/dashboard`} className="userspace__user">
+							<div className="userspace__user__name">{name}</div>
+							<div className="userspace__user__icon"><FontAwesomeIcon icon={faUser} className="userspace__default" /></div>
+						</Link>
+					</div>
+					: <Link to={`${indexPath}/login`} className="login_link">
+						<FontAwesomeIcon icon={faRightToBracket} className="login_link__icon" />
+						<div className="login_link__text">Войти</div>
 					</Link>
-				</div>
-				: <Link to={`${indexPath}/login`} className="login_link">
-					<FontAwesomeIcon icon={faRightToBracket} className="login_link__icon" />
-					<div className="login_link__text">Войти</div>
-				</Link>
-			}
+				}
+			</div>
 		</div>
 	);
 }

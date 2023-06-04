@@ -68,7 +68,7 @@ export default function RoomResults() {
 
 	return (
 		<div className="result">
-			<h1>{Math.round(wpm) + " с\/м"}</h1>
+			<h1>{Math.round(wpm) + " с\/мин"}</h1>
 			<div className="info">
 				<div className="info__row">
 					<div>Слова без ошибок:</div>

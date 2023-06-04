@@ -84,9 +84,6 @@ export default function TestWrapper(props) {
 					);
 				})}
 			</div>
-			<div className={timerId ? "hidden advice" : "advice"}>
-				Нажмите <div className="advice__button">Ctrl</div> + <div className="advice__button">E</div> , чтобы открыть панель управления.
-			</div>
 			{timerId ?
 				<button className="reset_btn" onClick={handleResetClick}>
 					<FontAwesomeIcon icon={faArrowRotateLeft} />

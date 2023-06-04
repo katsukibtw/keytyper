@@ -51,6 +51,7 @@ import {
 	SET_ROOM_USERNAME,
 	SET_ROOM_USER_ID,
 	SET_ROOM_ID,
+	SET_SHOW_SETTINGS,
 } from "./actions";
 
 export const initialState = {
@@ -62,6 +63,7 @@ export const initialState = {
 		level: '',
 		roomLevel: '',
 		mode: "init",
+		show_settings: false,
 	},
 	word: {
 		currWord: "",
@@ -382,6 +384,8 @@ const preferenceReducer = (
 			return { ...state, roomLevel: payload };
 		case SET_MODE:
 			return { ...state, mode: payload };
+		case SET_SHOW_SETTINGS:
+			return { ...state, show_settings: payload };
 		default:
 			return state;
 	}

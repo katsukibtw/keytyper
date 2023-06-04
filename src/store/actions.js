@@ -16,6 +16,7 @@ export const INC_ERROR_COUNT = "INCERRORCOUNT";
 export const SET_ERRORS_TO_ZERO = "SETERRORSTOZERO";
 export const SET_LANG = "SETLANG";
 export const SET_FONT = "SETFONT";
+export const SET_SHOW_SETTINGS = "SETSHOWSETTINGS";
 
 // same things but for levels
 export const SET_LEVEL = "SETLEVEL";
@@ -62,6 +63,8 @@ export const SET_COMPL_ROOM = "SETCOMPLROOM";
 export const INC_ROOM_ERROR_COUNT = "INCROOMERRORCOUNT";
 export const SET_ROOM_ERRORS_TO_ZERO = "SETROOMERRORSTOZERO";
 
+// i'm very dumm and idk how to pass mutable state into multiple components properly, so i do it with store 
+export const setShowSettings = (payload) => ({ type: SET_SHOW_SETTINGS, payload });
 
 // Time Actions
 export const timerDecrement = () => ({ type: TIMER_DECREMENT });

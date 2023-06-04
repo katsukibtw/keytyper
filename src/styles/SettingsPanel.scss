@@ -1,0 +1,126 @@
+.settings_panel {
+	position: absolute;
+	inset: 0;
+	z-index: 10000;
+	background: hsl(0, 0%, 0%, .5);
+	// display: flex;
+	// justify-content: flex-end;
+	font-size: var(--fs);
+	animation: appr .4s ease forwards;
+
+	&__container {
+		position: absolute;
+		right: 0;
+		background: var(--bg);
+		width: 25rem;
+		height: 100dvh;
+		padding: 1rem;
+		animation: slide-appr .4s ease forwards;
+
+		&__header {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+			margin: 0 0 1rem;
+
+			&__title {
+				font-weight: 700;
+				font-size: calc(var(--fs) * 1.1);
+
+			}
+
+			&__closebtn {
+				background: var(--bg-btn);
+				color: var(--fg);
+				border: 0;
+				aspect-ratio: 1;
+				width: 2rem;
+				font-size: calc(var(--fs) * .75);
+				border-radius: .4rem;
+				transition: .4s ease;
+
+				&:hover {
+					background: var(--clr);
+					color: var(--bg);
+				}
+			}
+		}
+
+		&__section {
+			display: flex;
+			flex-direction: column;
+			gap: 1rem;
+			margin: 0 0 1rem;
+
+			&__title {
+				font-style: italic;
+				font-family: var(--fc);
+				font-size: calc(var(--fs) * .8);
+				position: relative;
+				display: flex;
+				gap: .6rem;
+				align-items: center;
+
+				.add {
+					color: var(--fg-darker);
+					font-size: calc(var(--fs) * .6);
+				}
+
+				&::before {
+					content: '';
+					position: absolute;
+					background: var(--fg-darker);
+					right: 0;
+					left: 0;
+					bottom: -.2rem;
+					height: .15rem;
+					border-radius: .5rem;
+					opacity: .5;
+				}
+			}
+
+			&__content {
+				display: flex;
+				flex-wrap: wrap;
+				gap: .5rem;
+
+				&__el {
+					font-family: var(--fc);
+					padding: .5rem 2rem;
+					background: var(--bg-btn);
+					font-size: calc(var(--fs) * .7);
+					flex: 1;
+					text-align: center;
+					border-radius: .4rem;
+					transition: .4s ease;
+
+					&.active,
+					&:hover {
+						transition: .4s ease;
+						background: var(--clr);
+						color: var(--bg);
+					}
+				}
+			}
+		}
+	}
+}
+
+@keyframes appr {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes slide-appr {
+	0%{
+		transform: translateX(100%);
+	}
+	100% {
+		transform: translateX(0);
+	}
+}
