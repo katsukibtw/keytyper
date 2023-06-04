@@ -31,42 +31,41 @@ export default function RoutedResults() {
 	});
 	const wpm = ((correctChars + spaces) * 60 * 5 * (remTime / levelWordList.length / (timeLimit - remTime) + .3)) / timeLimit / 5;
 
-	const sendNewStatEntry = async () => {
-		try {
-			const resp = await axios.post(`${host}/api/stats`, {
-				level: levelId,
-				wpm: wpm,
-				errors: levelErrors,
-				cr_words: result.filter((x) => x).length,
-				time: timeLimit,
-				user_id: id,
-			},
-				{ withCredentials: true });
-			setMsg(resp.data.msg);
-			if (resp.data.corr) {
-				dispatch(addComplLevel(levelId));
-				setSuccess(true);
-			}
-		} catch (error) {
-			if (error.response) {
-				console.log(error);
-			}
-		}
-	}
-
 	useEffect(() => {
 		if (levelWordList.length === typedLevelHistory.length) {
-			sendNewStatEntry();
+			const sendNewStatEntry = async () => {
+				try {
+					const resp = await axios.post(`${host}/api/stats`, {
+						level: levelId,
+						wpm: wpm,
+						errors: levelErrors,
+						cr_words: result.filter((x) => x).length,
+						time: timeLimit,
+						user_id: id,
+					},
+						{ withCredentials: true });
+					setMsg(resp.data.msg);
+					if (resp.data.corr) {
+						dispatch(addComplLevel(levelId));
+						setSuccess(true);
+					}
+				} catch (error) {
+					if (error.response) {
+						console.log(error);
+					}
+				}
+			}
 		} else {
 			setMsg(':( Вы не успели напечатать все слова. Попробуйте еще раз');
 			setSuccess(false);
 		}
-	}, []);
+	}, [dispatch, id, levelErrors, levelId, levelWordList.length, result, timeLimit, typedLevelHistory, wpm]);
 
 	return (
 		<div className="result">
 			<h1>{Math.round(wpm) + " с\/мин"}</h1>
 			<div className="info">
+				<div className="advice">СВМ - Слова в минуту</div>
 				<div className="info__row">
 					<div>Слова без ошибок:</div>
 					<div>{result.filter((x) => x).length}</div>

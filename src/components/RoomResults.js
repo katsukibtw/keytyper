@@ -30,46 +30,46 @@ export default function RoomResults() {
 	const wpm = [121, 122, 123, 124].includes(roomLevelId) ? ((correctChars + spaces) * 60) / timeLimit / 5
 		: ((correctChars + spaces) * 60 * 5 * (remTime / roomWordList.length / (timeLimit - remTime) + .3)) / timeLimit / 5;
 
-	const sendNewStatEntry = async () => {
-		try {
-			const resp = await axios.post(`${host}/api/stats`, {
-				level: roomLevelId,
-				wpm: wpm,
-				errors: roomErrors,
-				cr_words: result.filter((x) => x).length,
-				time: timeLimit,
-				room_user_id: user_id,
-				room_id: room_id,
-			},
-				{ withCredentials: true });
-			if ([121, 122, 123, 124].includes(roomLevelId)) {
-				setMsg('Результат успешно сохранен');
-			} else {
-				setMsg(resp.data.msg);
-				if (resp.data.corr) {
-					setSuccess(true);
-				}
-			}
-		} catch (error) {
-			if (error.response) {
-				console.log(error);
-			}
-		}
-	}
 
 	useEffect(() => {
 		if (roomWordList.length === typedRoomHistory.length || [121, 122, 123, 124].includes(roomLevelId)) {
-			sendNewStatEntry();
+			const sendNewStatEntry = async () => {
+				try {
+					const resp = await axios.post(`${host}/api/stats`, {
+						level: roomLevelId,
+						wpm: wpm,
+						errors: roomErrors,
+						cr_words: result.filter((x) => x).length,
+						time: timeLimit,
+						room_user_id: user_id,
+						room_id: room_id,
+					},
+						{ withCredentials: true });
+					if ([121, 122, 123, 124].includes(roomLevelId)) {
+						setMsg('Результат успешно сохранен');
+					} else {
+						setMsg(resp.data.msg);
+						if (resp.data.corr) {
+							setSuccess(true);
+						}
+					}
+				} catch (error) {
+					if (error.response) {
+						console.log(error);
+					}
+				}
+			}
 		} else {
 			setMsg(':( Вы не успели напечатать все слова. Попробуйте еще раз');
 			setSuccess(false);
 		}
-	}, []);
+	}, [user_id, room_id, roomErrors, roomLevelId, roomWordList.length, result, timeLimit, typedRoomHistory, wpm]);
 
 	return (
 		<div className="result">
 			<h1>{Math.round(wpm) + " с\/мин"}</h1>
 			<div className="info">
+				<div className="advice">СВМ - Слова в минуту</div>
 				<div className="info__row">
 					<div>Слова без ошибок:</div>
 					<div>{result.filter((x) => x).length}</div>
