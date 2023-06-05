@@ -27,8 +27,8 @@ export default function RoomResults() {
 	result.forEach((r, idx) => {
 		if (r) correctChars += roomWordList[idx].length;
 	});
-	const wpm = [121, 122, 123, 124].includes(roomLevelId) ? ((correctChars + spaces) * 60) / timeLimit / 5
-		: ((correctChars + spaces) * 60 * 5 * (remTime / roomWordList.length / (timeLimit - remTime) + .3)) / timeLimit / 5;
+	const wpm = [121, 122, 123, 124].includes(roomLevelId) ? Math.round(((correctChars + spaces) * 60) / timeLimit / 5)
+		: Math.round(((correctChars + spaces) * 60 * 5 * (remTime / roomWordList.length / (timeLimit - remTime) + .3)) / timeLimit / 5);
 
 	const sendNewStatEntry = async () => {
 		try {

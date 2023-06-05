@@ -38,6 +38,7 @@ export default function RouteEducation(props) {
 				},
 				withCredentials: true,
 			}).then((res) => {
+				console.log(res.data);
 				res.data.forEach((entry) => {
 					if (entry.wpm >= 25 && entry.errors <= 3) {
 						dispatch(addComplLevel(entry.level));

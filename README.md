@@ -2,18 +2,20 @@
 	<img src="./gitassets/keytyper.jpg" width="400" height="300">
 </p>
 
-### Keytyper
-Keytyper is an online platform for touch typing education and training.
+# Keytyper
 
-To set up your own version of Keytyper clone this repository and run following commands
+Keytyper - это онлайн платформа для изучения и тренировки техники слепой печати. Весь пользовательский интерфейс написан с использованием фреймворка [React](https://react.dev/).
 
-This thing is written using React and Redux (in bare functional without users or any db elements).
+Опробовать платформу, не запуская ее на собственном сервере, можно по [этой ссылке](http://94.181.190.26/10v/skripko/keytyper).
 
-	yarn install
-	yarn start # to test it on development server
-	yarn build # to build production version for deploy
+## Установка на локальном сервере
 
-Notice that for using all features of this app you need a backend, but it is not done yet, so it's in a private repo for now.
-Backend is written with Express, Sequalize and Cors. Authentication is set on JWT
+Чтобы запустить данную платформу на локальном сервере необходимо клонировать репозиторий, загрузить необходимые библиотеки, собрать готовую для использования версию и открыть ее на своем сервере.
 
-> Maybe i'll add some screenshots there soon
+```sh
+$ yarn install # загрузка всех необходимых библиотек
+$ yarn start # запуск тестового сервера
+$ yarn build # сборка версии, готовой для использования на прод сервере
+```
+
+Также данная платформа использует отдельный сервер для обращения к базе данных и поддержания постоянного асинхронного подключения пользователей к комнатам. Сервер можно скачать из его [репозитория](https://codeberg.org/katsuki/keytyper-backend).
